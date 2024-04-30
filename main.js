@@ -15,6 +15,6 @@ const map = new Map({
   ],
   view: new View({
     center: [107.6098, -6.9175], //Koordinat Kota Bandung
-    zoom: 9
+    zoom: 12
   })
 });
