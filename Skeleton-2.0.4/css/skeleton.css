@@ -430,3 +430,15 @@ body {
   bottom: 0;
   width: 100%;
 }
+
+/* CSS untuk popup */
+.popup-content {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc; /* Tambahkan border dengan ketebalan 1px dan warna abu-abu */
+  border-radius: 5px; /* Tambahkan border radius */
+}
+
+.popup-content p {
+  margin: 0;
+}
