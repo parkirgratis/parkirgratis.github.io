@@ -27,21 +27,19 @@ const marker = new Overlay({
   stopEvent: false // Agar overlay tidak menghentikan event pada peta
 });
 
-// Set isi dari elemen overlay sebagai gambar marker
-marker.getElement().innerHTML = '<img src="marker.png" alt="Marker" style="width: 20px; height: 20px;">';
-
 // Tambahkan overlay ke dalam peta
 map.addOverlay(marker);
 
-// Buat overlay untuk marker pertama (Kota Bandung)
-const markerkesatu = new Overlay({
-  position: fromLonLat([-6.874172843889921, 107.58030033050544]), // Koordinat Kota Bandung
+// Buat overlay untuk marker pertama
+const markerpertama = new Overlay({
+  position: fromLonLat([107.57699001587744, -6.878240461265228]), // Koordinat marker pertama
   positioning: 'center-center',
   element: document.createElement('div'),
   stopEvent: false
 });
-markerkesatu.getElement().innerHTML = '<img src="marker.png" alt="Marker" style="width: 20px; height: 20px;">';
-map.addOverlay(markerkesatu);
+markerpertama.getElement().innerHTML = '<img src="marker.png" alt="Marker" style="width: 20px; height: 20px;">';
+map.addOverlay(markerpertama);
+
 
 // Buat overlay untuk marker kedua
 const markerKedua = new Overlay({
@@ -90,12 +88,12 @@ markerKedua.getElement().addEventListener('click', function() {
     <div style="background-color: white; padding: 10px;">
       <table>
         <tr>
-          <th>Deskripsi</th>
-          <td>Deskripsi tempat kedua</td>
+          <th></th>
+          <td></td>
         </tr>
         <tr>
-          <th>Informasi</th>
-          <td>Informasi tambahan</td>
+          <th></th>
+          <td></td>
         </tr>
       </table>
     </div>`;
@@ -109,12 +107,12 @@ markerketiga.getElement().addEventListener('click', function() {
     <div style="background-color: white; padding: 10px;">
       <table>
         <tr>
-          <th>Deskripsi</th>
-          <td>Deskripsi tempat ketiga</td>
+          <th></th>
+          <td></td>
         </tr>
         <tr>
-          <th>Informasi</th>
-          <td>Informasi tambahan</td>
+          <th></th>
+          <td></td>
         </tr>
       </table>
     </div>`;
@@ -133,12 +131,12 @@ markerKedua.getElement().addEventListener('click', function() {
     <div style="background-color: white; padding: 10px;">
       <table>
         <tr>
-          <th>Deskripsi</th>
-          <td>Deskripsi tempat kedua</td>
+          <th></th>
+          <td></td>
         </tr>
         <tr>
-          <th>Informasi</th>
-          <td>Informasi tambahan</td>
+          <th></th>
+          <td></td>
         </tr>
       </table>
     </div>`;
@@ -152,12 +150,12 @@ markerketiga.getElement().addEventListener('click', function() {
     <div style="background-color: white; padding: 10px;">
       <table>
         <tr>
-          <th>Deskripsi</th>
-          <td>Deskripsi tempat ketiga</td>
+          <th></th>
+          <td></td>
         </tr>
         <tr>
-          <th>Informasi</th>
-          <td>Informasi tambahan</td>
+          <th></th>
+          <td></td>
         </tr>
       </table>
     </div>`;
