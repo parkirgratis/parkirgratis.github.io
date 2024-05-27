@@ -17,4 +17,4 @@ export function displayPopup(popup, coordinate, content) {
   popup.getElement().innerHTML = content;
   popup.setPosition(fromLonLat(coordinate));
   popup.setPositioning('bottom-center');
-}
+} //untuk menampilkan popup pada peta

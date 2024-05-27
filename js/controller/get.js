@@ -6,7 +6,7 @@ export function isiTable(results) {
     results.forEach(isiRow);
 }
 
-function isiRow(value) {
+function isiRow(value) { 
     let content=
     isiTabel.replace("ID", value._id)
             .replace("Nama", value.nama_tempat)
@@ -19,11 +19,11 @@ function isiRow(value) {
         newRow.innerHTML = content;
         tableBody.appendChild(newRow); 
     }
-}
+}//untuk mamasukan database kedalam table sesuai dengan objek nilai 
 
 function clearTable() {
     const tableBody = document.querySelector('#iniTabel tbody');
     if (tableBody) {
         tableBody.innerHTML = ''; 
     }
-}
+}//untuk mengubah isi tabel lama menjadi isi tabel baru

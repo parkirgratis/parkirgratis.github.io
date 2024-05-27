@@ -10,8 +10,8 @@ import { createPopups, displayPopup } from './controller/popups.js';//untuk memb
 const map = new Map({
     target: 'map',//id div dari html
     layers: [
-        new TileLayer({
-            source: new OSM()
+        new TileLayer({ //untuk menampilkan layer map 
+            source: new OSM() // untuk menampulkan jalan
         })
     ],
     view: new View({
@@ -20,7 +20,7 @@ const map = new Map({
     })
 });
 
-const markerCoords = [
+const markerCoords = [ //untuk menentukan marker yang akan muncul
     [107.57806170827054, -6.87616450819235],//alfamart sarimanah
     [107.57441932515601, -6.865637836144359],//alfamart ciwaruga Jl. Ciwaruga-Ters, Jl. Gegerkalong Hilir No.37, RT.01/RW.03, Ciwaruga, Kec. Parongpong, Kabupaten Bandung Barat, Jawa Barat 40559
     [107.58023768006228, -6.8739512071239846],//yomart Sarimanah Jl. Sarimanah No.106, Sarijadi, Kec. Sukasari, Kota Bandung, Jawa Barat 40151
@@ -29,9 +29,9 @@ const markerCoords = [
     [ 107.6916921488174, -6.901263021760781],//yomart jalan kosar Jl. Simpay Asih, Pasir Endah, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40619
 ];
 
-const popupsData = [
+const popupsData = [ // untuk memunculkan popup
     {
-        coordinate: markerCoords[0],
+        coordinate: markerCoords[0], //untuk menentukan di koordinat mana popup akan muncul
         content: `<tbody>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg" id="iniTabel">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -55,18 +55,18 @@ const popupsData = [
     // Add other popup data here
 ];
 
-const markers = markerCoords.map(coord => createMarker(map, coord));
-const popups = createPopups(map, popupsData);
+const markers = markerCoords.map(coord => createMarker(map, coord)); //untuk membuat marker pada koordinat
+const popups = createPopups(map, popupsData); //untuk membuat popup berdasarkan popupdata pada marker
 
 markers.forEach((marker, index) => {
     marker.getElement().addEventListener('click', () => {
         const popup = popups[index];
         displayPopup(popup, popupsData[index].coordinate, popupsData[index].content);
     });
-});
+}); // untuk membuat banyak marker dan manampilkan popup saat marker di click
 
 map.on('click', function(event) {
     popups.forEach(popup => {
         popup.setPosition(null);
     });
-});
+}); //untuk memnyambunyikan popup saat peta di click
