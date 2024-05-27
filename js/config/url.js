@@ -1,1 +1,1 @@
-export let urlAPI = "  https://dep-parkir-da765bbbb22d.herokuapp.com/hahay";
+export let urlAPI = "  https://dep-parkir-da765bbbb22d.herokuapp.com/parkir/665312bc4807cf6eca89a684";

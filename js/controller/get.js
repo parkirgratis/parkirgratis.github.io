@@ -7,12 +7,11 @@ export function isiTable(results) {
 }
 
 function isiRow(value) {
-    let content = 
+    let content=
     isiTabel.replace("ID", value._id)
             .replace("Nama", value.nama_tempat)
             .replace("Lokasi", value.lokasi)
             .replace("Fasilitas", value.fasilitas)
-            .replace("Lon", value.lon);
            
     const tableBody = document.querySelector('#iniTabel tbody');
     if (tableBody) {

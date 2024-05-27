@@ -21,13 +21,12 @@ const map = new Map({
 });
 
 const markerCoords = [
-    [107.57806170827054, -6.87616450819235], //alfamart sarimanah
+    [107.57806170827054, -6.87616450819235],//alfamart sarimanah
     [107.57441932515601, -6.865637836144359],//alfamart ciwaruga Jl. Ciwaruga-Ters, Jl. Gegerkalong Hilir No.37, RT.01/RW.03, Ciwaruga, Kec. Parongpong, Kabupaten Bandung Barat, Jawa Barat 40559
-    [107.58023768006228, -6.8739512071239846],
-    [107.57674995307603, -6.879421693090783],
-    [107.55090379994242, -6.862020504462997],
-    [107.57613168830173, -6.8620573920747585],
-    [107.69155583045713, -6.900889681458682]    
+    [107.58023768006228, -6.8739512071239846],//yomart Sarimanah Jl. Sarimanah No.106, Sarijadi, Kec. Sukasari, Kota Bandung, Jawa Barat 40151
+    [107.55091369885083, -6.8622383054487806],//alfamart Jl. Citeureup Kel No.87, Citeureup, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40512
+    [107.57613168830173, -6.8620573920747585],//indomaret warugajaya 4HQG+5C6, Jalan Waruga Jaya, Ciwaruga, Kec. Parongpong, Kota Bandung, Jawa Barat 40559
+    [ 107.6916921488174, -6.901263021760781],//yomart jalan kosar Jl. Simpay Asih, Pasir Endah, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40619
 ];
 
 const popupsData = [
@@ -51,31 +50,8 @@ const popupsData = [
         </th>
                 </table>
             </div> </tbody>`
-
-
     },
-  
-    {
-      coordinate: markerCoords[1],
-      content: `
-          <div style="background-color: white; padding: 10px;">
-              <table>
-                  <tr>
-                      <th>Alfamart sarimanah</th>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      <th>Jl. Sarimanah Kel No.87, RT.04/RW.09,<br>
-                       Sarijadi, Kec. Sukasari, Kota Bandung, 
-                       Jawa Barat 40151</th>
-                      <td></td>
-                  </tr>
-              </table>
-          </div>`
-  },
-  
-
-  
+   
     // Add other popup data here
 ];
 

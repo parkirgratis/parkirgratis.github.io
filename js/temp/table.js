@@ -7,7 +7,6 @@ export let isiTabel = `
         <th scope="col" class="px-6 py-3">Nama</th>
         <th scope="col" class="px-6 py-3">Lokasi</th>
         <th scope="col" class="px-6 py-3">Fasilitas</th>
-        <th scope="col" class="px-6 py-3">Lon</th>
       </tr>
     </thead>
     <tbody>
