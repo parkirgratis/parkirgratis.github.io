@@ -20,6 +20,8 @@ const map = new Map({
     })
 });
 
+//ambil data dari https://parkirgratis.github.io/data/marker.json masukin ke variabel marker cors
+//fetch('https://parkirgratis.github.io/data/marker.json')
 const markerCoords = [
     [107.57806170827054, -6.87616450819235],
     [107.57699001587744, -6.878240461265228],
