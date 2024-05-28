@@ -33,6 +33,7 @@ const markerCoords = [
     [107.69155583045713, -6.900889681458682]
 ];
 
+//ambil data dari https://parkirgratis.github.io/data/lokasi.json masukin ke popusdata (looping)
 const popupsData = [
     {
         coordinate: [107.57806170827054, -6.87616450819235],
