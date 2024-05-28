@@ -33,7 +33,7 @@ const markerCoords = [
 
 const popupsData = [
     {
-        coordinate: markerCoords[0],
+        coordinate: [107.57806170827054, -6.87616450819235],
         content: `
             <div style="background-color: white; padding: 10px;">
                 <table>
@@ -51,7 +51,7 @@ const popupsData = [
             </div>`
     },
     {
-      coordinate: markerCoords[1],
+      coordinate: [107.57699001587744, -6.878240461265228],
       content: `
           <div style="background-color: white; padding: 10px;">
               <table>
@@ -69,7 +69,7 @@ const popupsData = [
           </div>`
   },
   {
-    coordinate: markerCoords[2],
+    coordinate:[107.57443704813844, -6.865543210439596],
     content: `
         <div style="background-color: white; padding: 10px;">
             <table>
@@ -87,7 +87,7 @@ const popupsData = [
         </div>`
 },
 {
-  coordinate: markerCoords[3],
+  coordinate:[107.58023768006228, -6.8739512071239846],
   content: `
       <div style="background-color: white; padding: 10px;">
           <table>
@@ -105,7 +105,7 @@ const popupsData = [
       </div>`
 },
 {
-  coordinate: markerCoords[4],
+  coordinate: [107.57674995307603, -6.879421693090783],
   content: `
       <div style="background-color: white; padding: 10px;">
           <table>
@@ -123,7 +123,7 @@ const popupsData = [
       </div>`
 },
 {
-  coordinate: markerCoords[5],
+  coordinate: [107.55090379994242, -6.862020504462997],
   content: `
       <div style="background-color: white; padding: 10px;">
           <table>
@@ -141,7 +141,7 @@ const popupsData = [
       </div>`
 },
 {
-  coordinate: markerCoords[6],
+  coordinate: [107.57613168830173, -6.8620573920747585],
   content: `
       <div style="background-color: white; padding: 10px;">
           <table>
@@ -159,25 +159,7 @@ const popupsData = [
       </div>`
 },
 {
-  coordinate: markerCoords[7],
-  content: `
-      <div style="background-color: white; padding: 10px;">
-          <table>
-              <tr>
-                  <th>Alfamart sarimanah</th>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th>Jl. Sarimanah Kel No.87, RT.04/RW.09,<br>
-                   Sarijadi, Kec. Sukasari, Kota Bandung, 
-                   Jawa Barat 40151</th>
-                  <td></td>
-              </tr>
-          </table>
-      </div>`
-},
-{
-  coordinate: markerCoords[8],
+  coordinate: [107.69155583045713, -6.900889681458682],
   content: `
       <div style="background-color: white; padding: 10px;">
           <table>
