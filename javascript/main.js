@@ -20,18 +20,21 @@ const map = new Map({
     })
 });
 
-//ambil data dari https://parkirgratis.github.io/data/marker.json masukin ke variabel marker cors
-//fetch('https://parkirgratis.github.io/data/marker.json')
-const markerCoords = [
-    [107.57806170827054, -6.87616450819235],
-    [107.57699001587744, -6.878240461265228],
-    [107.57443704813844, -6.865543210439596],
-    [107.58023768006228, -6.8739512071239846],
-    [107.57674995307603, -6.879421693090783],
-    [107.55090379994242, -6.862020504462997],
-    [107.57613168830173, -6.8620573920747585],
-    [107.69155583045713, -6.900889681458682]
-];
+let markerCoords = [];
+fetch('https://parkirgratis.github.io/data/marker.json')
+    .then(response => response.json())
+    .then(data => {
+        if (data.markers && Array.isArray(data.markers)) {
+            markerCoords = data.markers;
+        } else {
+            console.error('Marker data is not an array:', data);
+        }
+        console.log('Marker Coordinates:', markerCoords);
+
+        createMapMarkers(markerCoords);
+    })
+    .catch(error => console.error('Error fetching marker data:', error));
+
 
 //ambil data dari https://parkirgratis.github.io/data/lokasi.json masukin ke popusdata (looping)
 const popupsData = [
@@ -184,15 +187,19 @@ const popupsData = [
     // Add other popup data here
 ];
 
-const markers = markerCoords.map(coord => createMarker(map, coord));
+
 const popups = createPopups(map, popupsData);
 
-markers.forEach((marker, index) => {
-    marker.getElement().addEventListener('click', () => {
-        const popup = popups[index];
-        displayPopup(popup, popupsData[index].coordinate, popupsData[index].content);
+function createMapMarkers(markerCoords) {
+    const markers = markerCoords.map(coord => createMarker(map, coord));
+    markers.forEach((marker, index) => {
+        marker.getElement().addEventListener('click', () => {
+            const popup = popups[index];
+            const popupData = popupsData[index];
+            displayPopup(popup, popupData.coordinate, popupData.content);
+        });
     });
-});
+}
 
 map.on('click', function(event) {
     popups.forEach(popup => {
