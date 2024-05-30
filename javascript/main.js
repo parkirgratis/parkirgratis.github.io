@@ -34,7 +34,6 @@ fetch('https://parkirgratis.github.io/data/marker.json')
     })
     .catch(error => console.error('Error fetching marker data:', error));
 
-
 let popupsData = [];
 fetch('https://parkirgratis.github.io/data/lokasi.json')
     .then(response => response.json())
@@ -45,19 +44,19 @@ fetch('https://parkirgratis.github.io/data/lokasi.json')
                     popupsData.push({
                         coordinate: [item.lon, item.lat],
                         content: `
-                            <div style="background-color: white; padding: 10px;">
+                            <div class="popup-content">
                                 <table>
                                     <tr>
-                                        <th>${item.nama_tempat}</th>
-                                        <td></td>
+                                        <th>Nama Tempat</th>
+                                        <td>${item.nama_tempat}</td>
                                     </tr>
                                     <tr>
-                                        <th>${item.lokasi}</th>
-                                        <td></td>
+                                        <th>Lokasi</th>
+                                        <td>${item.lokasi}</td>
                                     </tr>
                                     <tr>
-                                        <th>${item.fasilitas}</th>
-                                        <td></td>
+                                        <th>Fasilitas</th>
+                                        <td>${item.fasilitas}</td>
                                     </tr>
                                 </table>
                             </div>`
@@ -75,27 +74,27 @@ fetch('https://parkirgratis.github.io/data/lokasi.json')
     })
     .catch(error => console.error('Error fetching popup data:', error));
 
-    let popups = [];
+let popups = [];
 
-    function initializeMapPopups(popupsData) {
-        popups = createPopups(map, popupsData);
-    }
+function initializeMapPopups(popupsData) {
+    popups = createPopups(map, popupsData);
+}
 
-    function createMapMarkers(markerCoords) {
-        const markers = markerCoords.map(coord => createMarker(map, coord));
-        markers.forEach((marker, index) => {
-            marker.getElement().addEventListener('click', () => {
-                const popup = popups[index];
-                const popupData = popupsData[index];
-                if (popup && popupData && popupData.coordinate) {
-                    displayPopup(popup, popupData.coordinate, popupData.content);
-                } else {
-                    console.error('Popup or popup data not found for marker index:', index);
-                }
-            });
+function createMapMarkers(markerCoords) {
+    const markers = markerCoords.map(coord => createMarker(map, coord));
+    markers.forEach((marker, index) => {
+        marker.getElement().addEventListener('click', () => {
+            const popup = popups[index];
+            const popupData = popupsData[index];
+            if (popup && popupData && popupData.coordinate) {
+                displayPopup(popup, popupData.coordinate, popupData.content);
+                map.flyTo({ center: popupData.coordinate, zoom: 10 }); // Pusatkan peta ke marker yang diklik
+            } else {
+                console.error('Popup or popup data not found for marker index:', index);
+            }
         });
-    }
-    
+    });
+}
 
 map.on('click', function(event) {
     popups.forEach(popup => {
