@@ -88,7 +88,7 @@ function createMapMarkers(markerCoords) {
             const popupData = popupsData[index];
             if (popup && popupData && popupData.coordinate) {
                 displayPopup(popup, popupData.coordinate, popupData.content);
-                map.flyTo({ center: popupData.coordinate, zoom: 10 }); // Pusatkan peta ke marker yang diklik
+                map.getView().animate({ center: fromLonLat(popupData.coordinate), zoom: 12 });
             } else {
                 console.error('Popup or popup data not found for marker index:', index);
             }
