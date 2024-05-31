@@ -46,6 +46,9 @@ fetch('https://parkirgratis.github.io/data/lokasi.json')
                         content: `
                             <div class="popup-content">
                                 <table>
+                                <th></th>
+                                <td><img src="https://gobiz.co.id/pusat-pengetahuan/wp-content/uploads/2022/12/Franchise-Alfamart-3.jpeg" alt="Image of ${item.nama_tempat}" style="max-width: 100%; height: auto;"></td>
+                                </tr>
                                     <tr>
                                         <th>Nama Tempat</th>
                                         <td>${item.nama_tempat}</td>
@@ -58,6 +61,9 @@ fetch('https://parkirgratis.github.io/data/lokasi.json')
                                         <th>Fasilitas</th>
                                         <td>${item.fasilitas}</td>
                                     </tr>
+                                    <tr>
+                            
+                                 
                                 </table>
                             </div>`
                     });
@@ -88,7 +94,7 @@ function createMapMarkers(markerCoords) {
             const popupData = popupsData[index];
             if (popup && popupData && popupData.coordinate) {
                 displayPopup(popup, popupData.coordinate, popupData.content);
-                map.getView().animate({ center: fromLonLat(popupData.coordinate), zoom: 12 });
+                map.getView().animate({ center: fromLonLat(popupData.coordinate), zoom: 14 });
             } else {
                 console.error('Popup or popup data not found for marker index:', index);
             }
