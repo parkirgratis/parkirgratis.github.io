@@ -33,31 +33,31 @@ fetch('https://parkirgratis.github.io/data/marker.json')
     .catch(error => console.error('Gagal mengambil data marker:', error));
 
 
-let popupsData = [];
-fetch('https://parkirgratis.github.io/data/lokasi.json')
-    .then(response => response.json())
-    .then(data => {
-        if (!Array.isArray(data)) {
-            console.error('Popup data is not an array:', data);
-            return;
-        }
-        popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas)
-                         .map(item => ({
-                             coordinate: [item.lon, item.lat],
-                             content: `
-                                <div class="popup-content">
-                                   
-                                    <table>
-                                        <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
-                                        <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>
-                                        <tr><th>Fasilitas</th><td>${item.fasilitas}</td></tr>
-                                    </table>
-                                </div>`
-                         }));
-        console.log('Popup Data:', popupsData);
-        initializeMapPopups(popupsData);
-    })
-    .catch(error => console.error('Error fetching popup data:', error));
+    let popupsData = [];
+    fetch('https://parkirgratis.github.io/data/lokasi.json')
+        .then(response => response.json())
+        .then(data => {
+            if (!Array.isArray(data)) {
+                console.error('Popup data is not an array:', data);
+                return;
+            }
+            popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
+                             .map(item => ({
+                                 coordinate: [item.lon, item.lat],
+                                 content: `
+                                    <div class="popup-content">
+                                        <img src="${item.gambar}" alt="Gambar Tempat" style="width:100%; height:auto;">
+                                        <table>
+                                            <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
+                                            <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>
+                                            <tr><th>Fasilitas</th><td>${item.fasilitas}</td></tr>
+                                        </table>
+                                    </div>`
+                             }));
+            console.log('Popup Data:', popupsData);
+            initializeMapPopups(popupsData);
+        })
+        .catch(error => console.error('Error fetching popup data:', error));
 let popups = [];
 
 function initializeMapPopups(popupsData) {
