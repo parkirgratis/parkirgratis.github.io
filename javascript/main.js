@@ -46,7 +46,7 @@ fetch('https://parkirgratis.github.io/data/lokasi.json')
                              coordinate: [item.lon, item.lat],
                              content: `
                                 <div class="popup-content">
-                                    <img src="https://gobiz.co.id/pusat-pengetahuan/wp-content/uploads/2022/12/Franchise-Alfamart-3.jpeg" alt="Image of ${item.nama_tempat}" style="max-width: 100%; height: auto;">
+                                   
                                     <table>
                                         <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
                                         <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>
@@ -65,7 +65,7 @@ function initializeMapPopups(popupsData) {
         coordinate: [item.lon, item.lat],
         content: `
             <div class="popup-content">
-                <img src="${item.gambar}" alt="Image of ${item.nama_tempat}" style="max-width: 100%; height: auto;">
+              
                 <table>
                     <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
                     <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>

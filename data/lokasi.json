@@ -4,7 +4,8 @@
         "lokasi" :  "Jl. Ciwaruga-Ters, Jl. Gegerkalong Hilir No.37, RT.01/RW.03, Ciwaruga, Kec. Parongpong, Kabupaten Bandung Barat, Jawa Barat 40559",
         "fasilitas" : "ATM",
         "lon" : 107.57441932515601,
-        "lat" : -6.865637836144359
+        "lat" : -6.865637836144359,
+        "gambar" :"img/alfaciwa.jpeg"
          
     }, 
     {
@@ -12,28 +13,32 @@
         "lokasi" :  "Jl. Sarimanah Kel No.87, RT.04/RW.09 Sarijadi, Kec. Sukasari, Kota Bandung, Jawa Barat 40151",
         "fasilitas" : "ATM",
         "lon" : 107.57806170827054,
-        "lat" : -6.87616450819235
+        "lat" : -6.87616450819235,
+        "gambar" :"img/alfasari.jpeg"
     },
     {
         "nama_tempat": "Yomart Sarimanah",
         "lokasi": "Jl. Sarimanah No.106, Sarijadi, Kec. Sukasari, Kota Bandung, Jawa Barat 40151",
         "fasilitas": "Tidak ada",
         "lon" : 107.57674995307603, 
-        "lat" : -6.879421693090783
+        "lat" : -6.879421693090783,
+        "gambar" :"img/yomarsari.jpeg"
     },
     {
         "nama_tempat": "Alfamart Citeurep",
         "lokasi": "Jl. Citeureup Kel No.87, Citeureup, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40512",
         "fasilitas": "ATM",
         "lon" : 107.5509089536278, 
-        "lat" : -6.862235281127944    
+        "lat" : -6.862235281127944,
+        "gambar" : "img/alfaciteu.jpeg"
     },
     {
         "nama_tempat": "Alfamart Sarijadi Baru",
         "lokasi": "Jl. Sarijadi Raya No.50, Sukarasa, Kec. Sukasari, Kota Bandung, Jawa Barat 40151",
         "fasilitas": "Tidak ada",
         "lon": 107.58023768006228,
-        "lat": -6.8739512071239846   
+        "lat": -6.8739512071239846,
+        "gambar" :"img/alfamart.jpeg"
     },
     
     {
@@ -41,56 +46,64 @@
         "lokasi": "Jalan Waruga Jaya, Ciwaruga, Kec. Parongpong, Kota Bandung, Jawa Barat 40559",
         "fasilitas": "Tidak ada",
         "lon" : 107.57613168830173, 
-        "lat" : -6.8620573920747585
+        "lat" : -6.8620573920747585,
+        "gambar" : "img/alfaciwa.jpeg"
     },  
     {
         "nama_tempat": "Indomaret Sariwangi",
         "lokasi": "Jl. Sariwangi Selatan No.143, Sariwangi, Kec. Parongpong, Kabupaten Bandung Barat, Jawa Barat 40559",
         "fasilitas": "Tidak ada",
         "lon" : 107.56864270698291,
-        "lat" :  -6.862938678330034
+        "lat" :  -6.862938678330034,
+        "gambar" :"img/indomaret.jpeg"
     },  
     {
         "nama_tempat": "Indomaret Gegerkalong Hilir",
         "lokasi": "Jl. Gegerkalong Hilir, Gegerkalong, Kec. Sukasari, Kota Bandung, Jawa Barat 40152",
         "fasilitas": "Tidak ada",
         "lon" :  107.58304077762433,
-        "lat" :  -6.867789420537956
+        "lat" :  -6.867789420537956,
+        "gambar" :"img/indomaret3.jpeg"
     },  
     {
         "nama_tempat": "Alfamart Sarirasa",
         "lokasi": "Jl.Sarirasa Blok Iv No.80 Rt 02 Rw 03 Kel, Kel, Sarijadi, Kec. Sukasari, Kota Bandung, Jawa Barat 40151",
         "fasilitas": "Tidak ada",
         "lon" :  107.57955900675353, 
-        "lat" : -6.8782282424100165
+        "lat" : -6.8782282424100165,
+        "gambar" :"img/alfacir.jpeg"
     },  
     {
         "nama_tempat": "Alfamart kosar",
         "lokasi": "Jl. Kosar Perum Pesona Pasir Endah Rt. 08 Rw. 07 Ds, Cigending, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40611",
         "fasilitas": "Tidak ada",
         "lon" :  107.69150166599046, 
-        "lat" :-6.901839916531217
+        "lat" :-6.901839916531217,
+        "gambar" :"img/alfakos.jpeg"
     },  
     {
         "nama_tempat": "Yomart Gerlong 1",
         "lokasi": "Jl. Gegerkalong Hilir No.34, Gegerkalong, Kec. Sukasari, Kota Bandung, Jawa Barat 40153",
         "fasilitas": "Tidak ada",
         "lon" :   107.59152278885371,
-        "lat" :-6.869888565786247
+        "lat" :-6.869888565786247,
+        "gambar" :"img/yomart.jpeg"
     },  
     {
         "nama_tempat": "Alfamart Banteng Baru",
         "lokasi": "Jl. Banteng No.47, Turangga, Kec. Lengkong, Kota Bandung, Jawa Barat 40264",
         "fasilitas": "Tidak ada",
         "lon" :   107.62264813015389, 
-        "lat" :-6.933115785582226
+        "lat" :-6.933115785582226,
+        "gambar" :"img/alfaban.jpeg"
     },  
     {
         "nama_tempat": "IKEA Kota Baru Parahyangan",
         "lokasi": "Jl. Parahyangan Raya No.Kav 9, Kertajaya, Kec. Padalarang, Kabupaten Bandung Barat, Jawa Barat 40553",
         "fasilitas": "Kafetaria, Mushola",
         "lon" :   107.46671736363318, 
-        "lat" :-6.866993157604256
+        "lat" :-6.866993157604256,
+        "gambar" :"img/ikea.jpeg"
     },  
     {
         "nama_tempat": "Alfamart Warugajaya",
@@ -98,13 +111,14 @@
         "fasilitas": "ATM",
         "lon" : 107.576468096306, 
         "lat" : -6.861635362581702,
-        "gambar" : "https://gobiz.co.id/pusat-pengetahuan/wp-content/uploads/2022/12/Franchise-Alfamart-3.jpeg"
+        "gambar" : "img/alfawaru.png"
     },
     {
         "nama_tempat": "Yomart Gerlong 2",
         "lokasi": "Jl. Gegerkalong Hilir No.206, Gegerkalong, Kec. Sukasari, Kota Bandung, Jawa Barat 40153 ",
         "fasilitas": "Tidak ada",
         "lon" : 107.57788058442847 , 
-        "lat" : -6.86631306478699
+        "lat" : -6.86631306478699,
+        "gambar" :"img/yomart3.jpeg"
     }
     ]
