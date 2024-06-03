@@ -31,53 +31,33 @@ fetch('https://parkirgratis.github.io/data/marker.json')
         createMapMarkers(data.markers); // Membuat marker pada peta
     })
     .catch(error => console.error('Gagal mengambil data marker:', error));
+
     
 let popupsData = [];
 fetch('https://parkirgratis.github.io/data/lokasi.json')
     .then(response => response.json())
     .then(data => {
-        if (Array.isArray(data)) {
-            data.forEach(item => {
-                if (item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas) {
-                    popupsData.push({
-                        coordinate: [item.lon, item.lat],
-                        content: `
-                            <div class="popup-content">
-                                <table>
-                                <th></th>
-                                <td><img src="https://gobiz.co.id/pusat-pengetahuan/wp-content/uploads/2022/12/Franchise-Alfamart-3.jpeg" alt="Image of ${item.nama_tempat}" style="max-width: 100%; height: auto;"></td>
-                                </tr>
-                                    <tr>
-                                        <th>Nama Tempat</th>
-                                        <td>${item.nama_tempat}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Lokasi</th>
-                                        <td>${item.lokasi}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fasilitas</th>
-                                        <td>${item.fasilitas}</td>
-                                    </tr>
-                                    <tr>
-                            
-                                 
-                                </table>
-                            </div>`
-                    });
-                } else {
-                    console.error('Invalid popup data item:', item);
-                }
-            });
-        } else {
+        if (!Array.isArray(data)) {
             console.error('Popup data is not an array:', data);
+            return;
         }
+        popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas)
+                         .map(item => ({
+                             coordinate: [item.lon, item.lat],
+                             content: `
+                                <div class="popup-content">
+                                    <img src="https://gobiz.co.id/pusat-pengetahuan/wp-content/uploads/2022/12/Franchise-Alfamart-3.jpeg" alt="Image of ${item.nama_tempat}" style="max-width: 100%; height: auto;">
+                                    <table>
+                                        <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
+                                        <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>
+                                        <tr><th>Fasilitas</th><td>${item.fasilitas}</td></tr>
+                                    </table>
+                                </div>`
+                         }));
         console.log('Popup Data:', popupsData);
-
         initializeMapPopups(popupsData);
     })
     .catch(error => console.error('Error fetching popup data:', error));
-
 let popups = [];
 
 function initializeMapPopups(popupsData) {
