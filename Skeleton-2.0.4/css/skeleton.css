@@ -476,22 +476,18 @@ body {
   font-weight: bold;
 }
 
-.popup-content td {
-  background-color: #fafafa;
+.popup-content {
+  max-width: 300px;
+  overflow: hidden; 
 }
 
-/* Penyesuaian untuk layar kecil */
 @media (max-width: 600px) {
   .popup-content {
-    max-width: 90%;
-    font-size: 14px;
+      max-width: 100%;
   }
   .popup-content img {
-    max-width: 100%;
-    height: auto;
-    max-height: 50px; /* Set the maximum height of the image */
-
-}
-
+      max-width: 100%; 
+      height: auto; 
+  }
 }
 
