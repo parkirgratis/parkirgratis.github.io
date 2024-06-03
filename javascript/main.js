@@ -23,17 +23,15 @@ let markerCoords = [];
 fetch('https://parkirgratis.github.io/data/marker.json')
     .then(response => response.json())
     .then(data => {
-        if (data.markers && Array.isArray(data.markers)) {
-            markerCoords = data.markers;
-        } else {
-            console.error('Marker data is not an array:', data);
+        if (!Array.isArray(data.markers)) {
+            console.error('Data marker bukan array:', data);
+            return;
         }
-        console.log('Marker Coordinates:', markerCoords);
-
-        createMapMarkers(markerCoords);
+        console.log('Koordinat Marker:', data.markers);
+        createMapMarkers(data.markers); // Membuat marker pada peta
     })
-    .catch(error => console.error('Error fetching marker data:', error));
-
+    .catch(error => console.error('Gagal mengambil data marker:', error));
+    
 let popupsData = [];
 fetch('https://parkirgratis.github.io/data/lokasi.json')
     .then(response => response.json())
