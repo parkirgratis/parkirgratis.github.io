@@ -372,7 +372,7 @@ form {
 
 
 /* Misc
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+––––––––––––––––––––––––––––––––––––––––––––���––––– */
 hr {
   margin-top: 3rem;
   margin-bottom: 3.5rem;
@@ -490,4 +490,44 @@ body {
       height: auto; 
   }
 }
+#showTableButton {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+#showTableButton:hover {
+  background-color: #961919;
+}
+
+#placesTable {
+    display: none; 
+    position: fixed;
+    left: 10px;
+    bottom: 50px;
+    width: 300px;
+    max-height: 300px; 
+    overflow-y: auto;
+    background-color: white;
+    border-collapse: collapse;
+    z-index: 1000; 
+  position: fixed;
+  left: 10px;
+  bottom: 50px; 
+  width: 300px; 
+  background-color: white;
+  border-collapse: collapse;
+  
+}
+
+#placesTable th, #placesTable td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
