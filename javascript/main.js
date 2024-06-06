@@ -35,7 +35,7 @@ fetch('https://parkirgratis.github.io/data/marker.json')
 
 // Mengambil data untuk pop-up dari URL yang diberikan
 let popupsData = [];
-fetch('https://parkirgratis.github.io/data/lokasi.json')
+fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi')
     .then(response => response.json())
     .then(data => {
         // Memeriksa apakah data adalah array

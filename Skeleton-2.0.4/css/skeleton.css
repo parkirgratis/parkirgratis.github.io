@@ -532,11 +532,6 @@ body {
   text-align: center;
 }
 
-table img {
-  width: 200px !important;
-  height: 150px !important;
-  object-fit: contain !important; /* Memastikan seluruh gambar terlihat */
-}
 img {
   max-width: 220px; 
   max-height: 120px; 
