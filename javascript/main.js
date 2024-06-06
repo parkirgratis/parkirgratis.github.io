@@ -20,7 +20,7 @@ const map = new Map({
 });
 // Mengambil data koordinat marker dari URL yang diberikan
 let markerCoords = [];
-fetch('https://parkirgratis.github.io/data/marker.json')
+fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/marker')
     .then(response => response.json())
     .then(data => {
         // Memeriksa apakah data markers adalah array
