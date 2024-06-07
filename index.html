@@ -28,5 +28,28 @@
              
           </tbody>
       </table>
+<form id="placeForm">
+    <div>
+        <label for="placeName">Nama Tempat:</label>
+        <input type="text" id="placeName" name="placeName" required>
+    </div>
+    <div>
+        <label for="location">Lokasi:</label>
+        <input type="text" id="location" name="location" required>
+    </div>
+    <div>
+        <label for="facilities">Fasilitas:</label>
+        <input type="text" id="facilities" name="facilities" required>
+    </div>
+    <div>
+        <label for="coordinates">Koordinat:</label>
+        <input type="text" id="coordinates" name="coordinates" placeholder="latitude, longitude" required>
+    </div>
+    <div>
+        <label for="image">Gambar:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+    </div>
+    <button type="submit">Tambah Tempat</button>
+</form>
 </body>
 </html>
