@@ -537,12 +537,40 @@ img {
   max-height: 120px; 
   border-radius: 1px;
   margin: 10px;
-
 }
-#placeForm {
-    position: relative; /* atau 'fixed' atau 'absolute' tergantung kebutuhan */
-    z-index: 1000; /* Nilai yang lebih tinggi dari peta */
-    background-color: white; /* Memastikan form terlihat jelas */
-    padding: 20px; /* Menambahkan padding untuk estetika */
-    border: 1px solid #ccc; /* Menambahkan border untuk definisi */
+  #placeForm {
+    position: fixed;
+    top: 20px; 
+    left: 20px;
+    width: 300px; 
+    padding: 20px; 
+    background-color: white;
+    border: 1px solid #ccc; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    z-index: 1000; 
+}
+
+#placeForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+#placeForm input[type="text"],
+#placeForm textarea {
+    margin-bottom: 10px;
+    padding: 8px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#placeForm button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#placeForm button:hover {
+    background-color: #0056b3;
 }
