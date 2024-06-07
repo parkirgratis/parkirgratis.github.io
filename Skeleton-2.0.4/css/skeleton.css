@@ -539,3 +539,10 @@ img {
   margin: 10px;
 
 }
+#placeForm {
+    position: relative; /* atau 'fixed' atau 'absolute' tergantung kebutuhan */
+    z-index: 1000; /* Nilai yang lebih tinggi dari peta */
+    background-color: white; /* Memastikan form terlihat jelas */
+    padding: 20px; /* Menambahkan padding untuk estetika */
+    border: 1px solid #ccc; /* Menambahkan border untuk definisi */
+}
