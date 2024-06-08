@@ -104,40 +104,9 @@ map.on('click', function(event) {
         popup.setPosition(null);
     });
 });
-document.getElementById('showTableButton').addEventListener('click', function() {
-    // Mendapatkan elemen tabel berdasarkan ID
-    const table = document.getElementById('placesTable');
-
-    // Periksa apakah tabel sudah ditampilkan
-    if (table.style.display === 'block') {
-        table.style.display = 'none'; // Sembunyikan tabel jika sudah ditampilkan
-    } else {
-        table.style.display = 'block'; // Tampilkan tabel jika sedang disembunyikan
-
-        // Mengambil data dari URL yang diberikan
-        fetch('https://parkirgratis.github.io/data/lokasi.json')
-            .then(response => response.json()) // Mengonversi respons ke format JSON
-            .then(data => {
-                const tbody = table.getElementsByTagName('tbody')[0];
-                tbody.innerHTML = ''; // Bersihkan isi tabel sebelumnya
-
-                // Menambahkan baris baru untuk setiap item dalam data
-                data.forEach(item => {
-                    const row = document.createElement('tr');
-                    const cell = document.createElement('td');
-                    cell.textContent = item.nama_tempat; // Menambahkan nama tempat ke sel tabel
-                    row.appendChild(cell);
-                    tbody.appendChild(row);
-                });
-            })
-            .catch(error => {
-                // Menampilkan pesan kesalahan jika terjadi masalah saat mengambil data
-                console.error('Error fetching data:', error);
-            });
-    }
-});
 
 // Tambahkan event listener ke peta untuk menyembunyikan tabel saat peta diklik
 map.on('click', function() {
     document.getElementById('placesTable').style.display = 'none';
 });
+
