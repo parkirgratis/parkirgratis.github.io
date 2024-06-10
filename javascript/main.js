@@ -110,3 +110,37 @@ map.on('click', function() {
     document.getElementById('placesTable').style.display = 'none';
 });
 
+// Fungsi untuk menangani pengiriman form dan menyimpan data ke database
+document.getElementById('placeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Mengambil nilai dari form
+    const placeName = document.getElementById('placeName').value;
+    const location = document.getElementById('location').value;
+    const facilities = document.getElementById('facilities').value;
+    const coordinates = document.getElementById('coordinates').value;
+    const image = document.getElementById('image').files[0];
+
+    // Membuat objek FormData untuk mengirim file
+    const formData = new FormData();
+    formData.append('name', placeName);
+    formData.append('location', location);
+    formData.append('facilities', facilities);
+    formData.append('coordinates', coordinates);
+    formData.append('image', image);
+
+    // Mengirim data ke server menggunakan fetch API
+    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        alert('Tempat parkir berhasil ditambahkan!');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Gagal menambahkan tempat parkir!');
+    });
+});
