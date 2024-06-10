@@ -118,7 +118,7 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     const placeName = document.getElementById('placeName').value;
     const location = document.getElementById('location').value;
     const facilities = document.getElementById('facilities').value;
-    const coordinates = document.getElementById('coordinates').value;
+    const coordinates = document.getElementById('coordinates').value.split(',').map(coord => parseFloat(coord.trim()));
     const image = document.getElementById('image').files[0];
 
     // Membuat objek FormData untuk mengirim file
@@ -126,10 +126,11 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     formData.append('name', placeName);
     formData.append('location', location);
     formData.append('facilities', facilities);
-    formData.append('coordinates', coordinates);
+    formData.append('latitude', coordinates[0]);
+    formData.append('longitude', coordinates[1]);
     formData.append('image', image);
 
-    // Mengirim data ke server menggunakan fetch API
+    // Mengirim data ke server untuk database tempat parkir
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', {
         method: 'POST',
         body: formData
@@ -138,9 +139,27 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     .then(data => {
         console.log('Success:', data);
         alert('Tempat parkir berhasil ditambahkan!');
+
+        // Mengirim data koordinat ke server untuk database koordinat
+        const coordData = {
+            latitude: coordinates[0],
+            longitude: coordinates[1]
+        };
+
+        return fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(coordData)
+        });
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Koordinat berhasil disimpan:', data);
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Gagal menambahkan tempat parkir!');
+        alert('Gagal menambahkan tempat parkir atau menyimpan koordinat!');
     });
 });
