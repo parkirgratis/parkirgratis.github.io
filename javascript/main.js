@@ -105,37 +105,33 @@ map.on('click', function(event) {
     });
 });
 
-// Tambahkan event listener ke peta untuk menyembunyikan tabel saat peta diklik
-map.on('click', function() {
-    document.getElementById('placesTable').style.display = 'none';
-});
 
 document.getElementById('placeForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Extract values from form
+    // Mengambil nilai dari form
     const placeName = document.getElementById('placeName').value;
     const location = document.getElementById('location').value;
     const facilities = document.getElementById('facilities').value;
     const coordinates = document.getElementById('coordinates').value.split(',').map(coord => parseFloat(coord.trim()));
     const image = document.getElementById('image').files[0];
 
-    // Validate coordinates
+    // Memvalidasi koordinat
     if (coordinates.length !== 2 || isNaN(coordinates[0]) || isNaN(coordinates[1])) {
-        alert('Please enter valid coordinates (latitude, longitude).');
+        alert('Silakan masukkan koordinat yang valid dalam format: latitude, longitude.');
         return;
     }
 
-    // Create FormData object for place data
+    // Membuat objek FormData untuk data tempat
     const formData = new FormData();
     formData.append('nama_tempat', placeName);
     formData.append('lokasi', location);
     formData.append('fasilitas', facilities);
-    formData.append('lat', coordinates[1]); // latitude
-    formData.append('lon', coordinates[0]); // longitude
+    formData.append('lat', coordinates[0]); // latitude
+    formData.append('lon', coordinates[1]); // longitude
     formData.append('gambar', image);
 
-    // Send data to place endpoint
+    // Mengirim data ke endpoint tempat
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', {
         method: 'POST',
         body: formData
@@ -147,13 +143,13 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         return response.json();
     })
     .then(data => {
-        console.log('Place saved successfully:', data);
-        alert('Place added successfully!');
+        console.log('Tempat berhasil disimpan:', data);
+        alert('Tempat berhasil ditambahkan!');
 
-        // Prepare coordinates data for koordinat endpoint
+        // Menyiapkan data koordinat untuk endpoint koordinat
         const coordData = {
             markers: [
-                [coordinates[1], coordinates[0]] // Note: Switched to latitude, longitude format
+                { lat: coordinates[0].toString(), lon: coordinates[1].toString() } // Konversi ke string
             ]
         };
 
@@ -172,12 +168,11 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         return response.json();
     })
     .then(data => {
-        console.log('Coordinates saved successfully:', data);
-        alert('Coordinates added successfully!');
+        console.log('Koordinat berhasil disimpan:', data);
+        alert('Koordinat berhasil ditambahkan!');
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Failed to add place or save coordinates! Error: ' + error.message);
+        alert('Gagal menambahkan tempat atau menyimpan koordinat! Error: ' + error.message);
     });
 });
-
