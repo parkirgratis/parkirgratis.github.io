@@ -110,7 +110,6 @@ map.on('click', function() {
     document.getElementById('placesTable').style.display = 'none';
 });
 
-// Fungsi untuk menangani pengiriman form dan menyimpan data ke database
 document.getElementById('placeForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -121,14 +120,20 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     const coordinates = document.getElementById('coordinates').value.split(',').map(coord => parseFloat(coord.trim()));
     const image = document.getElementById('image').files[0];
 
+    // Validate coordinates
+    if (coordinates.length !== 2 || isNaN(coordinates[0]) || isNaN(coordinates[1])) {
+        alert('Please enter valid coordinates (latitude, longitude).');
+        return;
+    }
+
     // Create FormData object for place data
     const formData = new FormData();
-    formData.append('name', placeName);
-    formData.append('location', location);
-    formData.append('facilities', facilities);
-    formData.append('latitude', coordinates[0]);
-    formData.append('longitude', coordinates[1]);
-    formData.append('image', image);
+    formData.append('nama_tempat', placeName);
+    formData.append('lokasi', location);
+    formData.append('fasilitas', facilities);
+    formData.append('lat', coordinates[0]); // latitude
+    formData.append('lon', coordinates[1]); // longitude
+    formData.append('gambar', image);
 
     // Send data to place endpoint
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', {
@@ -137,6 +142,9 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     })
     .then(response => response.json())
     .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
+        }
         console.log('Place saved successfully:', data);
         alert('Place added successfully!');
 
