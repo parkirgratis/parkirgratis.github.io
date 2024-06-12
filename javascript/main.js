@@ -116,6 +116,8 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     const coordinates = document.getElementById('coordinates').value.split(',').map(coord => parseFloat(coord.trim()));
     const image = document.getElementById('image').files[0];
 
+    console.log('Coordinates:', coordinates); // Log koordinat
+
     // Memvalidasi koordinat
     if (coordinates.length !== 2 || isNaN(coordinates[0]) || isNaN(coordinates[1])) {
         alert('Silakan masukkan koordinat yang valid dalam format: latitude, longitude.');
@@ -130,6 +132,11 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     formData.append('lat', coordinates[0]); // latitude
     formData.append('lon', coordinates[1]); // longitude
     formData.append('gambar', image);
+
+    // Log data yang akan dikirim
+    for (let pair of formData.entries()) {
+        console.log(pair[0]+ ': ' + pair[1]); 
+    }
 
     // Mengirim data ke endpoint tempat
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', {
@@ -149,9 +156,11 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         // Menyiapkan data koordinat untuk endpoint koordinat
         const coordData = {
             markers: [
-                { lat: coordinates[0].toString(), lon: coordinates[1].toString() } // Konversi ke string
+                [coordinates[0], coordinates[1]] // Array of arrays
             ]
         };
+
+        console.log('Coord Data:', coordData); // Log data koordinat
 
         return fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
             method: 'POST',
