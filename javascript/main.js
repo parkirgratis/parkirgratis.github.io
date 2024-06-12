@@ -131,8 +131,8 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     formData.append('nama_tempat', placeName);
     formData.append('lokasi', location);
     formData.append('fasilitas', facilities);
-    formData.append('lat', coordinates[0]); // latitude
-    formData.append('lon', coordinates[1]); // longitude
+    formData.append('lat', coordinates[1]); // latitude
+    formData.append('lon', coordinates[0]); // longitude
     formData.append('gambar', image);
 
     // Send data to place endpoint
@@ -140,18 +140,20 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            throw new Error(data.error);
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => { throw new Error(err.response); });
         }
+        return response.json();
+    })
+    .then(data => {
         console.log('Place saved successfully:', data);
         alert('Place added successfully!');
 
         // Prepare coordinates data for koordinat endpoint
         const coordData = {
             markers: [
-                [coordinates[0], coordinates[1]]
+                [coordinates[1], coordinates[0]] // Note: Switched to latitude, longitude format
             ]
         };
 
@@ -163,13 +165,19 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
             body: JSON.stringify(coordData)
         });
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => { throw new Error(err.response); });
+        }
+        return response.json();
+    })
     .then(data => {
         console.log('Coordinates saved successfully:', data);
         alert('Coordinates added successfully!');
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Failed to add place or save coordinates!');
+        alert('Failed to add place or save coordinates! Error: ' + error.message);
     });
 });
+
