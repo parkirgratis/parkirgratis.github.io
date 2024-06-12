@@ -114,14 +114,14 @@ map.on('click', function() {
 document.getElementById('placeForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Mengambil nilai dari form
+    // Extract values from form
     const placeName = document.getElementById('placeName').value;
     const location = document.getElementById('location').value;
     const facilities = document.getElementById('facilities').value;
     const coordinates = document.getElementById('coordinates').value.split(',').map(coord => parseFloat(coord.trim()));
     const image = document.getElementById('image').files[0];
 
-    // Membuat objek FormData untuk mengirim file
+    // Create FormData object for place data
     const formData = new FormData();
     formData.append('name', placeName);
     formData.append('location', location);
@@ -130,20 +130,21 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     formData.append('longitude', coordinates[1]);
     formData.append('image', image);
 
-    // Mengirim data ke server untuk database tempat parkir
+    // Send data to place endpoint
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', {
         method: 'POST',
         body: formData
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
-        alert('Tempat parkir berhasil ditambahkan!');
+        console.log('Place saved successfully:', data);
+        alert('Place added successfully!');
 
-        // Mengirim data koordinat ke server untuk database koordinat
+        // Prepare coordinates data for koordinat endpoint
         const coordData = {
-            latitude: coordinates[0],
-            longitude: coordinates[1]
+            markers: [
+                [coordinates[0], coordinates[1]]
+            ]
         };
 
         return fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
@@ -156,10 +157,11 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Koordinat berhasil disimpan:', data);
+        console.log('Coordinates saved successfully:', data);
+        alert('Coordinates added successfully!');
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Gagal menambahkan tempat parkir atau menyimpan koordinat!');
+        alert('Failed to add place or save coordinates!');
     });
 });
