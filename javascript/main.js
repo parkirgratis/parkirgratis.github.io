@@ -5,6 +5,14 @@ import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
 import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
 import { createMarker } from './controller/markers.js';
 import { createPopups, displayPopup } from './controller/popups.js';
+import {
+    setInner,
+    show,
+    hide,
+    getValue,
+    getFileSize,
+  } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
+  import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
 
 const map = new Map({
     target: 'map',
@@ -106,82 +114,87 @@ map.on('click', function(event) {
 });
 
 
+
 document.getElementById('placeForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Mengambil nilai dari form
-    const placeName = document.getElementById('placeName').value;
-    const location = document.getElementById('location').value;
-    const facilities = document.getElementById('facilities').value;
-    const coordinates = document.getElementById('coordinates').value.split(',').map(coord => parseFloat(coord.trim()));
+    // Mengambil data dari form
+    const placeName = getValue('placeName');
+    const location = getValue('location');
+    const facilities = getValue('facilities');
+    const coordinates = getValue('coordinates').split(',').map(Number);
     const image = document.getElementById('image').files[0];
 
-    console.log('Coordinates:', coordinates); // Log koordinat
-
-    // Memvalidasi koordinat
-    if (coordinates.length !== 2 || isNaN(coordinates[0]) || isNaN(coordinates[1])) {
-        alert('Silakan masukkan koordinat yang valid dalam format: latitude, longitude.');
-        return;
-    }
-
-    // Membuat objek FormData untuk data tempat
+    // Membuat objek FormData untuk mengirim data termasuk file gambar
     const formData = new FormData();
     formData.append('nama_tempat', placeName);
     formData.append('lokasi', location);
     formData.append('fasilitas', facilities);
-    formData.append('lat', coordinates[0]); // latitude
-    formData.append('lon', coordinates[1]); // longitude
+    formData.append('lon', coordinates[1]);
+    formData.append('lat', coordinates[0]);
     formData.append('gambar', image);
 
-    // Log data yang akan dikirim
-    for (let pair of formData.entries()) {
-        console.log(pair[0]+ ': ' + pair[1]); 
-    }
-
-    // Mengirim data ke endpoint tempat
+    // Mengirim data tempat parkir ke server menggunakan fetch
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', {
         method: 'POST',
         body: formData
     })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw new Error(err.response); });
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log('Tempat berhasil disimpan:', data);
-        alert('Tempat berhasil ditambahkan!');
-
-        // Menyiapkan data koordinat untuk endpoint koordinat
-        const coordData = {
-            markers: [
-                [coordinates[0], coordinates[1]] // Array of arrays
-            ]
-        };
-
-        console.log('Coord Data:', coordData); // Log data koordinat
-
-        return fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(coordData)
-        });
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw new Error(err.response); });
+        if (data.Response) {
+            alert(data.Response);
+        } else {
+            alert('Tempat parkir berhasil disimpan!');
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Koordinat berhasil disimpan:', data);
-        alert('Koordinat berhasil ditambahkan!');
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Gagal menambahkan tempat atau menyimpan koordinat! Error: ' + error.message);
+        alert('Terjadi kesalahan saat menyimpan data tempat parkir.');
     });
+
+    // Membuat objek untuk data koordinat
+    const koordinatData = {
+        markers: [coordinates]
+    };
+
+    // Mengirim data koordinat ke server menggunakan fetch
+    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(koordinatData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.Response) {
+            alert(data.Response);
+        } else {
+            alert('Koordinat berhasil disimpan!');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat menyimpan data koordinat.');
+    });
+
+    // Menyimpan fungsi uploadImage ke dalam objek window agar dapat diakses secara global
+    window.uploadImage = uploadImage;
+
+    // URL target untuk mengirim file gambar
+    const target_url = "https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/upload/img";
+
+    // Fungsi untuk mengunggah gambar
+    function uploadImage() {
+        // Memeriksa apakah file gambar telah dipilih
+        if (!getValue("imageInput")) {
+            alert("Silakan pilih file gambar");
+            return;
+        }
+        // Menyembunyikan input file selama proses unggah
+        hide("inputfile");             
+        // Mengirim file gambar ke server
+        postFile(target_url, "image");
+    }
+
 });
