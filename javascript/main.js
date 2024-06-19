@@ -210,3 +210,30 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     }
 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const formChoice = document.getElementById('formChoice');
+    const placeForm = document.getElementById('placeForm');
+    const displayDataForm = document.getElementById('displayDataForm');
+
+    // Fungsi untuk mengatur tampilan form berdasarkan pilihan
+    function toggleForms() {
+        const choice = formChoice.value;
+        if (choice === 'placeForm') {
+            placeForm.classList.add('active');
+            displayDataForm.classList.remove('active');
+        } else if (choice === 'displayDataForm') {
+            displayDataForm.classList.add('active');
+            placeForm.classList.remove('active');
+        }
+    }
+
+    // Event listener untuk perubahan pada dropdown
+    formChoice.addEventListener('change', toggleForms);
+
+    // Inisialisasi tampilan form saat pertama kali dimuat
+    toggleForms();
+});
+
+
+

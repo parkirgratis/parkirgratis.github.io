@@ -7,8 +7,17 @@
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="Skeleton-2.0.4/css/style.css">
 </head>
 <body>
+    <div>
+        <label for="formChoice">Pilih Form:</label>
+        <select id="formChoice">
+            <option value="placeForm">Tambah data</option>
+            <option value="displayDataForm">Tampilkan Data</option>
+        </select>
+    </div>
+
     <form id="placeForm">
         <div>
             <label for="placeName">Nama Tempat:</label>
@@ -32,6 +41,40 @@
         </div>
         <button type="submit">Tambah Tempat</button>
     </form>
+
+    <form id="displayDataForm">
+        <!-- Tabel untuk menampilkan data -->
+        <table id="dataDisplayTable" style="width:100%; margin-top:20px;">
+            <thead>
+                <!-- Header tabel yang menunjukkan informasi yang akan ditampilkan -->
+                <tr>
+                    <th>Nama Tempat</th>
+                    <th>Lokasi</th>
+                    <th>Fasilitas</th>
+                    <th>Koordinat</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Tempat di mana data akan dimuat -->
+                <!-- Contoh baris dengan tombol update dan delete -->
+                <tr>
+                    <td>Nama Tempat</td>
+                    <td>Lokasi</td>
+                    <td>Fasilitas</td>
+                    <td>Koordinat</td>
+                    <td>Gambar</td>
+                    <td>
+                        <button type="button" onclick="updateData(this)">Update</button>
+                        <button type="button" onclick="deleteData(this)">Hapus</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    
     <div id="map"></div>
    
     <script type="module" src="javascript/main.js"></script>
