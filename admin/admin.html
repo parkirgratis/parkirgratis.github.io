@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkir Gratis Bandung </title>
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
-    <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
-    <link rel="stylesheet" href="Skeleton-2.0.4/css/style.css">
+    <link rel="stylesheet" href="../Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="../Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+    <div>
+        <label for="formChoice">Pilih Form:</label>
+        <select id="formChoice">
+            <option value="placeForm">Tambah data</option>
+            <option value="displayDataForm">Tampilkan Data</option>
+        </select>
+    </div>
+
     <form id="placeForm">
         <div>
             <label for="placeName">Nama Tempat:</label>
@@ -34,13 +42,36 @@
         <button type="submit">Tambah Tempat</button>
     </form>
 
-    <div id="map"></div>
+    <form id="displayDataForm">
+        <!-- Tabel untuk menampilkan data -->
+        <table id="dataDisplayTable" style="width:100%; margin-top:20px;">
+            <thead>
+                <!-- Header tabel yang menunjukkan informasi yang akan ditampilkan -->
+                <tr>
+                    <th>Nama Tempat</th>
+                    <th>Lokasi</th>
+                    <th>Fasilitas</th>
+                    <th>Koordinat</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Tempat di mana data akan dimuat -->
+                
+                
+            </tbody>
+        </table>
+    </form>
 
-    <a href="admin/admin.html" class="button-admin">
-        <button type="button">Admin Page</button>
+    <a href="../index.html" class="button-user">
+        <button type="button">User Page</button>
     </a>
+
+    
+    
    
-    <script type="module" src="javascript/main.js"></script>
+    <script type="module" src="../javascript/main.js"></script>
 
    
 </body>

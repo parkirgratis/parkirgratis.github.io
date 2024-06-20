@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             data.forEach(item => {
                 const row = dataDisplayTable.insertRow();
-                row.insertCell(0).textContent = item.namaTempat;
+                row.insertCell(0).textContent = item.nama_tempat;
                 row.insertCell(1).textContent = item.lokasi;
                 row.insertCell(2).textContent = item.fasilitas;
                 row.insertCell(3).textContent = item.koordinat;
