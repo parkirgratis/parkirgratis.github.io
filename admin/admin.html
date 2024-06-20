@@ -18,7 +18,7 @@
         </select>
     </div>
 
-    <form id="placeForm">
+    <form id="placeForm" class="form-style">
         <div>
             <label for="placeName">Nama Tempat:</label>
             <input type="text" id="placeName" name="placeName" required placeholder="Masukkan nama tempat parkir">
@@ -42,7 +42,7 @@
         <button type="submit">Tambah Tempat</button>
     </form>
 
-    <form id="displayDataForm">
+    <form id="displayDataForm" class="form-style">
         <!-- Tabel untuk menampilkan data -->
         <div class="scrollable-table">
             <table id="dataDisplayTable" style="width:100%; margin-top:20px;">
@@ -64,10 +64,36 @@
             </table>
         </div>
     </form>
-
+    
     <a href="../index.html" class="button-user">
         <button type="button">User Page</button>
     </a>
+
+    <form id="updateDataForm" class="form-style" style="display:none;">
+        <div>
+            <label for="updatePlaceName">Nama Tempat:</label>
+            <input type="text" id="updatePlaceName" name="updatePlaceName" required placeholder="Masukkan nama tempat parkir">
+        </div>
+        <div>
+            <label for="updateLocation">Lokasi:</label>
+            <input type="text" id="updateLocation" name="updateLocation" required placeholder="Masukkan alamat tempat parkir">
+        </div>
+        <div>
+            <label for="updateFacilities">Fasilitas:</label>
+            <input type="text" id="updateFacilities" name="updateFacilities" required placeholder="Contoh: CCTV, Toilet, Security">
+        </div>
+        <div>
+            <label for="updateCoordinates">Koordinat:</label>
+            <input type="text" id="updateCoordinates" name="updateCoordinates" placeholder="Masukkan latitude, longitude" required>
+        </div>
+        <div>
+            <label for="updateImage">Gambar:</label>
+            <input type="file" id="updateImage" name="updateImage" accept="image/*" placeholder="Unggah gambar tempat parkir">
+        </div>
+        <button type="submit">Update Data</button>
+    </form>
+
+    
 
     <script type="module" src="admin.js"></script>
     

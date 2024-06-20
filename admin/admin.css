@@ -205,3 +205,36 @@ tr:hover {
     
 }
 
+/* Styling untuk form update */
+#updateDataForm {
+    position: absolute; /* Menggunakan posisi absolute untuk mengatur form di atas map */
+    z-index: 3; /* Tingkatkan z-index menjadi 3 agar pasti di atas map */
+    background: rgba(255, 255, 255, 0.9); /* Menambahkan transparansi */
+    padding: 20px; /* Padding untuk estetika */
+    border: 1px solid #ccc; /* Border untuk definisi */
+    top: 10%; /* Menyesuaikan posisi vertikal */
+    left: 10%; /* Menyesuaikan posisi horizontal */
+    width: 300px; /* Lebar form */
+    border-radius: 8px; /* Menambahkan border radius */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Menambahkan shadow untuk efek elevasi */
+    transition: all 0.3s ease-in-out; /* Menambahkan transisi untuk animasi tampilan form */
+}
+
+#updateDataForm input[type="text"],
+#updateDataForm input[type="file"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#updateDataForm button {
+    padding: 10px 20px;
+    background-color: #5C67F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
