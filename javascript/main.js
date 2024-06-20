@@ -113,47 +113,6 @@ map.on('click', function(event) {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const formChoice = document.getElementById('formChoice');
-    const placeForm = document.getElementById('placeForm');
-    const displayDataForm = document.getElementById('displayDataForm');
-    const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
-
-    // Fungsi untuk mengatur tampilan form berdasarkan pilihan
-    function toggleForms() {
-        const choice = formChoice.value;
-        if (choice === 'placeForm') {
-            placeForm.classList.add('active');
-            displayDataForm.classList.remove('active');
-        } else if (choice === 'displayDataForm') {
-            displayDataForm.classList.add('active');
-            placeForm.classList.remove('active');
-        }
-    }
-
-    // Event listener untuk perubahan pada dropdown
-    formChoice.addEventListener('change', toggleForms);
-
-    // Inisialisasi tampilan form saat pertama kali dimuat
-    toggleForms();
-
-    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi') // Ganti dengan URL API Anda
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(item => {
-                const row = dataDisplayTable.insertRow();
-                row.insertCell(0).textContent = item.nama_tempat;
-                row.insertCell(1).textContent = item.lokasi;
-                row.insertCell(2).textContent = item.fasilitas;
-                row.insertCell(3).textContent = item.koordinat;
-                row.insertCell(4).innerHTML = `<img src="${item.gambar}" style="width: 100px;">`; // Asumsi 'gambar' adalah URL
-                row.insertCell(5).innerHTML = `<button type="button" onclick="updateData(this)">Update</button>
-                                                <button type="button" onclick="deleteData(this)">Hapus</button>`;
-            });
-        })
-        .catch(error => console.error('Error loading the data: ', error));
-});
-
 document.getElementById('placeForm').addEventListener('submit', function(event) {
     event.preventDefault();
 

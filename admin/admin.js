@@ -30,14 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             data.forEach(item => {
                 const row = dataDisplayTable.insertRow();
-                row.insertCell(0).textContent = item.nama_tempat;
-                row.insertCell(1).textContent = item.lokasi;
-                row.insertCell(2).textContent = item.fasilitas;
-                row.insertCell(3).textContent = item.koordinat;
-                row.insertCell(4).innerHTML = `<img src="${item.gambar}" style="width: 100px;">`; // Asumsi 'gambar' adalah URL
+                row.insertCell(0).textContent = item.nama_tempat; // Sesuai dengan "nama_tempat"
+                row.insertCell(1).textContent = item.lokasi; // Sesuai dengan "lokasi"
+                row.insertCell(2).textContent = item.fasilitas; // Sesuai dengan "fasilitas"
+                row.insertCell(3).textContent = `${item.lon}, ${item.lat}`; // Menggabungkan "lon" dan "lat" menjadi koordinat
+                row.insertCell(4).innerHTML = `<img src="${item.gambar}" style="width: 100px;">`; // Sesuai dengan "gambar"
                 row.insertCell(5).innerHTML = `<button type="button" onclick="updateData(this)">Update</button>
                                                 <button type="button" onclick="deleteData(this)">Hapus</button>`;
             });
         })
         .catch(error => console.error('Error loading the data: ', error));
 });
+
