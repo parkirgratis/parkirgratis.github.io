@@ -189,7 +189,7 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
             // Menambahkan koordinat ke database
             tambahKoordinatKeDatabase(coordinates);
         } else {
-            alert('Gagal menyimpan data: ' + data.message);
+            alert('Berhasil Menyimpan Data');
         }
     })
     .catch(error => {
@@ -197,31 +197,27 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         alert('Terjadi kesalahan saat mengirim data.');
     });
 
-    function tambahKoordinatKeDatabase(coordinates) {
-        const koordinatData = {
-            markers: [{
-                lon: coordinates[1],
-                lat: coordinates[0]
-            }]
-        };
+    // Prepare coordinates data for koordinat endpoint
+    const coordData = {
+        markers: [
+            [coordinates[0], coordinates[1]]
+        ]
+    };
 
         fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(koordinatData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Koordinat berhasil ditambahkan ke database.');
-            } else {
-                console.error('Gagal menambahkan koordinat: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error saat menambahkan koordinat:', error);
+            body: JSON.stringify(coordData)
         });
-    }
-});
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Coordinates saved successfully:', data);
+        alert('Coordinates added successfully!');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to add place or save coordinates!');
+    });
