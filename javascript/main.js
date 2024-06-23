@@ -128,8 +128,8 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         nama_tempat: placeName,
         lokasi: location,
         fasilitas: facilities,
-        lon: coordinates[1],
-        lat: coordinates[0],
+        lat: coordinates[1],
+        lon: coordinates[0],
         gambar: image
     };
 

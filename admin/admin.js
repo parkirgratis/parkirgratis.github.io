@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error fetching data:', error);
         });
 
-    // Handle modal close button
-    const modal = document.getElementById('updateModal');
+    const modal = document.getElementById('updateTempat');
     const span = document.getElementsByClassName('close')[0];
     span.onclick = function () {
         modal.style.display = 'none';
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Handle update form submission
+   
     document.getElementById('updateForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const id = document.getElementById('updateId').value;
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (status === 200) {
                 alert('Data updated successfully');
                 modal.style.display = 'none';
-                location.reload(); // Refresh the page to reflect changes
+                location.reload(); 
             } else {
                 alert(`Error updating data: ${body.message}`);
             }
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat) {
-    const modal = document.getElementById('updateModal');
+    const modal = document.getElementById('updateTempat');
     modal.style.display = 'block';
 
     document.getElementById('updateId').value = id;

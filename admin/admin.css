@@ -1,4 +1,4 @@
-/* Styling for the data display table */
+
 #dataDisplayTable {
     border-collapse: collapse;
     width: 100%;
@@ -23,7 +23,7 @@
     background-color: #ddd;
 }
 
-/* Styling for modal */
+
 .modal {
     display: none;
     position: fixed;
@@ -61,6 +61,6 @@
 }
 h1 {
     text-align: center;
-    margin-top: 20px; /* Atur margin atas sesuai kebutuhan */
+    margin-top: 20px; 
   
 }
