@@ -118,6 +118,14 @@
   .button-admin {
     position: fixed;
     left: 10px;
-    bottom: 10px;
-    
+    bottom: 10px; 
+    padding: -5px 1px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.button-admin:hover {
+  background-color: #0056b3;
+
 }

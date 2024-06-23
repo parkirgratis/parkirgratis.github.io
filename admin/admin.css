@@ -23,7 +23,7 @@
     background-color: #ddd;
 }
 
-
+/* Styling for modal */
 .modal {
     display: none;
     position: fixed;

@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error fetching data:', error);
         });
 
-    const modal = document.getElementById('updateTempat');
+ 
+    const modal = document.getElementById('updateModal');
     const span = document.getElementsByClassName('close')[0];
     span.onclick = function () {
         modal.style.display = 'none';
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-   
+ 
     document.getElementById('updateForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const id = document.getElementById('updateId').value;
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat) {
-    const modal = document.getElementById('updateTempat');
+    const modal = document.getElementById('updateModal');
     modal.style.display = 'block';
 
     document.getElementById('updateId').value = id;
@@ -88,7 +89,7 @@ window.deleteData = function(id, button) {
         return;
     }
 
-    console.log(`Deleting item with ID: ${id}`);  // Debugging statement
+    console.log(`Deleting item with ID: ${id}`);  
 
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
         method: 'DELETE',
