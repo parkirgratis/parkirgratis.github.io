@@ -1,146 +1,115 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const formChoice = document.getElementById('formChoice');
-    const placeForm = document.getElementById('placeForm');
-    const displayDataForm = document.getElementById('displayDataForm');
+document.addEventListener('DOMContentLoaded', function () {
     const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
 
-    // Fungsi untuk mengatur tampilan form berdasarkan pilihan
-    function toggleForms() {
-        const choice = formChoice.value;
-        console.log("Pilihan Form: ", choice); // Debug: Cek pilihan form
-        hideAllForms(); // Sembunyikan semua form termasuk form update
-        if (choice === 'placeForm') {
-            placeForm.classList.add('active');
-            placeForm.style.display = 'block';
-            console.log("Place Form Aktif"); // Debug: Cek status Place Form
-        } else if (choice === 'displayDataForm') {
-            displayDataForm.classList.add('active');
-            displayDataForm.style.display = 'block';
-            console.log("Display Data Form Aktif"); // Debug: Cek status Display Data Form
-        }
-    }
-
-    // Fungsi untuk menyembunyikan semua form
-    function hideAllForms() {
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.style.display = 'none';
-        });
-    }
-
-    // Fungsi untuk menampilkan form update dengan data yang akan diubah
-    function showUpdateForm(row) {
-        hideAllForms(); // Sembunyikan semua form lainnya
-        const updateForm = document.getElementById('updateDataForm');
-        updateForm.style.display = 'block'; // Menampilkan hanya form update
-
-        // Mengambil data dari baris yang diklik
-        const namaTempat = row.cells[0].textContent;
-        const lokasi = row.cells[1].textContent;
-        const fasilitas = row.cells[2].textContent;
-        const koordinat = row.cells[3].textContent.split(', ');
-        const lon = koordinat[0];
-        const lat = koordinat[1];
-
-        // Mengisi form dengan data yang ada
-        document.getElementById('updatePlaceName').value = namaTempat;
-        document.getElementById('updateLocation').value = lokasi;
-        document.getElementById('updateFacilities').value = fasilitas;
-        document.getElementById('updateCoordinates').value = `${lon}, ${lat}`;
-    }
-
-    // Fungsi untuk memperbarui data
-    function updateData(button) {
-        const row = button.closest('tr');
-        const namaTempat = row.cells[0].textContent;
-        const lokasi = row.cells[1].textContent;
-        const fasilitas = row.cells[2].textContent;
-        const koordinat = row.cells[3].textContent.split(', ');
-        const lon = koordinat[0];
-        const lat = koordinat[1];
-        const id = row.getAttribute('data-id'); // Pastikan ID tersimpan sebagai atribut data-id pada setiap baris
-
-        const dataToUpdate = {
-            id: id,
-            nama_tempat: namaTempat,
-            lokasi: lokasi,
-            fasilitas: fasilitas,
-            lon: lon,
-            lat: lat
-        };
-
-        fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', { // Ganti 'URL_API/tempat' dengan URL yang sesuai
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dataToUpdate)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Update berhasil:', data);
-            alert('Data berhasil diperbarui.');
-        })
-        .catch(error => {
-            console.error('Error updating data:', error);
-            alert('Gagal memperbarui data.');
-        });
-    }
-
-    // Fungsi untuk menghapus data
-    function deleteData(button) {
-        const row = button.closest('tr');
-        const id = row.getAttribute('data-id'); // Mengambil ID dari atribut data-id
-
-        if (confirm('Apakah Anda yakin ingin menghapus data ini?')) { // Popup konfirmasi
-            fetch(`https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat/${id}`, { // Ganti dengan URL API Anda
-                method: 'DELETE'
-            })
-            .then(response => {
-                if (response.ok) {
-                    row.remove(); // Hapus baris dari tabel jika penghapusan berhasil
-                    alert('Data berhasil dihapus.');
-                } else {
-                    throw new Error('Gagal menghapus data');
-                }
-            })
-            .catch(error => {
-                console.error('Error deleting data:', error);
-                alert('Gagal menghapus data.');
-            });
-        }
-    }
-
-    // Event listener untuk perubahan pada dropdown
-    formChoice.addEventListener('change', toggleForms);
-
-    // Inisialisasi tampilan form saat pertama kali dimuat
-    toggleForms();
-
-    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi') // Ganti dengan URL API Anda
+    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi')
         .then(response => response.json())
         .then(data => {
             data.forEach(item => {
                 const row = dataDisplayTable.insertRow();
-                row.insertCell(0).textContent = item.nama_tempat; // Sesuai dengan "nama_tempat"
-                row.insertCell(1).textContent = item.lokasi; // Sesuai dengan "lokasi"
-                row.insertCell(2).textContent = item.fasilitas; // Sesuai dengan "fasilitas"
-                row.insertCell(3).textContent = `${item.lon}, ${item.lat}`; // Menggabungkan "lon" dan "lat" menjadi koordinat
-                row.insertCell(4).innerHTML = `<img src="${item.gambar}" style="width: 100px;">`; // Sesuai dengan "gambar"
-                row.insertCell(5).innerHTML = `<button type="button" onclick="updateData(this)">Update</button>
-                                                <button type="button" onclick="deleteData(this)">Hapus</button>`;
-                row.setAttribute('data-id', item.id); // Menambahkan atribut data-id pada setiap baris
+                row.insertCell(0).textContent = item.nama_tempat;
+                row.insertCell(1).textContent = item.lokasi;
+                row.insertCell(2).textContent = item.fasilitas;
+                row.insertCell(3).textContent = `${item.lon}, ${item.lat}`;
+                
+                const actionsCell = row.insertCell(4);
+                actionsCell.innerHTML = `
+                    <button type="button" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat})">Update</button>
+                    <button type="button" onclick="deleteData('${item._id}', this)">Hapus</button>
+                `;
             });
         })
-        .catch(error => console.error('Error loading the data: ', error));
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
 
-    dataDisplayTable.addEventListener('click', function(event) {
-        const target = event.target;
-        if (target.tagName === 'BUTTON' && target.textContent === 'Update') {
-            const row = target.closest('tr');
-            showUpdateForm(row);
-        } else if (target.tagName === 'BUTTON' && target.textContent === 'Hapus') {
-            deleteData(target);
+    // Handle modal close button
+    const modal = document.getElementById('updateModal');
+    const span = document.getElementsByClassName('close')[0];
+    span.onclick = function () {
+        modal.style.display = 'none';
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
+    }
+
+    // Handle update form submission
+    document.getElementById('updateForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const id = document.getElementById('updateId').value;
+        const updatedData = {
+            _id: id,
+            nama_tempat: document.getElementById('namaTempat').value,
+            lokasi: document.getElementById('lokasi').value,
+            fasilitas: document.getElementById('fasilitas').value,
+            lon: parseFloat(document.getElementById('lon').value),
+            lat: parseFloat(document.getElementById('lat').value)
+        };
+
+        fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        })
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(({ status, body }) => {
+            if (status === 200) {
+                alert('Data updated successfully');
+                modal.style.display = 'none';
+                location.reload(); // Refresh the page to reflect changes
+            } else {
+                alert(`Error updating data: ${body.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error updating data:', error);
+        });
     });
 });
+
+window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat) {
+    const modal = document.getElementById('updateModal');
+    modal.style.display = 'block';
+
+    document.getElementById('updateId').value = id;
+    document.getElementById('namaTempat').value = namaTempat;
+    document.getElementById('lokasi').value = lokasi;
+    document.getElementById('fasilitas').value = fasilitas;
+    document.getElementById('lon').value = lon;
+    document.getElementById('lat').value = lat;
+}
+
+
+window.deleteData = function(id, button) {
+    const confirmation = confirm('Are you sure you want to delete this data?');
+    if (!confirmation) {
+        return;
+    }
+
+    console.log(`Deleting item with ID: ${id}`);  // Debugging statement
+
+    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: id })
+    })
+    .then(response => response.json().then(data => ({ status: response.status, body: data })))
+    .then(({ status, body }) => {
+        if (status === 200) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            alert('Data deleted successfully');
+        } else {
+            alert(`Error deleting data: ${body.message}`);
+            console.error(`Error deleting data: ${body.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting data:', error);
+    });
+}

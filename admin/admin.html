@@ -3,48 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parkir Gratis Bandung </title>
+    <title>Parkir Gratis Bandung</title>
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
     <link rel="stylesheet" href="../Skeleton-2.0.4/css/normalize.css">
     <link rel="stylesheet" href="../Skeleton-2.0.4/css/skeleton.css">
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <div>
-        <label for="formChoice">Pilih Form:</label>
-        <select id="formChoice">
-            <option value="placeForm">Tambah data</option>
-            <option value="displayDataForm">Tampilkan Data</option>
-        </select>
-    </div>
-
-    <form id="placeForm" class="form-style">
-        <div>
-            <label for="placeName">Nama Tempat:</label>
-            <input type="text" id="placeName" name="placeName" required placeholder="Masukkan nama tempat parkir">
-        </div>
-        <div>
-            <label for="location">Lokasi:</label>
-            <input type="text" id="location" name="location" required placeholder="Masukkan alamat tempat parkir">
-        </div>
-        <div>
-            <label for="facilities">Fasilitas:</label>
-            <input type="text" id="facilities" name="facilities" required placeholder="Contoh: CCTV, Toilet, Security">
-        </div>
-        <div>
-            <label for="coordinates">Koordinat:</label>
-            <input type="text" id="coordinates" name="coordinates" placeholder="Masukkan latitude, longitude" required>
-        </div>
-        <div>
-            <label for="image">Gambar:</label>
-            <input type="file" id="image" name="image" accept="image/*" placeholder="Unggah gambar tempat parkir">
-        </div>
-        <button type="submit">Tambah Tempat</button>
-    </form>
-
+   
     <form id="displayDataForm" class="form-style">
         <!-- Tabel untuk menampilkan data -->
-        <div class="scrollable-table">
+        
+            <h1>HALAMAN ADMIN</h1>
+            <div class="scrollable-table">
+                <a href="../index.html" class="button-user">
+                    <button type="button">User Page</button>
+                </a>
             <table id="dataDisplayTable" style="width:100%; margin-top:20px;">
                 <thead>
                     <!-- Header tabel yang menunjukkan informasi yang akan ditampilkan -->
@@ -53,49 +27,39 @@
                         <th>Lokasi</th>
                         <th>Fasilitas</th>
                         <th>Koordinat</th>
-                        <th>Gambar</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Tempat di mana data akan dimuat -->
-                    
                 </tbody>
             </table>
         </div>
     </form>
     
-    <a href="../index.html" class="button-user">
-        <button type="button">User Page</button>
-    </a>
+   
 
-    <form id="updateDataForm" class="form-style" style="display:none;">
-        <div>
-            <label for="updatePlaceName">Nama Tempat:</label>
-            <input type="text" id="updatePlaceName" name="updatePlaceName" required placeholder="Masukkan nama tempat parkir">
+    <!-- Modal form -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="updateForm">
+                <label for="namaTempat">Nama Tempat:</label>
+                <input type="text" id="namaTempat" name="namaTempat">
+                <label for="lokasi">Lokasi:</label>
+                <input type="text" id="lokasi" name="lokasi">
+                <label for="fasilitas">Fasilitas:</label>
+                <input type="text" id="fasilitas" name="fasilitas">
+                <label for="lon">Longitude:</label>
+                <input type="text" id="lon" name="lon">
+                <label for="lat">Latitude:</label>
+                <input type="text" id="lat" name="lat">
+                <input type="hidden" id="updateId" name="updateId">
+                <button type="submit">Update</button>
+            </form>
         </div>
-        <div>
-            <label for="updateLocation">Lokasi:</label>
-            <input type="text" id="updateLocation" name="updateLocation" required placeholder="Masukkan alamat tempat parkir">
-        </div>
-        <div>
-            <label for="updateFacilities">Fasilitas:</label>
-            <input type="text" id="updateFacilities" name="updateFacilities" required placeholder="Contoh: CCTV, Toilet, Security">
-        </div>
-        <div>
-            <label for="updateCoordinates">Koordinat:</label>
-            <input type="text" id="updateCoordinates" name="updateCoordinates" placeholder="Masukkan latitude, longitude" required>
-        </div>
-        <div>
-            <label for="updateImage">Gambar:</label>
-            <input type="file" id="updateImage" name="updateImage" accept="image/*" placeholder="Unggah gambar tempat parkir">
-        </div>
-        <button type="submit">Update Data</button>
-    </form>
-
-    
+    </div>
 
     <script type="module" src="admin.js"></script>
-    
 </body>
 </html>
