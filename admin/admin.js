@@ -91,6 +91,7 @@ window.deleteData = function(id, button) {
 
     console.log(`Deleting item with ID: ${id}`);  
 
+    // Hapus dari database pertama
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
         method: 'DELETE',
         headers: {
@@ -101,15 +102,34 @@ window.deleteData = function(id, button) {
     .then(response => response.json().then(data => ({ status: response.status, body: data })))
     .then(({ status, body }) => {
         if (status === 200) {
-            const row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-            alert('Data deleted successfully');
+            // Hapus dari database kedua
+            fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
+            })
+            .then(response => response.json().then(data => ({ status: response.status, body: data })))
+            .then(({ status, body }) => {
+                if (status === 200) {
+                    const row = button.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                    alert('Data tempat dan koordinat Berhasil Dihapus');
+                } else {
+                    alert(`Error deleting data from second database: ${body.message}`);
+                    console.error(`Error deleting data from second database: ${body.message}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting data from second database:', error);
+            });
         } else {
-            alert(`Error deleting data: ${body.message}`);
-            console.error(`Error deleting data: ${body.message}`);
+            alert(`Error deleting data from first database: ${body.message}`);
+            console.error(`Error deleting data from first database: ${body.message}`);
         }
     })
     .catch(error => {
-        console.error('Error deleting data:', error);
+        console.error('Error deleting data from first database:', error);
     });
 }
