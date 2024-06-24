@@ -1,64 +1,114 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background: none; /* Menghapus background-image dari body */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    position: relative; /* Menambahkan posisi relatif untuk elemen pseudo */
+    overflow: hidden; /* Menghindari scroll bar */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/bg.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px); /* Menambahkan efek blur */
+    z-index: -1; /* Menempatkan di belakang konten lainnya */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px; /* Membuat sudut lebih bulat */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Menambah bayangan */
+    width: 400px; /* Lebar lebih besar */
     text-align: center;
+    animation: slideIn 1s ease-in-out;
+    backdrop-filter: blur(10px); /* Efek blur pada latar belakang */
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .login-container h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 28px; /* Ukuran font lebih besar */
+    font-weight: bold; /* Menambah ketebalan font */
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold; /* Menambah ketebalan font */
 }
 
 .form-group input {
     width: 100%;
-    padding: 8px;
+    padding: 12px; /* Padding lebih besar */
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Menambah transisi bayangan */
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Menambah bayangan saat fokus */
 }
 
 button {
-    padding: 10px 15px;
+    padding: 15px 20px; /* Padding lebih besar */
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Menambah transisi bayangan */
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Menambah bayangan saat hover */
 }
 
 #message {
     margin-top: 20px;
     color: red;
+    font-size: 14px;
 }
+
 .back-text {
-    margin-top: 5px;
-    font-size: 12px;
+    margin-top: 10px;
+    font-size: 14px;
     color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
 .back-text:hover {
