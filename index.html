@@ -27,22 +27,22 @@
             <label for="coordinates">Koordinat:</label>
             <input type="text" id="coordinates" name="coordinates" placeholder="Masukkan latitude, longitude" required>
         </div>
-        <div>
-            <label for="image">Gambar:</label>
-            <input type="file" id="image" name="image" accept="image/*" placeholder="Unggah gambar tempat parkir">
+        <div id="inputfile">
+            <label for="imageInput">Gambar:</label>
+            <input type="file" id="imageInput" accept="image/*" placeholder="Unggah gambar tempat parkir">
         </div>
         <button type="submit">Tambah Tempat</button>
     </form>
 
     <div id="map"></div>
 
-  
+    <!-- Tambahkan elemen ini untuk menghindari error -->
+    <div id="isi"></div>
+
     <a href="login/login.html" class="button-admin">
         <button type="button">Login Admin</button>
     </a>
    
     <script type="module" src="javascript/main.js"></script>
-
-   
 </body>
 </html>

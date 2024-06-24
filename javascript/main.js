@@ -6,13 +6,14 @@ import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
 import { createMarker } from './controller/markers.js';
 import { createPopups, displayPopup } from './controller/popups.js';
 import {
-    setInner,
-    show,
-    hide,
-    getValue,
-    getFileSize,
-  } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
-  import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
+  setInner,
+  show,
+  hide,
+  getValue,
+  getFileSize
+} from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
+
+import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
 
 const map = new Map({
     target: 'map',
@@ -26,32 +27,28 @@ const map = new Map({
         zoom: 12
     })
 });
-// Mengambil data koordinat marker dari URL yang diberikan
+
 let markerCoords = [];
 fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/marker')
     .then(response => response.json())
     .then(data => {
-        // Memeriksa apakah data markers adalah array
         if (!Array.isArray(data.markers)) {
             console.error('Data marker bukan array:', data);
             return;
         }
         console.log('Koordinat Marker:', data.markers);
-        createMapMarkers(data.markers); // Membuat marker pada peta
+        createMapMarkers(data.markers);
     })
     .catch(error => console.error('Gagal mengambil data marker:', error));
 
-// Mengambil data untuk pop-up dari URL yang diberikan
 let popupsData = [];
 fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi')
     .then(response => response.json())
     .then(data => {
-        // Memeriksa apakah data adalah array
         if (!Array.isArray(data)) {
             console.error('Popup data bukan array:', data);
             return;
         }
-        // Memfilter dan memetakan data pop-up
         popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
                          .map(item => ({
                              coordinate: [item.lon, item.lat],
@@ -66,14 +63,12 @@ fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgrat
                                 </div>`
                          }));
         console.log('Popup Data:', popupsData);
-        initializeMapPopups(popupsData); // Menginisialisasi pop-up pada peta
+        initializeMapPopups(popupsData);
     })
     .catch(error => console.error('Error fetching popup data:', error));
 
-// Array untuk menyimpan pop-up
 let popups = [];
 
-// Fungsi untuk menginisialisasi pop-up pada peta
 function initializeMapPopups(popupsData) {
     popups = createPopups(map, popupsData.map(item => ({
         coordinate: item.coordinate,
@@ -82,25 +77,17 @@ function initializeMapPopups(popupsData) {
 }
 
 function createMapMarkers(markerCoords) {
-    // Membuat penanda (marker) untuk setiap koordinat yang diberikan
     const markers = markerCoords.map(coord => createMarker(map, coord));
 
-    // Menambahkan event listener ke setiap penanda
     markers.forEach((marker, index) => {
         marker.getElement().addEventListener('click', () => {
-            // Mengambil pop-up dan data pop-up berdasarkan indeks penanda
             const popup = popups[index];
             const popupData = popupsData[index];
 
-            // Jika pop-up dan data pop-up ditemukan
             if (popup && popupData && popupData.coordinate) {
-                // Menampilkan pop-up dengan konten yang sesuai pada koordinat yang diberikan
                 displayPopup(popup, popupData.coordinate, popupData.content);
-
-                // Menganimasikan tampilan peta untuk berfokus pada lokasi pop-up dengan zoom tingkat 14
                 map.getView().animate({ center: fromLonLat(popupData.coordinate), zoom: 14 });
             } else {
-                // Menampilkan pesan kesalahan jika pop-up atau data pop-up tidak ditemukan
                 console.error('Popup atau data pop-up tidak ditemukan untuk penanda dengan indeks:', index);
             }
         });
@@ -113,23 +100,59 @@ map.on('click', function(event) {
     });
 });
 
+window.uploadImage = uploadImage;
+
+const target_url =
+  "https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/upload/img";
+
+function uploadImage() {
+  if (!getValue("imageInput")) {
+    alert("Please select an image file");
+    return;
+  }
+  hide("inputfile");
+  let besar = getFileSize("imageInput");
+  setInner("isi", besar);
+  
+  postFile(target_url, "imageInput", "image", renderToHtml)
+}
+
+// Fungsi untuk menangani respons unggahan
+function renderToHtml(result) {
+  console.log(result);
+  setInner("isi", "https://parkirgratis.github.io/" + result.response); // Mengatur isi elemen dengan ID isi menjadi URL yang menggabungkan hasil respons dari server
+  show("inputfile"); // Menampilkan kembali elemen dengan ID inputfile
+}
+
+// Fungsi untuk menangani kesalahan unggahan
+function handleUploadError(error) {
+  console.error(error);
+  if (error.status === 409) {
+    alert("File already exists or there is a conflict. Please try again with a different file.");
+  } else {
+    alert("An error occurred during the upload. Please try again.");
+  }
+  show("inputfile"); // Menampilkan kembali elemen inputfile
+}
+
 document.getElementById('placeForm').addEventListener('submit', function(event) {
     event.preventDefault();
+    uploadImage();
 
     // Mengambil data dari form
     const placeName = document.getElementById('placeName').value;
     const location = document.getElementById('location').value;
     const facilities = document.getElementById('facilities').value;
     const coordinates = document.getElementById('coordinates').value.split(',').map(Number);
-    const image = document.getElementById('image').files[0].name; // Mengambil hanya nama file
+    const image = document.getElementById('imageInput').files[0].name; // Mengambil hanya nama file
 
     // Membuat objek untuk dikirim sebagai JSON
     const data = {
         nama_tempat: placeName,
         lokasi: location,
         fasilitas: facilities,
-        lat: coordinates[1],
-        lon: coordinates[0],
+        lat: coordinates[0],
+        lon: coordinates[1],
         gambar: image
     };
 
@@ -159,17 +182,16 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     // Prepare coordinates data for koordinat endpoint
     const coordData = {
         markers: [
-            [coordinates[0], coordinates[1]]
+            [coordinates[1], coordinates[0]]
         ]
     };
 
-        fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(coordData)
-        });
+    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(coordData)
     })
     .then(response => response.json())
     .then(data => {
@@ -180,3 +202,6 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         console.error('Error:', error);
         alert('Failed to add place or save coordinates!');
     });
+});
+
+
