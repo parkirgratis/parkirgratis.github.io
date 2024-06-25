@@ -114,13 +114,13 @@ function uploadImage() {
   let besar = getFileSize("imageInput");
   setInner("isi", besar);
   
-  postFile(target_url, "imageInput", "image", renderToHtml)
+  postFile(target_url, "imageInput", "img", renderToHtml)
 }
 
 // Fungsi untuk menangani respons unggahan
 function renderToHtml(result) {
   console.log(result);
-  setInner("isi", "https://parkirgratis.github.io/" + result.response); // Mengatur isi elemen dengan ID isi menjadi URL yang menggabungkan hasil respons dari server
+  setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response); // Mengatur isi elemen dengan ID isi menjadi URL yang menggabungkan hasil respons dari server
   show("inputfile"); // Menampilkan kembali elemen dengan ID inputfile
 }
 

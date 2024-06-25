@@ -103,7 +103,7 @@ window.deleteData = function(id, button) {
     .then(({ status, body }) => {
         if (status === 200) {
             // Hapus dari database kedua
-            fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
+            fetch('', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
