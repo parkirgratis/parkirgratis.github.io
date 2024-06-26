@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="Skeleton-2.0.4/css/style.css">
 </head>
 <body>
-    <form id="placeForm">
+    <button id="showFormButton">Tambah Tempat Parkir</button>
+
+    <form id="placeForm" style="display: none;">
         <div>
             <label for="placeName">Nama Tempat:</label>
             <input type="text" id="placeName" name="placeName" required placeholder="Masukkan nama tempat parkir">
@@ -36,7 +38,6 @@
 
     <div id="map"></div>
 
-    <!-- Tambahkan elemen ini untuk menghindari error -->
     <div id="isi"></div>
 
     <a href="login/login.html" class="button-admin">
@@ -44,5 +45,6 @@
     </a>
    
     <script type="module" src="javascript/main.js"></script>
+    
 </body>
 </html>

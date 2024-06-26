@@ -98,6 +98,7 @@ map.on('click', function(event) {
     popups.forEach(popup => {
         popup.setPosition(null);
     });
+    document.getElementById('placeForm').style.display = 'none';
 });
 
 window.uploadImage = uploadImage;
@@ -205,3 +206,11 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
 });
 
 
+document.getElementById('showFormButton').addEventListener('click', function() {
+    const form = document.getElementById('placeForm');
+    if (form.style.display === 'block') {
+        form.style.display = 'none';
+    } else {
+        form.style.display = 'block';
+    }
+});
