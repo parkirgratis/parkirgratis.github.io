@@ -89,33 +89,32 @@ window.deleteData = function(id, button) {
         return;
     }
 
-    console.log(`Deleting item with ID: ${id}`);  
+    console.log(`Deleting item with ID: ${id}`);
 
-    // Hapus dari database pertama
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id: id })
+        body: JSON.stringify({ _id: id }) 
     })
     .then(response => response.json().then(data => ({ status: response.status, body: data })))
     .then(({ status, body }) => {
         if (status === 200) {
             // Hapus dari database kedua
-            fetch('', {
+            fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id: id })
+                body: JSON.stringify({ _id: id })
             })
             .then(response => response.json().then(data => ({ status: response.status, body: data })))
             .then(({ status, body }) => {
                 if (status === 200) {
                     const row = button.parentNode.parentNode;
                     row.parentNode.removeChild(row);
-                    alert('Data tempat dan koordinat Berhasil Dihapus');
+                    alert('Data tempat dan koordinat berhasil dihapus');
                 } else {
                     alert(`Error deleting data from second database: ${body.message}`);
                     console.error(`Error deleting data from second database: ${body.message}`);
