@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 const actionsCell = row.insertCell(4);
                 actionsCell.innerHTML = `
-                    <button type="button" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat})">Update</button>
-                    <button type="button" onclick="deleteData('${item._id}', this)">Hapus</button>
+                    <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat})">Update</button>
+                    <button type="button"style="background-color: #e74c3c;" onclick="deleteData('${item._id}', this)">Delete</button>
                 `;
             });
         })
