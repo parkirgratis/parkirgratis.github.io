@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const actionsCell = row.insertCell(4);
                 actionsCell.innerHTML = `
                     <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat})">Update</button>
-                    <button type="button"style="background-color: #e74c3c;" onclick="deleteData('${item._id}', this)">Delete</button>
+                    <button type="button" style="background-color: #e74c3c;" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat}, this)">Delete</button>
                 `;
             });
         })
@@ -83,15 +83,19 @@ window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat) {
 }
 
 
-window.deleteData = function(id, button) {
+window.deleteData = function(id, lon, lat, button) {
     const confirmation = confirm('Are you sure you want to delete this data?');
     if (!confirmation) {
         return;
     }
 
-    console.log(`Deleting item with ID: ${id}`);  
+    console.log(`Deleting item with ID: ${id}`);
 
-    // Hapus dari database pertama
+    const coordinates = [
+        [lon, lat]  // Use the actual coordinates passed as arguments
+    ];
+
+    // Delete the main data entry
     fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
         method: 'DELETE',
         headers: {
@@ -102,34 +106,36 @@ window.deleteData = function(id, button) {
     .then(response => response.json().then(data => ({ status: response.status, body: data })))
     .then(({ status, body }) => {
         if (status === 200) {
-            // Hapus dari database kedua
-            fetch('', {
+            const coordData = {
+                _id: id,
+                markers: coordinates
+            };
+
+            fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id: id })
+                body: JSON.stringify(coordData)
             })
-            .then(response => response.json().then(data => ({ status: response.status, body: data })))
-            .then(({ status, body }) => {
-                if (status === 200) {
-                    const row = button.parentNode.parentNode;
-                    row.parentNode.removeChild(row);
-                    alert('Data tempat dan koordinat Berhasil Dihapus');
-                } else {
-                    alert(`Error deleting data from second database: ${body.message}`);
-                    console.error(`Error deleting data from second database: ${body.message}`);
-                }
+            .then(response => response.json())
+            .then(data => {
+                console.log('Coordinates deleted successfully:', data);
+                alert('Coordinates deleted successfully!');
+                location.reload(); // Refresh the page after successful deletion of coordinates
             })
             .catch(error => {
-                console.error('Error deleting data from second database:', error);
+                console.error('Error:', error);
+                alert('Failed to delete coordinates!');
             });
         } else {
-            alert(`Error deleting data from first database: ${body.message}`);
-            console.error(`Error deleting data from first database: ${body.message}`);
+            console.error('Failed to delete the main data:', body);
+            alert('Failed to delete the main data!');
         }
     })
     .catch(error => {
-        console.error('Error deleting data from first database:', error);
+        console.error('Error:', error);
+        alert('An error occurred while deleting the main data!');
     });
-}
+};
+
