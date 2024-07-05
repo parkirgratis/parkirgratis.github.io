@@ -1,13 +1,13 @@
 body {
     font-family: 'Arial', sans-serif;
-    background: none; /* Menghapus background-image dari body */
+    background: none;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    position: relative; /* Menambahkan posisi relatif untuk elemen pseudo */
-    overflow: hidden; /* Menghindari scroll bar */
+    position: relative;
+    overflow: hidden;
     animation: fadeIn 1.5s ease-in-out;
 }
 
@@ -21,8 +21,8 @@ body::before {
     background-image: url(../img/bg.png);
     background-size: cover;
     background-position: center;
-    filter: blur(10px); /* Menambahkan efek blur */
-    z-index: -1; /* Menempatkan di belakang konten lainnya */
+    filter: blur(10px);
+    z-index: -1;
 }
 
 @keyframes fadeIn {
@@ -33,12 +33,12 @@ body::before {
 .login-container {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
-    border-radius: 15px; /* Membuat sudut lebih bulat */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Menambah bayangan */
-    width: 400px; /* Lebar lebih besar */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 400px;
     text-align: center;
     animation: slideIn 1s ease-in-out;
-    backdrop-filter: blur(10px); /* Efek blur pada latar belakang */
+    backdrop-filter: blur(10px);
 }
 
 @keyframes slideIn {
@@ -49,8 +49,8 @@ body::before {
 .login-container h2 {
     margin-bottom: 25px;
     color: #333;
-    font-size: 28px; /* Ukuran font lebih besar */
-    font-weight: bold; /* Menambah ketebalan font */
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .form-group {
@@ -59,41 +59,47 @@ body::before {
 }
 
 .form-group label {
-    display: block;
+    display: flex;
+    align-items: center;
     margin-bottom: 8px;
     color: #555;
-    font-weight: bold; /* Menambah ketebalan font */
+    font-weight: bold;
+}
+
+.form-group label i {
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px; /* Padding lebih besar */
+    padding: 12px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
-    transition: border-color 0.3s, box-shadow 0.3s; /* Menambah transisi bayangan */
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-group input:focus {
     border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Menambah bayangan saat fokus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
 button {
-    padding: 15px 20px; /* Padding lebih besar */
+    padding: 15px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Menambah transisi bayangan */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
     background-color: #0056b3;
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Menambah bayangan saat hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #message {
