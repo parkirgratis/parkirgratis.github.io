@@ -46,12 +46,14 @@ body::before {
     to { transform: translateY(0); opacity: 1; }
 }
 
-.login-container h2 {
-    margin-bottom: 25px;
-    color: #333;
-    font-size: 28px;
-    font-weight: bold;
+.login-form {
+    text-align: center; /* Pusatkan elemen dalam form */
 }
+
+.login-button {
+    margin-top: 20px; /* Berikan ruang di atas tombol */
+}
+
 
 .form-group {
     margin-bottom: 20px;
@@ -120,3 +122,19 @@ button:hover {
 .back-text:hover {
     color: #0056b3;
 }
+.form-group .password-input {
+    position: relative;
+}
+
+.form-group .password-input input {
+    padding-right: 35px; 
+}
+
+.form-group .password-input i {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Sesuaikan sesuai kebutuhan */
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
