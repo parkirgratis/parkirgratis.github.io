@@ -67,7 +67,15 @@
 h1 {
     text-align: center;
     margin-top: 20px;
-    font-family: 'Georgia', serif; /* Ubah font heading */
-    color: #333; /* Ubah warna teks heading */
+    font-family: 'Georgia', serif; 
+    color: #333;
 }
-
+ 
+.button-back{
+    background-color: antiquewhite;
+    position: fixed;
+    left: 20px;
+    bottom: 500px; 
+    cursor: pointer;
+    height: 40px;
+}
