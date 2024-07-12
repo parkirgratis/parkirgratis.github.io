@@ -153,3 +153,17 @@
   #showFormButton:hover {
     background-color: #0056b3;
   }
+  .button-home {
+    position: fixed;
+    left: 10px;
+    bottom: 120px; 
+    padding: -5px 1px;
+    background-color: white;
+    cursor: pointer;
+    height: 40px;
+
+  }
+  
+  .button-admin:home {
+    background-color: #ffffff;
+  }
