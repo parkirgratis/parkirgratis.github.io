@@ -14,6 +14,7 @@
     <button id="showFormButton">Tambah Tempat Parkir</button>
 
     <form id="placeForm" style="display: none;">
+        <div id="closeButton" onclick="document.getElementById('placeForm').style.display='none'">X</div>
         <div>
             <label for="placeName">Nama Tempat:</label>
             <input type="text" id="placeName" name="placeName" required placeholder="Masukkan nama tempat parkir">
@@ -35,8 +36,9 @@
             <input type="file" id="imageInput" accept="image/*" placeholder="Unggah gambar tempat parkir">
         </div>        
         <button type="submit">Tambah Tempat</button><br>
-        <p>input lebih simple <a href="https://parkirgratis.github.io/input/">disini</a></p> 
+        <p>Input lebih simple <a href="https://parkirgratis.github.io/input/">Click</a></p> 
     </form>
+    
 
     <div id="map"></div>
 
