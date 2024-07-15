@@ -75,7 +75,8 @@ h1 {
     background-color: antiquewhite;
     position: fixed;
     left: 20px;
-    bottom: 500px; 
+    top: 20px; /* Ubah dari bottom ke top */
     cursor: pointer;
     height: 40px;
+    z-index: 1000; /* Tambahkan z-index agar di atas elemen lain */
 }
