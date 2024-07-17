@@ -3,13 +3,14 @@ import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
 
 export function createPopups(map, data) {
   return data.map(({ coordinate }) => {
+    const popupElement = document.createElement('div');
     const popup = new Overlay({
-      element: document.createElement('div'),
+      element: popupElement,
       autoPan: true,
       autoPanAnimation: { duration: 250 }
     });
-    map.addOverlay(popup); // Menambahkan popup ke dalam map
-    return popup;
+    map.addOverlay(popup);
+    return { popup, popupElement };
   });
 }
 
