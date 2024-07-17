@@ -112,9 +112,10 @@ function displayPopupForCoordinate(coordinate, content) {
 }
 
 map.on('click', function(event) {
-    popups.forEach(popup => {
+    popups.forEach(({ popup }) => {
         popup.setPosition(null);
-    });
+
+});
     document.getElementById('placeForm').style.display = 'none';
 });
 
