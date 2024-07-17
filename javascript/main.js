@@ -29,6 +29,9 @@ const map = new Map({
 });
 
 let markerCoords = [];
+let popupsData = [];
+
+// Fetch marker data
 fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/marker')
     .then(response => response.json())
     .then(data => {
@@ -36,62 +39,76 @@ fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgrat
             console.error('Data marker bukan array:', data);
             return;
         }
-        console.log('Koordinat Marker:', data.markers);
-        createMapMarkers(data.markers);
+        markerCoords = data.markers;
+        console.log('Koordinat Marker:', markerCoords);
+        fetchPopupData();
     })
     .catch(error => console.error('Gagal mengambil data marker:', error));
 
-let popupsData = [];
-fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi')
-    .then(response => response.json())
-    .then(data => {
-        if (!Array.isArray(data)) {
-            console.error('Popup data bukan array:', data);
-            return;
-        }
-        popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
-                         .map(item => ({
-                             coordinate: [item.lon, item.lat],
-                             content: `
-                                <div class="popup-content">
-                                    <img src="${item.gambar}" alt="Gambar Tempat" style="width:100%; height:auto;">
-                                    <table>
-                                        <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
-                                        <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>
-                                        <tr><th>Fasilitas</th><td>${item.fasilitas}</td></tr>
-                                    </table>
-                                </div>`
-                         }));
-        console.log('Popup Data:', popupsData);
-        initializeMapPopups(popupsData);
-    })
-    .catch(error => console.error('Error fetching popup data:', error));
+// Fetch popup data
+function fetchPopupData() {
+    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi')
+        .then(response => response.json())
+        .then(data => {
+            if (!Array.isArray(data)) {
+                console.error('Popup data bukan array:', data);
+                return;
+            }
+            popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
+                             .map(item => ({
+                                 coordinate: [item.lon, item.lat],
+                                 content: `
+                                    <div class="popup-content">
+                                        <img src="${item.gambar}" alt="Gambar Tempat" style="width:100%; height:auto;">
+                                        <table>
+                                            <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
+                                            <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>
+                                            <tr><th>Fasilitas</th><td>${item.fasilitas}</td></tr>
+                                        </table>
+                                    </div>`
+                             }));
+            console.log('Popup Data:', popupsData);
+            initializeMapPopups();
+        })
+        .catch(error => console.error('Error fetching popup data:', error));
+}
 
 let popups = [];
+const markersMap = new Map();
 
-function initializeMapPopups(popupsData) {
+function initializeMapPopups() {
     popups = createPopups(map, popupsData.map(item => ({
         coordinate: item.coordinate,
         content: item.content
     })));
+    createMapMarkers();
 }
 
-function createMapMarkers(markerCoords) {
-    const markers = markerCoords.map(coord => createMarker(map, coord));
-
-    markers.forEach((marker, index) => {
-        marker.getElement().addEventListener('click', () => {
-            const popup = popups[index];
-            const popupData = popupsData[index];
-
-            if (popup && popupData && popupData.coordinate) {
-                displayPopup(popup, popupData.coordinate, popupData.content);
-                map.getView().animate({ center: fromLonLat(popupData.coordinate), zoom: 14 });
-            } else {
-                console.error('Popup atau data pop-up tidak ditemukan untuk penanda dengan indeks:', index);
-            }
-        });
+function createMapMarkers() {
+    markerCoords.forEach(coord => {
+        const marker = createMarker(map, coord);
+        markersMap.set(coord.toString(), marker);
     });
+
+    popupsData.forEach(({ coordinate, content }) => {
+        const marker = markersMap.get(coordinate.toString());
+        if (marker) {
+            marker.getElement().addEventListener('click', () => {
+                displayPopupForCoordinate(coordinate, content);
+            });
+        }
+    });
+}
+
+function displayPopupForCoordinate(coordinate, content) {
+    const popupIndex = popupsData.findIndex(item => item.coordinate.toString() === coordinate.toString());
+    if (popupIndex !== -1) {
+        const { popup } = popups[popupIndex];
+        displayPopup(popup, coordinate, content);
+        map.getView().animate({ center: fromLonLat(coordinate), zoom: 14 });
+    } else {
+        console.error('Popup tidak ditemukan untuk koordinat:', coordinate);
+    }
 }
 
 map.on('click', function(event) {
