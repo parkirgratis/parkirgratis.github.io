@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="login.css">
     <link rel="shortcut icon" type="image/x-icon" href="../img/logo.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="login-container">
-        <h2>
-            <img src="../img/logo.ico" alt="Logo" class="logo">
-            Admin Login
+        <h2 class="flex justify-center items-center py-5 gap-2">
+            <img src="../img/logo.ico" alt="Logo" class="logo ">
+            <p class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-bold">Admin Login</p>
         </h2>
         <form id="loginForm" class="login-form">
             <div class="form-group">
@@ -26,8 +27,8 @@
                     <i class="fas fa-eye-slash" id="togglePassword"></i>
                 </div>
             </div>
-            <button type="submit" class="login-button">Login</button>
-            <a href="../index.html" class="back-text">Back</a>
+                <button type="submit" class="login-button text-white bg-black hover:text-white py-2">Login</button>
+                <a href="../index.html" class="flex rounded-md hover:bg-blue-800 hover:scale-105 duration-300 transition decoration-none justify-center items-center back-text text-white bg-black hover:text-white py-2 px-20">Back</a>
         </form>
         
         <div id="message"></div>
