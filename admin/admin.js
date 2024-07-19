@@ -46,13 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
             lat: parseFloat(document.getElementById('lat').value)
         };
 
-        const updateRequest = {
-            _id: id,
-            markers: [
-                [parseFloat(document.getElementById('lon').value), parseFloat(document.getElementById('lat').value)]
-            ]
-        };
-
         fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
             method: 'PUT',
             headers: {
@@ -60,32 +53,18 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify(updatedData)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to update place data');
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(({ status, body }) => {
+            if (status === 200) {
+                alert('Data updated successfully');
+                modal.style.display = 'none';
+                location.reload(); 
+            } else {
+                alert(`Error updating data: ${body.message}`);
             }
-            return fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(updateRequest)
-            });
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to update coordinates');
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert('Data and coordinates updated successfully');
-            modal.style.display = 'none';
-            location.reload();
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert(`Error: ${error.message}`);
+            console.error('Error updating data:', error);
         });
     });
 });
