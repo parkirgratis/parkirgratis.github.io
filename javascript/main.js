@@ -61,9 +61,9 @@ function fetchPopupData() {
                                     <div class="popup-content">
                                         <img src="${item.gambar}" alt="Gambar Tempat" style="width:100%; height:auto;">
                                         <table>
-                                            <tr><th>Nama Tempat</th><td>${item.nama_tempat}</td></tr>
-                                            <tr><th>Lokasi</th><td>${item.lokasi}</td></tr>
-                                            <tr><th>Fasilitas</th><td>${item.fasilitas}</td></tr>
+                                            <tr><th class="text-title">Nama Tempat</th><td>${item.nama_tempat}</td></tr>
+                                            <tr><th class="text-title">Lokasi</th><td>${item.lokasi}</td></tr>
+                                            <tr><th class="text-title">Fasilitas</th><td>${item.fasilitas}</td></tr>
                                         </table>
                                     </div>`
                              }));

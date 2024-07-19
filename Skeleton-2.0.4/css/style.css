@@ -167,3 +167,8 @@
   .button-admin:home {
     background-color: #ffffff;
   }
+
+  .text-title {
+    font-family: 'Noto Sans', serif;
+    color: #0056b3;
+  }
