@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../Skeleton-2.0.4/css/skeleton.css">
     <link rel="stylesheet" href="admin.css">
     <link rel="shortcut icon" type="image/x-icon" href="../img/logo.ico" />
+    
 </head>
 <body>
     <form id="displayDataForm" class="form-style">
@@ -42,21 +43,39 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <form id="updateForm">
-                <label for="namaTempat">Nama Tempat:</label>
-                <input type="text" id="namaTempat" name="namaTempat">
-                <label for="lokasi">Lokasi:</label>
-                <input type="text" id="lokasi" name="lokasi">
-                <label for="fasilitas">Fasilitas:</label>
-                <input type="text" id="fasilitas" name="fasilitas">
-                <label for="lon">Longitude:</label>
-                <input type="text" id="lon" name="lon">
-                <label for="lat">Latitude:</label>
-                <input type="text" id="lat" name="lat">
-                <label for="gambar">Gambar:</label> <!-- Tambahkan input gambar -->
-                <input type="" id="gambar" name="gambar">
-                <img id="gambarPreview" src="" alt="Pratinjau Gambar" style="width:100px; display:none;"> <!-- Tambahkan pratinjau gambar -->
-                <input type="hidden" id="updateId" name="updateId">
-                <button type="submit">Update</button>
+                <div class="form-container">
+                    <div class="form-left">
+                        <div class="form-group">
+                            <label for="namaTempat">Nama Tempat:</label>
+                            <input type="text" id="namaTempat" name="namaTempat">
+                        </div>
+                        <div class="form-group">
+                            <label for="lokasi">Lokasi:</label>
+                            <input type="text" id="lokasi" name="lokasi">
+                        </div>
+                        <div class="form-group">
+                            <label for="fasilitas">Fasilitas:</label>
+                            <input type="text" id="fasilitas" name="fasilitas">
+                        </div>
+                        <div class="form-group">
+                            <label for="lon">Longitude:</label>
+                            <input type="text" id="lon" name="lon">
+                        </div>
+                        <div class="form-group">
+                            <label for="lat">Latitude:</label>
+                            <input type="text" id="lat" name="lat">
+                        </div>
+                        <div class="form-group">
+                            <label for="gambar">Gambar:</label> <!-- Tambahkan input gambar -->
+                            <input type="text" id="gambar" name="gambar">
+                        </div>
+                        <input type="hidden" id="updateId" name="updateId">
+                        <button type="submit">Update</button>
+                    </div>
+                    <div class="form-right">
+                        <img id="gambarPreview" src="" alt="Pratinjau Gambar"> <!-- Tambahkan pratinjau gambar -->
+                    </div>
+                </div>
             </form>
         </div>
     </div>
