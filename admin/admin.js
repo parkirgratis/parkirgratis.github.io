@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const actionsCell = row.insertCell(5);
                 actionsCell.innerHTML = `
-                    <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${item.gambar}')">Update</button>
+                    <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${gambarUrl}')">Update</button>
                     <button type="button" style="background-color: #e74c3c;" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat}, this)">Delete</button>
                 `;
             });
@@ -85,6 +85,11 @@ window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat, ga
     document.getElementById('lon').value = lon;
     document.getElementById('lat').value = lat;
     document.getElementById('gambar').value = gambar; // Tambahkan gambar
+
+    // Tampilkan pratinjau gambar
+    const gambarPreview = document.getElementById('gambarPreview');
+    gambarPreview.src = gambar;
+    gambarPreview.style.display = 'block';
 }
 
 
