@@ -11,17 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 row.insertCell(2).textContent = item.fasilitas;
                 row.insertCell(3).textContent = `${item.lon}, ${item.lat}`;
                 
-                // Tambahkan sel untuk gambar
-                const imgCell = row.insertCell(4);
-                const img = document.createElement('img');
-                img.src = item.gambar_url; // Asumsikan URL gambar disimpan di item.gambar_url
-                img.alt = item.nama_tempat;
-                img.style.width = '100px'; // Atur ukuran gambar sesuai kebutuhan
-                imgCell.appendChild(img);
+                // Periksa apakah URL gambar valid
+                const gambarUrl = item.gambar ? item.gambar : 'path/to/default/image.jpg';
+                row.insertCell(4).innerHTML = `<img src="${gambarUrl}" alt="Gambar" style="width:100px;">`; // Tambahkan gambar
 
                 const actionsCell = row.insertCell(5);
                 actionsCell.innerHTML = `
-                    <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat})">Update</button>
+                    <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${item.gambar}')">Update</button>
                     <button type="button" style="background-color: #e74c3c;" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat}, this)">Delete</button>
                 `;
             });
@@ -51,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
             lokasi: document.getElementById('lokasi').value,
             fasilitas: document.getElementById('fasilitas').value,
             lon: parseFloat(document.getElementById('lon').value),
-            lat: parseFloat(document.getElementById('lat').value)
+            lat: parseFloat(document.getElementById('lat').value),
+            gambar: document.getElementById('gambar').value // Tambahkan gambar
         };
 
         fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
@@ -77,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat) {
+window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat, gambar) {
     const modal = document.getElementById('updateModal');
     modal.style.display = 'block';
 
@@ -87,6 +84,7 @@ window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat) {
     document.getElementById('fasilitas').value = fasilitas;
     document.getElementById('lon').value = lon;
     document.getElementById('lat').value = lat;
+    document.getElementById('gambar').value = gambar; // Tambahkan gambar
 }
 
 
