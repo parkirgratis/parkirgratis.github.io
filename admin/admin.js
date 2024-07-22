@@ -10,8 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 row.insertCell(1).textContent = item.lokasi;
                 row.insertCell(2).textContent = item.fasilitas;
                 row.insertCell(3).textContent = `${item.lon}, ${item.lat}`;
+                
+                // Tambahkan sel untuk gambar
+                const imgCell = row.insertCell(4);
+                const img = document.createElement('img');
+                img.src = item.gambar_url; // Asumsikan URL gambar disimpan di item.gambar_url
+                img.alt = item.nama_tempat;
+                img.style.width = '100px'; // Atur ukuran gambar sesuai kebutuhan
+                imgCell.appendChild(img);
 
-                const actionsCell = row.insertCell(4);
+                const actionsCell = row.insertCell(5);
                 actionsCell.innerHTML = `
                     <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat})">Update</button>
                     <button type="button" style="background-color: #e74c3c;" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat}, this)">Delete</button>
@@ -137,4 +145,3 @@ window.deleteData = function(id, lon, lat, button) {
         alert('An error occurred while deleting the main data!');
     });
 };
-
