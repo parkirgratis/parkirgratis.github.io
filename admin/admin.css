@@ -75,12 +75,12 @@ tr:hover {
     text-decoration: none;
     cursor: pointer;
 }
-
+/* 
 .button-back {
     background-color: #3498db;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 1px;
     border-radius: 8px;
     cursor: pointer;
     margin-top: 10px;
@@ -100,4 +100,4 @@ tr:hover {
 @keyframes slideIn {
     from {transform: translateY(-50px);}
     to {transform: translateY(0);}
-}
+} */
