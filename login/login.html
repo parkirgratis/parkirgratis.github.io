@@ -18,23 +18,28 @@
         <form id="loginForm" class="login-form">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required placeholder="Masukan Username Anda">
+                <input type="text" id="username" name="username" required placeholder="Masukan Username Anda" class="input-field">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
                 <div class="password-input">
-                    <input type="password" id="password" name="password" required placeholder="Masukan Password Anda">
-                    <i class="fas fa-eye-slash" id="togglePassword"></i>
+                    <input type="password" id="password" name="password" required placeholder="Masukan Password Anda" class="input-field">
+                    <i class="fas fa-eye-slash cursor-pointer" id="togglePassword"></i>
                 </div>
             </div>
-                <button type="submit" class="login-button text-white bg-black hover:text-white py-2">Login</button>
-                <a href="../index.html" class="flex rounded-md hover:bg-blue-800 hover:scale-105 duration-300 transition decoration-none justify-center items-center back-text text-white bg-black hover:text-white py-2 px-20">Back</a>
+            <button type="submit" class="login-button text-white bg-black hover:bg-gray-800 py-2 px-4 rounded">Login</button>
+            <a href="../index.html" class="flex rounded-md hover:bg-blue-800 hover:scale-105 duration-300 transition decoration-none justify-center items-center back-text text-white bg-black py-2 px-4 mt-4">Back</a>
         </form>
         
         <div id="message"></div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>2024 All Rights Reserved</p>
+    </footer>
+
+
     <script src="login.js"></script>
-    
-  
 </body>
 </html>
