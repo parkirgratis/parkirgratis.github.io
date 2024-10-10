@@ -31,7 +31,7 @@ body::before {
 }
 
 .login-container {
-    background-color: rgba(255, 182, 193, 0.9);
+    background-color: rgba(255, 228, 225, 0.9);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -89,7 +89,7 @@ body::before {
 
 button {
     padding: 15px 20px;
-    background-color: #007bff;
+    background-color: #ff0000;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -99,7 +99,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #cc0000;
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -113,14 +113,14 @@ button:hover {
 .back-text {
     margin-top: 10px;
     font-size: 14px;
-    color: #007bff;
+    color: #ff0000;
     text-decoration: underline;
     cursor: pointer;
     transition: color 0.3s;
 }
 
 .back-text:hover {
-    color: #0056b3;
+    color: #cc0000;
 }
 .form-group .password-input {
     position: relative;
