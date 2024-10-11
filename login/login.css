@@ -1,7 +1,8 @@
-body {
+html,  body {
     font-family: 'Arial', sans-serif;
     background: none;
     display: flex;
+    flex-direction: column
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -44,6 +45,7 @@ body::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-grow: 1;
 }
 
 @keyframes slideIn {
@@ -152,5 +154,12 @@ footer {
     padding: 10px;
     position: absolute;
     bottom: 0;
+}
+
+#darkModeToggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 50; 
 }
 
