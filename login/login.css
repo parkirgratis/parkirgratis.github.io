@@ -39,7 +39,6 @@ body::before {
     text-align: center;
     animation: slideIn 1s ease-in-out;
     backdrop-filter: blur(10px);
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
