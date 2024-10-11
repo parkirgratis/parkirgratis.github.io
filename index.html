@@ -127,10 +127,15 @@
           </p>
         </div>
         <div class="flex justify-center ml-auto">
-            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+            <button id="berikanSaran" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
               Berikan Saran
             </button>
-          </div>
+            <script>
+                document.getElementById('berikanSaran').addEventListener('click', function() {
+                    window.location.href = 'saran.html'; // Ganti dengan halaman yang Anda buat
+                });
+            </script>
+        </div>
         <div class="pb-3">
           <p class="text-white text-center text-sm">2024 All Rights Reserved</p>
         </div>

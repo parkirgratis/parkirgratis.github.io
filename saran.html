@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berikan Saran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#222831] text-white">
+    <div class="container mx-auto p-10">
+        <h1 class="text-3xl font-bold text-center mb-6">Berikan Saran Anda</h1>
+        <form id="saranForm" class="bg-gray-800 p-6 rounded-lg">
+            <div class="mb-4">
+                <label for="saran" class="block text-lg font-semibold">Saran:</label>
+                <textarea id="saran" class="w-full p-3 rounded bg-gray-700 text-white h-40" placeholder="Tulis saran Anda di sini..."></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded">Kirim</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('saranForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const saran = document.getElementById('saran').value;
+            if (saran.trim()) {
+                alert('Saran Anda telah dikirim: ' + saran);
+                // Setelah saran dikirim, Anda bisa mengarahkan pengguna ke halaman lain atau menyimpan data di server
+                window.location.href = 'index.html'; // Kembali ke halaman utama setelah submit
+            } else {
+                alert('Silakan tulis saran Anda.');
+            }
+        });
+    </script>
+</body>
+</html>
