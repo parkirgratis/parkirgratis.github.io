@@ -29,3 +29,19 @@ document.getElementById('togglePassword').addEventListener('click', function() {
     this.classList.toggle('fa-eye');
     this.classList.toggle('fa-eye-slash');
 });
+
+document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.login-container').classList.toggle('dark-mode');
+    document.querySelector('footer').classList.toggle('dark-mode');
+
+    const inputs = document.querySelectorAll('input, .login-button');
+    inputs.forEach(input => {
+        input.classList.toggle('dark-mode');
+    });
+
+    // Change button text
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    this.textContent = isDarkMode ? 'Light Mode' : 'Night Mode';
+});
+

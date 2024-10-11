@@ -1,4 +1,4 @@
-body {
+ body {
     font-family: 'Arial', sans-serif;
     background: none;
     display: flex;
@@ -153,4 +153,37 @@ footer {
     position: absolute;
     bottom: 0;
 }
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+footer.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.login-container.dark-mode {
+    background-color: #1e1e1e;
+}
+
+input.dark-mode, .login-button.dark-mode {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+.login-button.dark-mode {
+    background-color: #000;
+}
+
+.form-group label.dark-mode {
+    color: #ffffff;
+}
+
+
+
+
+
 
