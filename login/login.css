@@ -1,8 +1,7 @@
-html,  body {
+ body {
     font-family: 'Arial', sans-serif;
     background: none;
     display: flex;
-    flex-direction: column
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -45,7 +44,6 @@ body::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
 }
 
 @keyframes slideIn {
@@ -156,10 +154,36 @@ footer {
     bottom: 0;
 }
 
-#darkModeToggle {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 50; 
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
 }
+
+footer.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.login-container.dark-mode {
+    background-color: #1e1e1e;
+}
+
+input.dark-mode, .login-button.dark-mode {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+.login-button.dark-mode {
+    background-color: #000;
+}
+
+.form-group label.dark-mode {
+    color: #ffffff;
+}
+
+
+
+
+
 
