@@ -48,18 +48,6 @@
         <p class="text-2xl font-semibold text-center mb-4 text-black">Terima kasih atas sarannya</p>
 
     </div>
-
-    <script>
-        document.getElementById('saranForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const saran = document.getElementById('saran').value;
-            if (saran.trim()) {
-                alert('Saran Anda telah dikirim: ' + saran);
-                window.location.href = 'index.html'; // Kembali ke halaman utama setelah submit
-            } else {
-                alert('Silakan tulis saran Anda.');
-            }
-        });
-    </script>
+    <script src="saran.js"></script>
 </body>
 </html>
