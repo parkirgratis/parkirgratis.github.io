@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const actionsCell = row.insertCell(5);
                 actionsCell.innerHTML = `
-                    <button type="button" style="background-color: #2ecc71;" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${gambarUrl}')">Update</button>
-                    <button type="button" style="background-color: #e74c3c;" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat}, this)">Delete</button>
+                    <button type="button" class="text-white bg-blue-500 px-2 rounded-md" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${gambarUrl}')">Update</button>
+                    <button type="button" class="text-white bg-red-500 px-2 rounded-md" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat}, this)">Delete</button>
                 `;
             });
         })
