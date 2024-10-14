@@ -1,85 +1,99 @@
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
 
 .hero {
-    background: url('https://placehold.co/1200x600') no-repeat center center;
-    background-size: cover;
-    color: white;
-    text-align: center;
-    padding: 150px 20px;
+    background-image: linear-gradient(to bottom, #333, #444);
+    background-size: 100% 300px;
+    background-position: 0% 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin: 0;
-}
-
-.hero p {
-    font-size: 24px;
-    margin: 20px 0 0;
-}
-
-.content {
-    background-color: #f9f9f9;
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.content h2 {
-    font-size: 32px;
+.hero h2 {
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
-.content p {
+.hero p {
     font-size: 18px;
-    line-height: 1.6;
-    margin: 0 auto;
-    max-width: 800px;
+    margin-bottom: 20px;
 }
 
 .gallery {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 40px 0;
 }
 
 .gallery img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin: 0 10px;
+    width: 30%;
+    margin: 10px;
+    border-radius: 10px;
 }
 
 .team {
-    background-color: white;
-    padding: 60px 20px;
-    text-align: center;
+    background-color: #f7f7f7;
+    padding: 20px;
 }
 
-.team h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
 }
 
-.team .member {
-    display: inline-block;
-    width: 200px;
-    margin: 0 20px;
-}
-
-.team .member img {
-    width: 100%;
+.team-member img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    margin-bottom: 10px;
 }
 
-.team .member h3 {
-    font-size: 20px;
-    margin: 10px 0 5px;
+.team-member h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-.team .member p {
-    font-size: 16px;
-    color: #777;
+.team-member h4 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.social-links li {
+    margin-right: 10px;
+}
+
+.social-links a {
+    color: #333;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    clear: both;
 }
