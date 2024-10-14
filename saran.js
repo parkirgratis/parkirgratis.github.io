@@ -9,3 +9,15 @@ document.getElementById('saranForm').addEventListener('submit', function(event) 
         alert('Silakan tulis saran Anda.');
     }
 });
+
+const submitButton = document.getElementById('submitButton');
+
+submitButton.addEventListener('click', function() {
+    submitButton.innerHTML = 'Mengirim...';
+    submitButton.disabled = true;
+
+    setTimeout(() => {
+        submitButton.innerHTML = 'Kirim';
+        submitButton.disabled = false;
+    }, 2000);
+});
