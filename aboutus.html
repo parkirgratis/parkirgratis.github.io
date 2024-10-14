@@ -1,59 +1,69 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkir Gratis Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-gray-100 font-roboto">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 font-roboto">
 
-    <div class="bg-green-500 text-white text-center py-12">
-      <h1 class="text-4xl font-bold">Parkir Gratis di Bandung</h1>
+    
+    <nav class="bg-green-800 text-white py-4">
+        <ul class="flex justify-center space-x-8">
+            <li><a href="#home" class="hover:text-green-400">Home</a></li>
+            <li><a href="#about" class="hover:text-green-400">Tentang Kami</a></li>
+            <li><a href="#gallery" class="hover:text-green-400">Galeri</a></li>
+            <li><a href="#team" class="hover:text-green-400">Tim Kami</a></li>
+            <li><a href="#contact" class="hover:text-green-400">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div id="home" class="bg-green-500 text-white text-center py-12">
+        <h1 class="text-4xl font-bold">Parkir Gratis di Bandung</h1>
     </div>
 
-    <div class="bg-white text-center py-8 px-4">
-      <h2 class="text-2xl text-gray-800 mb-4">Mengalokasi Parkir Gratis Di Bandung</h2>
-      <p class="text-gray-600 mb-6">
-        Kami menawarkan solusi parkir gratis dan desain ruang parkir yang optimal untuk berbagai jenis
-        properti. Mulai dari parkir untuk bisnis kecil hingga area parkir untuk pusat perbelanjaan besar.
-      </p>
-      <p class="text-gray-600">
-        Dengan pengalaman bertahun-tahun, tim kami siap membantu Anda mengoptimalkan penggunaan ruang parkir dan memberikan solusi yang efisien dan ramah pengguna.
-      </p>
+   
+    <div id="about" class="bg-white text-center py-8 px-4">
+        <h2 class="text-2xl text-gray-800 mb-4">Tentang Kami</h2>
+        <p class="text-gray-600 mb-6">
+            Kami adalah penyedia solusi parkir profesional yang berdedikasi memberikan layanan optimal di area perkotaan. Kami bekerja untuk memastikan ruang parkir dapat diakses oleh semua orang, sekaligus meningkatkan efisiensi lalu lintas.
+        </p>
+        <p class="text-gray-600">
+            Dengan pengalaman bertahun-tahun, tim kami berkomitmen untuk memberikan solusi parkir yang efisien, aman, dan ramah lingkungan.
+        </p>
     </div>
 
-    <!-- Gallery Section -->
-    <div class="bg-gray-200 py-8 flex justify-center space-x-4">
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="https://storage.googleapis.com/a1aa/image/NwBafDgsZ6W8fUfDV0XxarDZZSCRxXxfJ7lLO0CHFV0JsFaOB.jpg"
-        alt="Tempat parkir dengan mobil"
-        height="200"
-        width="200"
-      />
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="https://storage.googleapis.com/a1aa/image/K1tMwPLJOF7vDR3fP5beLDGA3s8nffjO3D3eBmR6atavXL0cC.jpg"
-        alt="Tanda parkir gratis"
-        height="200"
-        width="200"
-      />
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="https://storage.googleapis.com/a1aa/image/r3BklYJ8iQpiHRvj5er97obi9tNDUdBl0AMqkarenhJEbhmTA.jpg"
-        alt="Parkir mobil yang luas"
-        height="200"
-        width="200"
-      />
+    
+    <div id="gallery" class="bg-gray-200 py-8 flex justify-center space-x-4">
+        <img class="border-2 border-gray-700 rounded" src="https://storage.googleapis.com/a1aa/image/NwBafDgsZ6W8fUfDV0XxarDZZSCRxXxfJ7lLO0CHFV0JsFaOB.jpg" alt="Tempat parkir dengan mobil" height="200" width="200" />
+        <img class="border-2 border-gray-700 rounded" src="https://storage.googleapis.com/a1aa/image/K1tMwPLJOF7vDR3fP5beLDGA3s8nffjO3D3eBmR6atavXL0cC.jpg" alt="Tanda parkir gratis" height="200" width="200" />
+        <img class="border-2 border-gray-700 rounded" src="https://storage.googleapis.com/a1aa/image/r3BklYJ8iQpiHRvj5er97obi9tNDUdBl0AMqkarenhJEbhmTA.jpg" alt="Parkir mobil yang luas" height="200" width="200" />
     </div>
 
-    <div class="bg-green-500 text-white py-12 text-center">
-      <h2 class="text-3xl mb-8">Tim Kami</h2>
-      <div class="flex justify-center space-x-8">
-        
+    
+    <div id="team" class="bg-green-500 text-white py-12 text-center">
+        <h2 class="text-3xl mb-8">Tim Kami</h2>
+        <div class="flex justify-center space-x-8">
+          
+        </div>
+    </div>
+  
+    <footer id="contact" class="bg-gray-800 text-white py-8">
+      <div class="text-center mb-4">
+          <p class="text-lg">Kontak Kami</p>
+          <p class="text-sm">Jl. Sarijadi , Bandung</p>
+          <p class="text-sm">Email: info@parkirgratis.com | Telepon: +62 123-456-789</p>
+      </div>
+      <div class="flex justify-center space-x-4">
+          <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p class="text-center mt-4">&copy; 2024 Parkir Gratis Bandung. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
