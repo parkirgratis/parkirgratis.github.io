@@ -7,30 +7,41 @@
     <link rel="stylesheet" href="saran.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#222831] text-white">
+<body class="bg-[#222831] text-white min-h-screen flex flex-col">
     
-    <div class="background"></div>
+    <div class="flex-grow">
+        <div class="background"></div>
 
-    <div class="content container mx-auto p-10">
-        <h1 class="text-3xl font-bold text-center mb-6">Berikan Saran Anda</h1>
-        <img src="img/logo.png" class="mx-auto w-32 h-auto rounded-lg shadow-lg">
+        <div class="content container mx-auto p-10">
+            <h1 class="text-3xl font-bold text-center mb-6">Berikan Saran Anda</h1>
+            <img src="img/logo.png" class="mx-auto w-32 h-auto rounded-lg shadow-lg">
 
-        <form id="saranForm" class="bg-gray-800 p-6 rounded-lg">
-            <div class="mb-4">
-                <label for="saran" class="block text-lg font-semibold">Saran:</label>
-                <textarea id="saran" class="w-full p-3 rounded bg-gray-700 text-white h-40" placeholder="Tulis saran Anda di sini..."></textarea>
-            </div>
-            <div class="text-center">
-                <button id="submitButton" type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded">
-                    Kirim
-                </button>
-                
-                
-            </div>
-        </form>
-        <p class="text-2xl font-semibold text-center mb-4 text-black">Terima kasih atas sarannya</p>
-
+            <form id="saranForm" class="bg-gray-800 p-6 rounded-lg">
+                <div class="mb-4">
+                    <label for="saran" class="block text-lg font-semibold">Saran:</label>
+                    <textarea id="saran" class="w-full p-3 rounded bg-gray-700 text-white h-40" placeholder="Tulis saran Anda di sini..."></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded">Kirim</button>
+                </div>
+            </form>
+            <p class="text-2xl font-semibold text-center mb-4 text-black">Terima kasih atas sarannya</p>
+        </div>
     </div>
+
+    
+    <footer class="bg-blue-500 text-white text-center py-4 mt-10">
+        <div class="container mx-auto">
+            <p class="text-lg font-semibold">© 2024 ParkirGratis. All rights reserved.</p>
+            <p class="text-sm">Our Team</p>
+            <div class="mt-2">
+                <a href="#" class="text-white hover:text-gray-300 mx-2">Privacy Policy</a>
+                <a href="#" class="text-white hover:text-gray-300 mx-2">Terms of Service</a>
+                <a href="#" class="text-white hover:text-gray-300 mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="saran.js"></script>
 </body>
 </html>
