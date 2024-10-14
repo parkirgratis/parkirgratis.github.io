@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
 
-    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi')
+    fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/lokasi')
         .then(response => response.json())
         .then(data => {
             data.forEach(item => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             gambar: document.getElementById('gambar').value // Tambahkan gambar
         };
 
-        fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
+        fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/tempat', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ window.deleteData = function(id, lon, lat, button) {
     ];
 
     // Delete the main data entry
-    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/tempat', {
+    fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/tempat', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -121,7 +121,7 @@ window.deleteData = function(id, lon, lat, button) {
                 markers: coordinates
             };
 
-            fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
+            fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
