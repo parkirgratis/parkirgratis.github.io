@@ -1,142 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Parkir Gratis Bandung</title>
-    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico" />
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
+<html>
+ <head>
+  <title>
+   Web Design Studio
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
         }
-
-        /* Smooth transitions */
-        a, button {
-            transition: all 0.3s ease;
+        .hero {
+            background: url('https://placehold.co/1200x600') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
         }
-
-        /* Hover Effects */
-        a:hover, button:hover {
-            transform: translateY(-3px);
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
         }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .hero p {
+            font-size: 24px;
+            margin: 20px 0 0;
         }
-        ::-webkit-scrollbar-thumb {
-            background-color: #6EE2F5;
-            border-radius: 8px;
+        .content {
+            background-color: #f9f9f9;
+            padding: 60px 20px;
+            text-align: center;
         }
-
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(to right, #6EE2F5, #6454F0);
-            -webkit-background-clip: text;
-            color: transparent;
+        .content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
         }
-    </style>
-</head>
-<body class="bg-[#222831] text-gray-200">
-
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-10 backdrop-blur-lg bg-black/40 flex items-center justify-between p-2 w-full">
-        <a href="index.html" class="text-xl font-semibold gradient-text">Parkir Gratis Bandung</a>
-        <a href="index.html" class="text-gray-300 text-sm hover:text-sky-500 transition">Home</a>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="bg-cover bg-center h-screen" style="background-image: url('img/1580.jpg');">
-        <div class="container mx-auto h-full flex flex-col justify-center items-center text-center">
-            <h1 class="text-5xl md:text-6xl font-bold gradient-text mb-6">Tentang Kami</h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-xl mx-auto">
-                Kami hadir untuk menyediakan solusi parkir gratis yang aman, cepat, dan tanpa biaya di Bandung.
-            </p>
-            <a href="#mission" class="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-sky-500 hover:text-white transition">
-                Pelajari Lebih Lanjut
-            </a>
-        </div>
-    </section>
-
-    <!-- About Us Content -->
-    <section id="mission" class="container mx-auto py-16 px-4 md:px-20">
-        <div class="grid md:grid-cols-2 gap-12">
-            <!-- Content Left -->
-            <div>
-                <h2 class="text-4xl font-semibold gradient-text mb-6">Misi Kami</h2>
-                <p class="text-lg text-gray-400 mb-6">
-                    Kami percaya bahwa solusi parkir yang efisien bisa membuat perbedaan besar dalam kehidupan masyarakat. Parkir Gratis Bandung bertujuan untuk menyediakan informasi lengkap mengenai lokasi parkir gratis di Bandung.
-                </p>
-                <p class="text-lg text-gray-400 mb-6">
-                    Kami mengundang Anda untuk turut berpartisipasi dan menambahkan informasi lokasi parkir yang bermanfaat untuk komunitas.
-                </p>
-                <a href="halaman_utama.html" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-full transition">
-                    Cek Lokasi Parkir
-                </a>
-            </div>
-
-            <!-- Content Right -->
-            <div class="relative">
-                <img src="img/about_us_image.jpg" alt="Parkir Gratis Bandung" class="rounded-lg shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                <div class="absolute inset-0 bg-gray-900 bg-opacity-40 flex justify-center items-center opacity-0 hover:opacity-100 transition duration-300">
-                    <p class="text-gray-100 text-lg">Membantu masyarakat menemukan solusi parkir gratis.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="bg-gray-800 py-16">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-semibold gradient-text mb-8">Tim Kami</h2>
-            <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                Proyek ini dikembangkan oleh individu-individu yang berdedikasi untuk memberikan solusi parkir gratis di Bandung. Mari kita kenali mereka.
-            </p>
-            
-            <div class="grid md:grid-cols-2 gap-10">
-                <!-- Team Member 1 -->
-                <div class="bg-gray-700 p-6 rounded-lg hover:shadow-xl transition">
-                    <img src="img/irgi.png" alt="Irgi" class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-gray-700 hover:border-sky-500 transition">
-                    <h3 class="text-2xl font-semibold">Irgi Fauzi</h3>
-                    <p class="text-gray-400 mb-4">Founder & Developer</p>
-                    <a href="https://github.com/irgifauzi" class="text-sky-500 hover:text-sky-600 transition">GitHub Profile</a>
-                </div>
-
-                <!-- Team Member 2 -->
-                <div class="bg-gray-700 p-6 rounded-lg hover:shadow-xl transition">
-                    <img src="img/revan.png" alt="Revan" class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-gray-700 hover:border-sky-500 transition">
-                    <h3 class="text-2xl font-semibold">Revan</h3>
-                    <p class="text-gray-400 mb-4">Co-Founder & Developer</p>
-                    <a href="https://github.com/Revan232" class="text-sky-500 hover:text-sky-600 transition">GitHub Profile</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="bg-gray-900 py-24 text-center text-white">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold mb-6">Siap Bergabung?</h2>
-            <p class="text-lg mb-8 max-w-xl mx-auto">
-                Bergabunglah dengan komunitas kami dan tambahkan informasi lokasi parkir gratis di daerah Anda!
-            </p>
-            <a href="https://parkirgratis.github.io/input/" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-full transition">
-                Tambah Lokasi Parkir
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 py-8">
-        <div class="container mx-auto text-center text-gray-400">
-            <div class="flex justify-center items-center gap-3 mb-6">
-                <img src="img/logo.png" alt="Parkir Gratis Bandung" width="40">
-                <p>Developed by <a href="https://github.com/irgifauzi" class="text-sky-500 hover:text-sky-600 transition">Irgi</a> w/ <a href="https://github.com/Revan232" class="text-sky-500 hover:text-sky-600 transition">Revan</a></p>
-            </div>
-            <p class="text-sm">&copy; 2024 Parkir Gratis Bandung. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-</body>
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin: 0 10px;
+        }
+        .team {
+            background-color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .team h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        .team .member {
+            display: inline-block;
+            width: 200px;
+            margin: 0 20px;
+        }
+        .team .member img {
+            width: 100%;
+            border-radius: 50%;
+        }
+        .team .member h3 {
+            font-size: 20px;
+            margin: 10px 0 5px;
+        }
+        .team .member p {
+            font-size: 16px;
+            color: #777;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="hero">
+   <h1>
+    Handcrafted with thought in Manchester
+   </h1>
+  </div>
+  <div class="content">
+   <h2>
+    Expert Designers and Developers trained in the creative and digital industry who offer a bespoke, professional and trustworthy service.
+   </h2>
+   <p>
+    We are a Web Design Studio based in Manchester with an outstanding reputation for quality, bespoke designs across all digital campaigns - including eCommerce web design and responsive website design.
+   </p>
+   <p>
+    With over a decade of experience, Shape is an energetic, fresh and vibrant team of eight offering creative talent, industry knowledge and extremely high standards. All of our team members have degrees in both Graphic Design and Web Design.
+   </p>
+   <p>
+    We work with Sole Traders and ambitious Start Up Businesses through to large global organisations such as Blackberry, Selfridges and Harvey Nichols, so we can tailor our services to suit your needs.
+   </p>
+  </div>
+  <div class="gallery">
+   <img alt="Office environment with team working" height="200" src="https://storage.googleapis.com/a1aa/image/NwBafDgsZ6W8fUfDV0XxarDZZSCRxXxfJ7lLO0CHFV0JsFaOB.jpg" width="200"/>
+   <img alt="Office plant and workspace" height="200" src="https://storage.googleapis.com/a1aa/image/K1tMwPLJOF7vDR3fP5beLDGA3s8nffjO3D3eBmR6atavXL0cC.jpg" width="200"/>
+   <img alt="Team meeting and discussion" height="200" src="https://storage.googleapis.com/a1aa/image/r3BklYJ8iQpiHRvj5er97obi9tNDUdBl0AMqkarenhJEbhmTA.jpg" width="200"/>
+  </div>
+  <div class="team">
+   <h2>
+    Meet the Team
+   </h2>
+   <div class="member">
+    <img alt="Andy Golpys" height="200" src="https://storage.googleapis.com/a1aa/image/a9BK8GUHftXjVy9B8efVtMTszh0fxZubiQiIx9Ul6eZAYL0cC.jpg" width="200"/>
+    <h3>
+     Andy Golpys
+    </h3>
+    <p>
+     Designer &amp; Project Manager
+    </p>
+    <p>
+     <i class="fas fa-university">
+     </i>
+     Lectures at Salford University
+    </p>
+   </div>
+   <div class="member">
+    <img alt="Jason Mayo" height="200" src="https://storage.googleapis.com/a1aa/image/q9752XZVwtZgDZXJOq3HZOsvHA3yRgpOxzPUDxeNRzVfahmTA.jpg" width="200"/>
+    <h3>
+     Jason Mayo
+    </h3>
+    <p>
+     Designer &amp; Web Developer
+    </p>
+    <p>
+     <i class="fas fa-font">
+     </i>
+     Favourite Typeface: Apercu
+    </p>
+   </div>
+   <div class="member">
+    <img alt="Tom Pickering" height="200" src="https://storage.googleapis.com/a1aa/image/HG5wjCv7MtqVJdmzpsaeabjryV1avahVA26VveYehDfFsFaOB.jpg" width="200"/>
+    <h3>
+     Tom Pickering
+    </h3>
+    <p>
+     Designer &amp; Web Developer
+    </p>
+    <p>
+     <i class="fas fa-bicycle">
+     </i>
+     Competes in Triathlons
+    </p>
+   </div>
+  </div>
+ </body>
 </html>
