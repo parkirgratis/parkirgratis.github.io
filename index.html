@@ -13,37 +13,38 @@
 
 </head>
 <body class="bg-[#222831]">
-    <nav class="sticky top-0 z-10 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full">
+
+    <nav class="absolute top-0 z-10 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
         <a class="hidden md:block ml-5">
-          <img src="img/logo.png" alt="Bootstrap" width="50" height="24">
+            <img src="img/logo.png" alt="Bootstrap" width="50" height="24">
         </a>
         <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
-          <!-- Navbar button -->
-          <a href="login/login.html">
-              <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
-                  <span>
-                      <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
-                  </span>
-                  <div class="flex flex-wrap -m-2">
-                      <div class="w-auto p-2">
-                          <h2 class="text-sm text-left px-2 hidden md:block">Are you admin?</h1>
-                          <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block">Login Here</p>
-                          <p class="text-sm text-left px-2 md:hidden">LOGIN</p>
-                      </div>
-                  </div>
-              </button>
-          </a>
+            <a href="login/login.html">
+                <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+                    <span>
+                        <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
+                    </span>
+                    <div class="flex flex-wrap -m-2">
+                        <div class="w-auto p-2">
+                            <h2 class="text-sm text-left px-2 hidden md:block">Are you admin?</h2>
+                            <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block">Login Here</p>
+                            <p class="text-sm text-left px-2 md:hidden">LOGIN</p>
+                        </div>
+                    </div>
+                </button>
+            </a>
         </span>
     </nav>
 
-    <section class="text-white bg-cover" style="background-image: url('img/1580.jpg');">
-        <div class="container mx-auto px-4 py-72 text-center">
-          <h2 class="text-4xl font-bold mb-4">Selamat Datang  di <span class="text-sky-500">Parkir Gratis Bandung</span></h2>
-
-          <p class="text-lg mb-8">Temukan tempat parkir tanpa biaya, cepat, dan aman. Hemat waktu dan uang dengan solusi parkir gratis yang kami sediakan.</p>
-          <a href="#featuremenu" class="bg-white text-blue-600 px-6 py-3 capitalize rounded-full font-semibold hover:bg-sky-500 hover:text-white transition delay-70">LIHAT FITUR</a>
+    <section class="text-white bg-cover mt-[-30px]" style="background-image: url('img/1580.jpg');">
+        <div class="container mx-auto px-4 py-64 text-center">
+            <img class="mx-auto pb-8" width="120" src="https://img.freepik.com/premium-vector/bike-park-sign-drawing-by-illustration-parkin-allowed-only-bike-icon_872756-218.jpg" alt="">
+            <h2 class="text-4xl font-bold mb-4">Selamat Datang di <span class="text-sky-500">Parkir Gratis Bandung</span></h2>
+            <p class="text-lg mb-8">Temukan tempat parkir tanpa biaya, cepat, dan aman. Hemat waktu dan uang dengan solusi parkir gratis yang kami sediakan.</p>
+            <a href="#featuremenu" class="bg-white text-blue-600 px-6 py-3 capitalize rounded-full font-semibold hover:bg-sky-500 hover:text-white transition delay-70">LIHAT FITUR</a>
         </div>
     </section>
+
 
     <section id="featuremenu">
         <div class="container-lg md:py-10 py-5 md:px-20 px-8">
@@ -55,9 +56,9 @@
                         <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/map.png" width="25" alt=""></span>&nbsp;Cek Tempat Parkir</h3>
                         <p class="text-gray-600">Lihat dimana saja letak parkir gratis Alfamart dan Indomaret di Bandung.</p>
                         <a href="halaman_utama..html">
-                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded transition transform hover:bg-blue-600 hover:scale-105 hover:shadow-lg">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 Parking Map
-                              </button>                              
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -68,9 +69,9 @@
                         <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/marker.png" width="25" alt=""></span>&nbsp;Tambah Lokasi Parkir</h3>
                         <p class="text-gray-600">Anda dapat berkontribusi untuk menambahkan lokasi parkir gratis disini!</p>
                         <a href="https://parkirgratis.github.io/input/">
-                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded transition transform hover:bg-blue-600 hover:scale-105 hover:shadow-lg">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 Add Parking Location
-                              </button>                              
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -82,9 +83,9 @@
                         <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/instagram.png" width="25" alt=""></span>&nbsp;Akun Instagram Resmi</h3>
                         <p class="text-gray-600">Pergi ke halaman Instagram resmi kita, jangan lupa difollow ya!</p>
                         <a href="https://www.instagram.com/parkirgratis.bdg/">
-                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded transition transform hover:bg-blue-600 hover:scale-105 hover:shadow-lg">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 Visit our page!
-                              </button>                              
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -95,10 +96,9 @@
                         <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/tiktok.png" width="25" alt=""></span>&nbsp;Akun Tiktok Resmi</h3>
                         <p class="text-gray-600">Pergi ke halaman TikTok resmi kita, jangan lupa difollow ya!</p>
                         <a href="https://www.tiktok.com/@parkirgratis.bdg">
-                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded transition transform hover:bg-blue-600 hover:scale-105 hover:shadow-lg">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 Visit our page!
-                              </button>
-                              
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -109,9 +109,9 @@
                         <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/github.png" width="25" alt=""></span>&nbsp;Source Code</h3>
                         <p class="text-gray-600">Cek source code yang kita buat di repository ini.<br> &nbsp;</p>
                         <a href="https://github.com/parkirgratis/parkirgratis.github.io">
-                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded transition transform hover:bg-blue-600 hover:scale-105 hover:shadow-lg">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 Source Code
-                              </button>                              
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -122,9 +122,9 @@
                         <h3 class="text-xl font-semibold mb-3 flex"><span><img src="https://cdn-icons-png.flaticon.com/512/4658/4658943.png" width="25" alt=""></span>&nbsp;Beri Masukkan</h3>
                         <p class="text-gray-600">Beri masukkan untuk kami agar dapat mengembangkan website ini menjadi lebih baik</p>
                         <a href="saran.html">
-                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded transition transform hover:bg-blue-600 hover:scale-105 hover:shadow-lg">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 Submit Feedback
-                              </button>
+                            </button>
                         </a>
                     </div>
                 </div>
