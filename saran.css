@@ -15,3 +15,27 @@
     position: relative;
     z-index: 1; 
 }
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+nav {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+nav a {
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #1abc9c;
+}
+
+.footer a {
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #dcdcdc;
+}
