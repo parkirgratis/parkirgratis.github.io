@@ -10,6 +10,16 @@
     background-position: center;
 }
 
+html, body {
+    height: 100%;
+}
+
+#contact {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
 .team {
     background-color: #f7f7f7;
     padding: 40px 0;
@@ -45,3 +55,12 @@
     margin-bottom: 2rem;
     border-radius: 8px;
 }
+
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+p {
+    line-height: 1.6;
+}
+
+
