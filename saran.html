@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berikan Saran</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico" />
     <link rel="stylesheet" href="saran.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=REM">
 </head>
 <body class="bg-[#222831] text-white min-h-screen flex flex-col">
+    <h1 class="title-prop bg-sky-500 md:text-3xl sm:text-2xl text-xl font-bold text-center mb-12 py-3 px-4 flex flex-col items-center justify-center gap-2">
+        <div class="flex items-center gap-2">
+            Berikan Saran Anda
+            <span>
+                <img src="https://media.tenor.com/iRCGgt_NkvkAAAAi/amelia-watson-hololive.gif" width="40" alt="">
+            </span>
+        </div>
+        <p class="text-center text-xs md:text-sm mt-2 bg-white px-3 py-1 rounded-lg text-sky-500">Saran anda dapat membantu kami dalam mengembangkan website ini lebih jauh dan relevan dengan kebutuhan anda!</p>
+    </h1>    
     
-    <div class="flex-grow">
+    <div class="flex-grow md:px-40 px-1 pb-16">
         <div class="background"></div>
-
         <div class="content container mx-auto p-10">
-            <h1 class="text-3xl font-bold text-center mb-6">Berikan Saran Anda</h1>
-            <img src="img/logo.png" class="mx-auto w-32 h-auto rounded-lg shadow-lg">
-
             <form id="saranForm" class="bg-gray-800 p-6 rounded-lg">
                 <div class="mb-4">
                     <label for="saran" class="block text-lg font-semibold">Saran:</label>
@@ -25,20 +32,20 @@
                     <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded">Kirim</button>
                 </div>
             </form>
-            <p class="text-2xl font-semibold text-center mb-4 text-black">Terima kasih atas sarannya</p>
         </div>
     </div>
 
-    
-    <footer class="bg-blue-500 text-white text-center py-4 mt-10">
-        <div class="container mx-auto">
-            <p class="text-lg font-semibold">© 2024 ParkirGratis. All rights reserved.</p>
-            <p class="text-sm">Our Team</p>
-            <div class="mt-2">
-                <a href="#" class="text-white hover:text-gray-300 mx-2">Privacy Policy</a>
-                <a href="#" class="text-white hover:text-gray-300 mx-2">Terms of Service</a>
-                <a href="#" class="text-white hover:text-gray-300 mx-2">Contact Us</a>
-            </div>
+    <!-- Footer -->
+    <footer class="bg-zinc-950 text-center lg:text-left">
+        <div class="bg-black/5 pt-3 text-lg flex justify-center items-center gap-2 text-white">
+            <img src="img/logo.png" alt="" class="mr-2" width="40">
+            <p class="pb-1 border-2 border-transparent border-l-white px-3">Developed by 
+                <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-[#6454F0] to-[#6EE2F5] font-semibold" href="https://github.com/irgifauzi">Irgi</a> w/ 
+                <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 font-semibold" href="https://github.com/Revan232">Revan</a>
+            </p>
+        </div>
+        <div class="pb-3">
+            <p class="text-white text-center text-sm"><a href="aboutus.html"><span class="hover:text-sky-500">About Us</span></a> | 2024 All Rights Reserved</p>
         </div>
     </footer>
 
