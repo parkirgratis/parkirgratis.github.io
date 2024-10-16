@@ -1,23 +1,34 @@
-document.getElementById('saranForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    console.log("Form submit berhasil");
-    const saran = document.getElementById('saran').value;
-    if (saran.trim()) {
-        alert('Terima Kasih Atas Sarannya ');
-        window.location.href = 'index.html'; // Kembali ke halaman utama setelah submit
-    } else {
-        alert('Silakan tulis saran Anda.');
+document.getElementById('saranForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const saranInput = document.getElementById('saran').value;
+
+    if (!saranInput) {
+        alert('Saran tidak boleh kosong!');
+        return;
     }
-});
 
-const submitButton = document.getElementById('submitButton');
+    const data = {
+        saran: saranInput
+    };
 
-submitButton.addEventListener('click', function() {
-    submitButton.innerHTML = 'Mengirim...';
-    submitButton.disabled = true;
+    try {
+        const response = await fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/saran', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-    setTimeout(() => {
-        submitButton.innerHTML = 'Kirim';
-        submitButton.disabled = false;
-    }, 2000);
+        if (response.ok) {
+            alert('Saran berhasil dikirim!');
+            document.getElementById('saranForm').reset();
+        } else {
+            alert('Gagal mengirim saran. Coba lagi.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan. Coba lagi.');
+    }
 });
