@@ -1,0 +1,66 @@
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add custom styles here */
+.hero {
+    background-image: url('img/hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+html, body {
+    height: 100%;
+}
+
+#contact {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.team {
+    background-color: #f7f7f7;
+    padding: 40px 0;
+}
+
+.team-member {
+    margin-bottom: 20px;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-links li {
+    margin-right: 10px;
+}
+
+.social-links a {
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: #666;
+}
+
+#about, #gallery, #teamKieu, footer {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+p {
+    line-height: 1.6;
+}
+
+

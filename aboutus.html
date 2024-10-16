@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="aboutus.css">
     <title>Parkir Gratis Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
+<body>
+  <nav class="sticky top-0 z-10 backdrop-blur-lg bg-transparent flex items-center md:justify-between sm:justify-end justify-end p-2 w-full">
+  </nav>
+  
 <body class="bg-gray-100 font-roboto">
 
     
+<<<<<<< HEAD
   <nav class="bg-[#222831] text-white py-4 fixed top-0 left-0 w-full z-10 shadow-lg">
     <ul class="flex justify-center space-x-8">
         <li><a href="#home" class="hover:text-green-400">Home</a></li>
@@ -27,51 +34,81 @@
 
     <div id="home" class="bg-[#222831] text-white text-center py-12">
         <h1 class="text-4xl font-bold">Parkir Gratis di Bandung</h1>
+=======
+  <nav class="bg-[#222831] text-white py-4 fixed w-full top-0 z-50">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-4">
+        <div class="text-2xl font-bold">Parkir Gratis</div>
+        <ul class="flex space-x-8">
+            <li><a href="#home" class="hover:text-green-400 hover:underline transition-all">Home</a></li>
+            <li><a href="#about" class="hover:text-green-400 hover:underline transition-all">Tentang Kami</a></li>
+            <li><a href="#gallery" class="hover:text-green-400 hover:underline transition-all">Galeri</a></li>
+            <li><a href="#teamKieu" class="hover:text-green-400 hover:underline transition-all">Tim Kami</a></li>
+            <li><a href="#contact" class="hover:text-green-400 hover:underline transition-all">Kontak</a></li>
+        </ul>
+>>>>>>> 5544342b05091fc9043963bef9ebb7841dc13c2c
     </div>
+</nav>
+
 
    
-    <div id="about" class="bg-white text-center py-8 px-4">
-        <h2 class="text-2xl text-gray-800 mb-4">Tentang Kami</h2>
-        <p class="text-gray-600 mb-6">
-            Kami adalah penyedia solusi parkir profesional yang berdedikasi memberikan layanan optimal di area perkotaan. Kami bekerja untuk memastikan ruang parkir dapat diakses oleh semua orang, sekaligus meningkatkan efisiensi lalu lintas.
-        </p>
-        <p class="text-gray-600">
-            Dengan pengalaman bertahun-tahun, tim kami berkomitmen untuk memberikan solusi parkir yang efisien, aman, dan ramah lingkungan.
-        </p>
+    <div id="about" class="bg-white text-center py-12 px-8 font-serif">
+      <h2 class="text-2xl text-gray-800 mb-4">Tentang Kami</h2>
+      <p class="text-gray-600 mb-6">
+        Selamat datang di <strong>Parkir Gratis Bandung</strong>, solusi modern untuk menemukan tempat parkir gratis di seluruh Bandung. Kami hadir dengan misi mempermudah masyarakat dalam menemukan lokasi parkir tanpa biaya di berbagai lokasi strategis, seperti di Alfamart, Indomaret, dan lokasi-lokasi lain di sekitar Bandung.
+      </p>
+      <p class="text-gray-600 mb-6">
+        Visi kami adalah menciptakan sebuah komunitas yang peduli terhadap akses parkir yang mudah, hemat, dan terjangkau bagi semua. Kami percaya bahwa dengan menyediakan informasi yang akurat dan terkini, pengguna dapat menghemat waktu, mengurangi stres, dan mengoptimalkan mobilitas mereka di kota yang padat.
+      </p>
+    
+      <h3 class="text-xl text-gray-800 mb-4">Misi Kami</h3>
+      <ul class="list-disc list-inside text-gray-600 mb-6 text-left mx-auto max-w-2xl">
+        <li class="mb-2">Menyediakan platform yang sederhana dan efektif untuk menemukan parkir gratis di Bandung.</li>
+        <li class="mb-2">Membuka kesempatan bagi pengguna untuk berkontribusi dengan menambahkan lokasi parkir gratis baru melalui fitur <em>Tambah Lokasi Parkir</em>.</li>
+        <li class="mb-2">Membangun komunitas pengguna yang aktif dalam berbagi informasi mengenai parkir gratis dan tips parkir.</li>
+      </ul>
+    
+      <p class="text-gray-600 mb-6">
+        Kami juga berkomitmen untuk terus mengembangkan platform ini, dengan mendengarkan masukan dari pengguna untuk meningkatkan kualitas layanan kami. Bersama, kita bisa membuat pengalaman parkir di Bandung lebih baik.
+      </p>
+    
+      <p class="text-gray-600">
+        <strong>Parkir Gratis Bandung</strong> dikelola dan dikembangkan oleh tim yang berdedikasi untuk memudahkan kehidupan sehari-hari Anda. Kami juga transparan dengan semua proses pengembangan melalui repository publik kami di GitHub.
+      </p>
     </div>
-
+    
     <!-- Gallery Section -->
-    <div class="bg-gray-200 py-8 flex justify-center space-x-4 mb-8">
+    <div class="bg-black-200 py-8 flex justify-center space-x-4 mb-8">
       <img
         class="border-2 border-gray-700 rounded"
-        src="https://storage.googleapis.com/a1aa/image/NwBafDgsZ6W8fUfDV0XxarDZZSCRxXxfJ7lLO0CHFV0JsFaOB.jpg"
+        src="img/parkir gratis 1.jpeg"
         alt="Tempat parkir dengan mobil"
-        height="200"
-        width="200"
+        height="300"
+        width="300"
       />
       <img
         class="border-2 border-gray-700 rounded"
-        src="https://storage.googleapis.com/a1aa/image/K1tMwPLJOF7vDR3fP5beLDGA3s8nffjO3D3eBmR6atavXL0cC.jpg"
+        src="img/parkir gratis.jpg"
         alt="Tanda parkir gratis"
-        height="200"
-        width="200"
+        height="300"
+        width="300"
       />
       <img
         class="border-2 border-gray-700 rounded"
-        src="https://storage.googleapis.com/a1aa/image/r3BklYJ8iQpiHRvj5er97obi9tNDUdBl0AMqkarenhJEbhmTA.jpg"
+        src="img/parkir gratis 2.jpg"
         alt="Parkir mobil yang luas"
-        height="200"
-        width="200"
+        height="300"
+        width="300"
       />
     </div>
     
+    
 
     <section id="teamKieu">
-      <div class="bg-[#0000FF] text-white py-12 text-center">
-      <h2 class="text-3xl mb-8">Tim Kami</h2>
-      <div class="flex justify-center space-x-8">
-        <div class="bg-[#0000FF] text-white py-12 text-center">
-          <div class="flex justify-center flex-wrap gap-8 pb-8">
+      <div class="bg-[#808080] text-white py-12 text-center w-full">
+          <h2 class="text-3xl mb-8">Tim Kami</h2>
+          <div class="flex justify-center space-x-8">
+              <div class="bg-[#808080] text-white py-12 text-center">
+                <div class="flex justify-center flex-wrap gap-8 pb-8">
             <!-- Team Member 1 -->
             <a href="https://github.com/irgifauzi">
               <div class="bg-white rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
@@ -177,6 +214,12 @@
       </div>
       <p class="text-center mt-4">&copy; 2024 Parkir Gratis Bandung. All rights reserved.</p>
   </footer>
+
+    <footer class="bg-zinc-950 text-center lg:text-left">
+        <!-- Footer content (same as index.html) -->
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
         
