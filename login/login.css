@@ -1,6 +1,5 @@
- body {
+body {
     font-family: 'Arial', sans-serif;
-    background: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +8,7 @@
     position: relative;
     overflow: hidden;
     animation: fadeIn 1.5s ease-in-out;
+    background-color: #f0f0f0;
 }
 
 body::before {
@@ -25,24 +25,20 @@ body::before {
     z-index: -1;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
 .login-container {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    width: 400px;
-    text-align: center;
+    width: 100%;
+    max-width: 400px;
     animation: slideIn 1s ease-in-out;
     backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes slideIn {
@@ -51,47 +47,11 @@ body::before {
 }
 
 .login-form {
-    text-align: center; /* Pusatkan elemen dalam form */
+    text-align: center;
 }
 
 .login-button {
-    margin-top: 20px; /* Berikan ruang di atas tombol */
-}
-
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: bold;
-}
-
-.form-group label i {
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-group input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-}
-
-button {
+    margin-top: 20px;
     padding: 15px 20px;
     background-color: #ff0000;
     color: #fff;
@@ -102,44 +62,39 @@ button {
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-button:hover {
+.login-button:hover {
     background-color: #cc0000;
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    color: #555;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
 #message {
     margin-top: 20px;
     color: red;
     font-size: 14px;
-}
-
-.back-text {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ff0000;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.back-text:hover {
-    color: #ffffff;
-}
-.form-group .password-input {
-    position: relative;
-}
-
-.form-group .password-input input {
-    padding-right: 35px; 
-}
-
-.form-group .password-input i {
-    position: absolute;
-    top: 50%;
-    right: 10px; /* Sesuaikan sesuai kebutuhan */
-    transform: translateY(-50%);
-    cursor: pointer;
 }
 
 footer {
@@ -156,17 +111,14 @@ footer {
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
-
 }
 
 footer.dark-mode {
     background-color: #1e1e1e;
-    color: #ffffff;
-    
 }
 
 .login-container.dark-mode {
-    background-color: #1e1e1e;
+    background-color: rgba(30, 30, 30, 0.85);
 }
 
 input.dark-mode, .login-button.dark-mode {
@@ -182,9 +134,3 @@ input.dark-mode, .login-button.dark-mode {
 .form-group label.dark-mode {
     color: #ffffff;
 }
-
-
-
-
-
-

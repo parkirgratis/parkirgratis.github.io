@@ -9,7 +9,7 @@ document.getElementById('saranForm').addEventListener('submit', async function (
     }
 
     const data = {
-        saran: saranInput
+        saran_user: saranInput
     };
 
     try {
