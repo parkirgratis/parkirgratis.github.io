@@ -3,41 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" href="login.css">
     <link rel="shortcut icon" type="image/x-icon" href="../img/logo.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    
-    <div class="login-container">
-        <h2 class="flex justify-center items-center py-5 gap-2">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/013/927/860/small/businessman-and-cog-illustration-in-minimal-style-png.png" alt="Logo" class="logo w-12 h-12 rounded-full object-cover">
-            
-            <p class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500 font-bold text-xl">Admin Login</p>
-        </h2>
-        <form id="loginForm" class="login-form">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required placeholder="Masukan Username Anda" class="input-field">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <div class="password-input">
-                    <input type="password" id="password" name="password" required placeholder="Masukan Password Anda" class="input-field">
-                    <i class="fas fa-eye-slash cursor-pointer" id="togglePassword"></i>
-                </div>
-            </div>
-            <button type="submit" class="login-button text-white bg-black hover:bg-blue-800 py-2 px-4 rounded">Login</button>
-            <a href="../index.html" class="flex rounded-md hover:bg-red-800 no-underline hover:scale-105 duration-300 transition decoration-none justify-center items-center hover:text-white back-text text-white bg-black py-2 px-4 mt-4">Back</a>
-        </form>
+    <div class="flex flex-col justify-center items-center min-h-screen">
+        <div class="login-container p-6 rounded-lg shadow-lg mx-auto" style="max-width: 400px; width: 90vw;">
+            <h2 class="flex justify-center items-center py-5 gap-2">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/013/927/860/small/businessman-and-cog-illustration-in-minimal-style-png.png" 
+                     alt="Logo" class="logo w-12 h-12 rounded-full object-cover">
+                <p class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500 font-bold text-xl">Admin Login</p>
+            </h2>
         
-        <div id="message"></div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group mb-4">
+                    <label for="username" class="block font-bold mb-2">Username:</label>
+                    <input type="text" id="username" name="username" required placeholder="Masukkan Username Anda" class="input-field w-full p-2 border border-gray-300 rounded">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="password" class="block font-bold mb-2">Password:</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required placeholder="Masukkan Password Anda" class="input-field w-full p-2 border border-gray-300 rounded">
+                        <i class="fas fa-eye-slash cursor-pointer absolute right-3 top-3" id="togglePassword"></i>
+                    </div>
+                </div>
+                <button type="submit" class="login-button text-white bg-black hover:bg-blue-800 py-2 px-4 rounded w-full">Login</button>
+                <a href="../index.html" class="flex rounded-md hover:bg-red-800 no-underline hover:scale-105 duration-300 transition decoration-none justify-center items-center hover:text-white back-text text-white bg-black py-2 px-4 mt-4">Back</a>
+            </form>
+        </div>
+        
+
+            <div id="message" class="text-center mt-4"></div>
+        </div>
     </div>
 
-    <footer>
-        <button id="darkModeToggle" class="login-button text-white bg-black hover:bg-gray-800 py-2 px-4 rounded">Night Mode</button>
+    <!-- Night mode button -->
+    <footer class="flex justify-center mt-6">
+        <button id="darkModeToggle" class="login-button text-white bg-black hover:bg-gray-800 py-2 px-4 rounded">
+            <i id="darkModeIcon" class="fas fa-moon"></i>
+        </button>
     </footer>
 
     <script src="login.js"></script>

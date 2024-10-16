@@ -49,12 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('footer').classList.toggle('dark-mode');
 
         const inputs = document.querySelectorAll('input, .login-button');
-        inputs.forEach(input => {
-            input.classList.toggle('dark-mode');
-        });
+        inputs.forEach(input => input.classList.toggle('dark-mode'));
 
-        // Change button tex
-        const isDarkMode = document.body.classList.contains('dark-mode');
-        this.textContent = isDarkMode ? 'Light Mode' : 'Night Mode';
+        // Toggle icon
+        const darkModeIcon = document.getElementById('darkModeIcon');
+        darkModeIcon.classList.toggle('fa-moon');
+        darkModeIcon.classList.toggle('fa-sun');
     });
 });

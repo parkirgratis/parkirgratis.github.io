@@ -1,13 +1,11 @@
-/* Import Tailwind CSS */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html, body {
+    height: 100%;
+}
 
-/* Add custom styles here */
-.hero {
-    background-image: url('img/hero.jpg');
-    background-size: cover;
-    background-position: center;
+#contact {
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .team {
@@ -39,4 +37,20 @@
 .social-links a:hover {
     color: #666;
 }
+
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+p {
+    line-height: 1.6;
+}
+
+.title {
+    font-family: 'REM', serif;
+}
+
+.desc {
+    font-family: 'Outfit', serif;
+}
+
 
