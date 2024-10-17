@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="css/lightslider.css" />                  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/lightslider.js"></script>
+    <script src="aboutus.js"></script>
 </head>
-<body>
+<body class="bg-gray-700">
     <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
       <a class="hidden md:block ml-5">
           <img src="img/logo.png" alt="Bootstrap" width="50" height="24">
@@ -84,55 +88,29 @@
   
     <!-- Tong diubah, lamun rusak capek ngodingna deui -->
 
-   
-    
+    <ul id="autoplay" class="md:py-6 py-2">
+      <li>
+          <img class="rounded-lg" src="img/parkir gratis 1.jpeg" alt="">
+      </li>
+      <li>
+          <img class="rounded-lg" src="img/parkir gratis 2.jpg" alt="">
+      </li>
+      <li>
+          <img class="rounded-lg" src="img/parkir gratis 3.jpg" alt="">
+      </li>
+      <li>
+          <img class="rounded-lg" src="img/parkir gratis.jpg" alt="">
+      </li>
+    </ul>
 
-    <!-- Gallery Section -->
-    <div class="bg-gray-200 py-8 flex justify-center space-x-4 mb-8">
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="img/parkir gratis 1.jpeg"
-        alt="Tempat parkir dengan mobil"
-        height="200"
-        width="200"
-      />
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="img/parkir gratis.jpg"
-        alt="Tanda parkir gratis"
-        height="200"
-        width="200"
-      />
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="img/parkir gratis 2.jpg"
-        alt="Parkir mobil yang luas"
-        height="200"
-        width="200"
-      />
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="img/parkir gratis 3.jpg"
-        alt="Parkir mobil yang luas"
-        height="200"
-        width="200"
-      />
-      <img
-        class="border-2 border-gray-700 rounded"
-        src="img/parkir gratis 4.png"
-        alt="Parkir mobil yang luas"
-        height="200"
-        width="200"
-      />
-    </div>
-    
-
-    <section id="teamKieu">
-      <div class="bg-[#0000FF] text-white py-12 text-center">
-      <h2 class="title md:text-3xl text-xl font-bold text-sky-500 mb-6 py-2 bg-white inline-block px-8 rounded-lg">Tim Kami</h2>
-      <div class="flex justify-center space-x-8">
-        <div class="bg-[#0000FF] text-white py-12 text-center">
-          <div class="flex justify-center flex-wrap gap-8 pb-8">
+    <section id="team">
+      <div class="bg-sky-500 text-white py-12 text-center w-full">
+        <h2 class="title font-bold md:text-3xl text-xl mb-8 py-2 bg-white text-sky-500 inline-block px-8 rounded-lg">
+          Tim Kami
+        </h2>
+        <div class="flex justify-center space-x-8">
+          <div class="bg-cover bg-center bg-no-repeat text-white py-12 text-center" style="background-image: url('img/team-wp.jpg');">
+            <div class="flex justify-center flex-wrap gap-8 pb-8">
             <!-- Team Member 1 -->
             <a href="https://github.com/irgifauzi" class="group">
               <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
