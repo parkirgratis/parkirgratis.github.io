@@ -10,12 +10,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+
+    
+
     <div class="flex flex-col justify-center items-center min-h-screen">
         <div class="login-container p-6 rounded-lg shadow-lg mx-auto" style="max-width: 400px; width: 90vw;">
             <h2 class="flex justify-center items-center py-5 gap-2">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/013/927/860/small/businessman-and-cog-illustration-in-minimal-style-png.png" 
                      alt="Logo" class="logo w-12 h-12 rounded-full object-cover">
                 <p class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500 font-bold text-xl">Admin Login</p>
+                <button id="darkModeToggle" class="dark-mode-toggle fixed top-5 right-5 p-2 rounded-full bg-black text-white hover:bg-gray-700">
+                    <i id="darkModeIcon" class="fas fa-moon"></i>
+                </button>
             </h2>
         
             <form id="loginForm" class="login-form">
@@ -33,19 +39,10 @@
                 <button type="submit" class="login-button text-white bg-black hover:bg-blue-800 py-2 px-4 rounded w-full">Login</button>
                 <a href="../index.html" class="flex rounded-md hover:bg-red-800 no-underline hover:scale-105 duration-300 transition decoration-none justify-center items-center hover:text-white back-text text-white bg-black py-2 px-4 mt-4">Back</a>
             </form>
-        </div>
-        
 
             <div id="message" class="text-center mt-4"></div>
         </div>
     </div>
-
-    <!-- Night mode button -->
-    <footer class="flex justify-center mt-6">
-        <button id="darkModeToggle" class="login-button text-white bg-black hover:bg-gray-800 py-2 px-4 rounded">
-            <i id="darkModeIcon" class="fas fa-moon"></i>
-        </button>
-    </footer>
 
     <script src="login.js"></script>
 </body>

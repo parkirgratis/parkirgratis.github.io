@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Handle form submission
+   
     document.getElementById('loginForm').addEventListener('submit', (event) => {
         event.preventDefault();
         const username = document.getElementById('username').value;
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         login(username, password);
     });
 
-    // Toggle password visibility
     document.getElementById('togglePassword').addEventListener('click', function() {
         const passwordField = document.getElementById('password');
         const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
