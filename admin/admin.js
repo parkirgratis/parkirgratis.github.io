@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/admin/admin', { 
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
             }
         });
 
@@ -98,12 +99,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         } else {
             alert('Unauthorized access\nMessage: ' + data.message);
-            window.location.href = '../login.html'; 
+            window.location.href = '../login/login.html'; 
         }
     } catch (error) {
         console.error('Error:', error);
         alert('Unauthorized access\nError: ' + error.message);
-        window.location.href = '../login.html'; 
+        window.location.href = '../login/login.html'; 
     }
 });
 
