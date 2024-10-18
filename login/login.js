@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.status === 200) {
                 localStorage.setItem('token', data.token);
                 alert('Login successful');
-                window.location.href = '/admin/admin.html';
+                window.location.href = '../admin/admin.html';
             } else {
                 alert(data.message || 'Login failed');
             }
