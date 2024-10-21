@@ -32,7 +32,7 @@ let markerCoords = [];
 let popupsData = [];
 
 // Fetch marker data
-fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/marker')
+fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/marker')
     .then(response => response.json())
     .then(data => {
         if (!Array.isArray(data.markers)) {
@@ -47,7 +47,7 @@ fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgrat
 
 // Fetch popup data
 function fetchPopupData() {
-    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/data/lokasi')
+    fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/lokasi')
         .then(response => response.json())
         .then(data => {
             if (!Array.isArray(data)) {
@@ -122,7 +122,7 @@ map.on('click', function(event) {
 window.uploadImage = uploadImage;
 
 const target_url =
-  "https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/upload/img";
+  "https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/upload/img";
 
 function uploadImage() {
   if (!getValue("imageInput")) {
@@ -176,7 +176,7 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
     };
 
     // Mengirim data ke server menggunakan fetch dengan body berformat JSON
-    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/tempat-parkir', { 
+    fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/tempat-parkir', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -205,7 +205,7 @@ document.getElementById('placeForm').addEventListener('submit', function(event) 
         ]
     };
 
-    fetch('https://asia-southeast2-fit-union-424704-a6.cloudfunctions.net/parkirgratisbackend/koordinat', {
+    fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/koordinat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -232,3 +232,4 @@ document.getElementById('showFormButton').addEventListener('click', function() {
         form.style.display = 'block';
     }
 });
+

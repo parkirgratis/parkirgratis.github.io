@@ -14,10 +14,11 @@
 <body>
     <nav class="navbar flex justify-center items-center">
         <img src="img/map.png" class="navbar-img" alt="Map Icon">
-        <h1>Halaman</h1>
+        <h1>Map View</h1>
     </nav>
 
     <button id="showFormButton">Tambah Tempat Parkir</button>
+    
 
     <form id="placeForm" style="display: none;">
         <div id="closeButton" onclick="document.getElementById('placeForm').style.display='none'">X</div>
@@ -42,7 +43,7 @@
             <input type="file" id="imageInput" accept="image/*" placeholder="Unggah gambar tempat parkir">
         </div>        
         <button type="submit">Tambah Tempat</button><br>
-        <p>Input lebih simple <a href="https://parkirgratis.github.io/input/">Click</a></p> 
+        <p>Input lebih simple <a href="https://geographicinformationsystem.github.io/input/">Click</a></p> 
     </form>
     
 
@@ -51,12 +52,20 @@
     <div id="isi"></div>
 
     <a href="login/login.html" class="button-admin">
-        <button type="button">Login Admin</button>
+        <button type="button">Admin Login</button>
     </a>
+
+    
 
     <a href="index.html" class="button-home">
         <button type="button">Back Home</button>
     </a>
+
+    <div class="menu-icon">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
    
     <script type="module" src="javascript/main.js"></script>
     

@@ -1,29 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkir Gratis Bandung</title>
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
-    <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
+    <!-- <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
-    <link rel="stylesheet" href="Skeleton-2.0.4/css/index.css">
+    <link rel="stylesheet" href="Skeleton-2.0.4/css/index.css"> -->
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico" />
-    
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
-    <div class="container">
-        <img src="img/logo.png" alt="Profile Picture" class="profile-pic">
-        <div class="username">Parkir Gratis Bandung</div>
-        <div class="description">Parkir gratis di Bandung</div>
-        <ul class="link-list">
-            <li><a href="halaman_utama..html"><img src="img/map.png" alt="Map Icon" style="width: 24px; height: 24px;"> Halaman utama</a></li>
-            <li><a href="https://parkirgratis.github.io/input/"><img src="img/marker.png" alt="input Icon" style="width: 24px; height: 24px;"> Halaman Input data</a></li>
-            <li><a href="https://www.instagram.com/parkirgratis.bdg/"><img src="img/instagram.png" alt="instagram Icon" style="width: 24px; height: 24px;"> Instagram</a></li>
-            <li><a href="https://www.tiktok.com/@parkirgratis.bdg"><img src="img/tiktok.png" alt="tiktok Icon" style="width: 24px; height: 24px;"> Tiktok</a></li>
-            <li><a href="login/login.html"><img src="img/login.png" alt="login Icon" style="width: 24px; height: 24px;"> Login Admin</a></li>
-            <li><a href="https://github.com/parkirgratis/parkirgratis.github.io"><img src="img/github.png" alt="github Icon" style="width: 24px; height: 24px;"> Github</a></li>
-        </ul>
+<body class="bg-[#222831]">
+
+    <nav class="sticky top-0 z-10 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
+        <a class="hidden md:block ml-5">
+            <img src="img/logo.png" alt="Bootstrap" width="50" height="24">
+        </a>
+        <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
+            <a href="login/login.html">
+                <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+                    <span>
+                        <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
+                    </span>
+                    <div class="flex flex-wrap -m-2">
+                        <div class="w-auto p-2">
+                            <h2 class="text-sm text-left px-2 hidden md:block">Are you admin?</h2>
+                            <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block">Login Here</p>
+                            <p class="text-sm text-left px-2 md:hidden">LOGIN</p>
+                        </div>
+                    </div>
+                </button>
+            </a>
+        </span>
+    </nav>    
+
+    <section class="text-white bg-cover mt-[-30px]" style="background-image: url('img/1580.jpg');">
+    <div class="container mx-auto px-4 py-64 text-center">
+        <img class="mx-auto pb-8 shadow-lg" width="120" src="https://img.freepik.com/premium-vector/bike-park-sign-drawing-by-illustration-parkin-allowed-only-bike-icon_872756-218.jpg" alt="">
+        <h2 class="text-4xl font-bold mb-4 shadow-lg">Selamat Datang di <span class="text-sky-500">Parkir Gratis Bandung</span></h2>
+        <p class="text-lg mb-8 shadow-lg">Temukan tempat parkir tanpa biaya, cepat, dan aman. <span class="text-blue-500">Hemat waktu dan uang dengan solusi parkir gratis yang kami sediakan.</span></p>
+        <a href="#featuremenu" class="bg-white text-blue-600 px-6 py-3 capitalize rounded-full font-semibold hover:bg-sky-500 hover:text-white transition delay-70">LIHAT FITUR</a>
     </div>
+</section>
+
+
+
+    <section id="featuremenu">
+        <div class="container-lg md:py-10 py-5 md:px-20 px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img class="w-full h-48 object-cover" src="https://www.shutterstock.com/shutterstock/videos/1039519187/thumb/9.jpg?ip=x480" alt="Card Image">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/map.png" width="25" alt=""></span>&nbsp;Cek Tempat Parkir</h3>
+                        <p class="text-gray-600">Lihat dimana saja letak parkir gratis Alfamart dan Indomaret di Bandung.</p>
+                        <a href="halaman_utama..html">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1">
+                                Parking Map
+                            </button>                            
+                        </a>
+                    </div>
+                </div>
+        
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img class="w-full h-48 object-cover" src="https://www.espworkforce.com/blog/wp-content/uploads/2023/08/Data-Entry-Specialist-570x255.jpg" alt="Card Image">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/marker.png" width="25" alt=""></span>&nbsp;Tambah Lokasi Parkir</h3>
+                        <p class="text-gray-600">Anda dapat berkontribusi untuk menambahkan lokasi parkir gratis disini!</p>
+                        <a href="https://geographicinformationsystem.github.io/input/">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1">
+                                Add Parking Location
+                            </button>                            
+                        </a>
+                    </div>
+                </div>
+        
+                <!-- Card 3 -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img class="w-full h-48 object-cover" src="https://images5.alphacoders.com/123/thumb-1920-1230943.jpg" alt="Card Image">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/instagram.png" width="25" alt=""></span>&nbsp;Akun Instagram Resmi</h3>
+                        <p class="text-gray-600">Pergi ke halaman Instagram resmi kita, jangan lupa difollow ya!</p>
+                        <a href="https://www.instagram.com/parkirgratis.bdg/">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1">
+                                Visit our page!
+                            </button>
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Card 4 -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img class="w-full h-48 object-cover" src="https://cdn.prod.website-files.com/5fd29196b4c91b6127dce66c/5fdbc4dfb2b899e0cc2835c5_tiktok.jpg" alt="Card Image">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/tiktok.png" width="25" alt=""></span>&nbsp;Akun Tiktok Resmi</h3>
+                        <p class="text-gray-600">Pergi ke halaman TikTok resmi kita, jangan lupa difollow ya!</p>
+                        <a href="https://www.tiktok.com/@parkirgratis.bdg">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1">
+                                Visit our page!
+                            </button>
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Card 5 -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img class="w-full h-48 object-cover" src="https://github.blog/wp-content/uploads/2020/12/102393310-07478b80-3f8d-11eb-84eb-392d555ebd29.png?fit=1200%2C630" alt="Card Image">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-3 flex"><span><img src="img/github.png" width="25" alt=""></span>&nbsp;Source Code</h3>
+                        <p class="text-gray-600">Cek source code yang kita buat di repository ini.<br> &nbsp;</p>
+                        <a href="https://github.com/parkirgratis/parkirgratis.github.io">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1">
+                                Source Code
+                            </button>
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Card 6 -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img class="w-full h-48 object-cover" src="https://img.freepik.com/free-photo/evaluation-feedback-customer-smiley-response_53876-123011.jpg" alt="Card Image">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-3 flex"><span><img src="https://cdn-icons-png.flaticon.com/512/4658/4658943.png" width="25" alt=""></span>&nbsp;Beri Masukkan</h3>
+                        <p class="text-gray-600">Beri masukkan untuk kami agar dapat mengembangkan website ini menjadi lebih baik</p>
+                        <a href="saran/saran.html">
+                            <button class="mt-5 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1">
+                                Submit Feedback
+                            </button>
+                                                    
+                        </a>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-zinc-950 text-center lg:text-left">
+        <div class="bg-black/5 pt-3 text-lg flex justify-center items-center gap-2 text-white">
+          <img src="img/logo.png" alt="" class="mr-2" width="40">
+          <p class="pb-1 border-2 border-transparent border-l-white px-3">Developed by 
+            <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-[#6454F0] to-[#6EE2F5] font-semibold" href="https://github.com/irgifauzi">Irgi</a> w/ 
+            <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 font-semibold" href="https://github.com/Revan232">Revan</a>
+          </p>
+        </div>
+        <div class="pb-3">
+          <p class="text-white text-center text-sm"><a href="aboutus/aboutus.html"><span class="hover:text-sky-500">About Us</span></a> | 2024 All Rights Reserved</p>
+        </div>
+      </footer>
 </body>
 </html>

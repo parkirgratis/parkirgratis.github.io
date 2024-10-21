@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkir Gratis Bandung</title>
-    <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
+    <!-- <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
     <link rel="stylesheet" href="../Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="../Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="../Skeleton-2.0.4/css/skeleton.css"> -->
     <link rel="stylesheet" href="admin.css">
     <link rel="shortcut icon" type="image/x-icon" href="../img/logo.ico" />
-    
-</head>
-<body>
-    <form id="displayDataForm" class="form-style">
-        <!-- Tabel untuk menampilkan data -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=REM">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        <h1>HALAMAN ADMIN</h1>
+</head>
+
+<body>
+    <h1 class="text-white text-center text-3xl title-text pb-14 pt-3">HALAMAN ADMIN</h1>
+    <form id="displayDataForm" class="form-style px-32 pb-14">
         <a href="../index.html" class="button-back">
-            <button type="button" class="button button-primary">Back Home</button>
+            <button type="button" class="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-800">Back Home</button>
         </a>
+        
         <table id="dataDisplayTable" style="width:100%; margin-top:20px;">
             <thead>
                 <!-- Header tabel yang menunjukkan informasi yang akan ditampilkan -->
@@ -32,13 +34,13 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Tempat di mana data akan dimuat -->
+               
             </tbody>
         </table>
     </div>
     </form>
 
-    <!-- Modal form -->
+   
     <div id="updateModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -78,8 +80,7 @@
                 </div>
             </form>
         </div>
-    </div>
-
+    </div>  
     <script type="module" src="admin.js"></script>
 </body>
 </html>
