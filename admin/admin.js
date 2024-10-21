@@ -1,29 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-        alert('You need to log in first');
-        window.location.href = '../login.html'; 
-        return;
-    }
-
-    try {
-        const response = await fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/admin/admin', { 
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json',
-            }
-        });
-
-        const data = await response.json();
-
-        if (response.status === 200) {
-            if (!localStorage.getItem('alertShown')) {
-                alert('Dashboard access successful\nMessage: ' + data.message + '\nAdmin id: ' + data.admin_id);
-                localStorage.setItem('alertShown', 'true');
-            }
-
             // Memuat data lokasi jika login berhasil
             const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
 
@@ -97,15 +72,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     console.error('Error updating data:', error);
                 });
             });
-        } else {
-            alert('Unauthorized access\nMessage: ' + data.message);
-            window.location.href = '../login/login.html'; 
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Unauthorized access\nError: ' + error.message);
-        window.location.href = '../login/login.html'; 
-    }
 });
 
 window.showUpdateForm = function(id, namaTempat, lokasi, fasilitas, lon, lat, gambar) {
