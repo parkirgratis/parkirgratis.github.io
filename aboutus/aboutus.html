@@ -17,12 +17,12 @@
 <body class="bg-gray-700">
     <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
       <a href="../index.html" class="hidden md:block ml-5">
-      
-    </a>    
+        <img src="../img/logo.png" width="50" height="24">
+      </a>    
       <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
         
           <a href="#about">
-              <button class="header-text border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+              <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
                   <span>
                       <img src="../img/about.png" class="nav-logo" alt="" width="15px">
                   </span>&nbsp;ABOUT
@@ -30,7 +30,7 @@
           </a>
 
           <a href="#team" class="md:block sm:block hidden">
-              <button class="border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+              <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
                   <span>
                     <img src="../img/group.png" class="nav-logo" alt="" width="15px">
                   </span>&nbsp;TEAM
@@ -43,9 +43,9 @@
                 </span>
                 <div class="flex flex-wrap -m-2">
                     <div class="w-auto p-2">
-                        <h2 class="text-sm text-left px-2 hidden md:block">Are you admin?</h2>
-                        <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block">Login Here</p>
-                        <p class="text-sm text-left px-2 md:hidden">LOGIN</p>
+                        <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
+                        <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block desc">Login Here</p>
+                        <p class="text-sm text-left px-2 md:hidden desc">LOGIN</p>
                     </div>
                 </div>
             </button>
@@ -113,6 +113,18 @@
         <div class="flex justify-center space-x-8">
           <div class="bg-cover bg-center bg-no-repeat text-white py-12 text-center" style="background-image: url('../img/team-wp.jpg');">
             <div class="flex justify-center flex-wrap gap-8 pb-8">
+
+            <a href="https://github.com/hrisz" class="group">
+              <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
+                <img
+                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-blue-500 group-hover:ring-white"
+                  src="https://avatars.githubusercontent.com/u/60280111?v=4"
+                  alt="Haris"
+                />
+                <h3 class="text-xl font-semibold text-black group-hover:text-white">Haris</h3>
+                <p class="text-gray-600 group-hover:text-white">Scrum Master</p>
+              </div>
+            </a>
         
             <a href="https://github.com/irgifauzi" class="group">
               <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
@@ -122,10 +134,9 @@
                   alt="Irgi Fauzi"
                 />
                 <h3 class="text-xl font-semibold text-black group-hover:text-white">Irgi</h3>
-                <p class="text-gray-600 group-hover:text-white">Front-end Devs </p>
+                <p class="text-gray-600 group-hover:text-white">Product Owner</p>
               </div>
             </a>
-            
             
             <a href="https://github.com/Revan232" class="group">
               <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
@@ -151,8 +162,7 @@
                 <p class="text-gray-600 group-hover:text-white">Back-end Devs</p>
               </div>
             </a>
-            
-            
+               
             <a href="https://github.com/HammiAhlan" class="group">
               <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
                 <img
@@ -164,19 +174,7 @@
                 <p class="text-gray-600 group-hover:text-white">Front-end Devs</p>
               </div>
             </a>
-            
-            <a href="https://github.com/hrisz" class="group">
-              <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
-                <img
-                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-blue-500 group-hover:ring-white"
-                  src="https://avatars.githubusercontent.com/u/60280111?v=4"
-                  alt="Haris"
-                />
-                <h3 class="text-xl font-semibold text-black group-hover:text-white">Haris</h3>
-                <p class="text-gray-600 group-hover:text-white">Front-end Devs</p>
-              </div>
-            </a>
-
+        
             <a href="https://github.com/jul003" class="group">
                 <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
                     <img
@@ -185,7 +183,7 @@
                         alt="Dzulkifli"
                     />
                     <h3 class="text-xl font-semibold text-black group-hover:text-white">Dzulkifli</h3>
-                    <p class="text-gray-600 group-hover:text-white">Front-end Devs</p>
+                    <p class="text-gray-600 group-hover:text-white">Back-end Devs</p>
                 </div>
             </a>
             
@@ -194,7 +192,7 @@
               <div class="bg-white hover:ring-2 hover:ring-white hover:bg-gradient-to-r from-cyan-500/60 to-blue-500/60 transition-colors ease-out duration-300 rounded-lg shadow-lg p-6 w-64 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
                 <img
                   class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-blue-500 group-hover:ring-white"
-                  src="https://avatars.githubusercontent.com/u/114649826?v=4"
+                  src="https://cdn.discordapp.com/avatars/1023059269488214078/e85d9376339d8b51e8fbcd2471c67790.png?size=1024"
                   alt="Farel Nouval"
                 />
                 <h3 class="text-xl font-semibold text-black group-hover:text-white">Farel</h3>
