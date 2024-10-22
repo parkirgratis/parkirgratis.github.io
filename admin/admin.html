@@ -15,6 +15,16 @@
 </head>
 
 <body>
+    <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
+        <a href="../index.html" class="hidden md:block ml-5">
+          <img src="../img/logo.png" width="50" height="24">
+        </a>    
+        <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
+            </a>
+            <a href="../login/login.html">
+          </a>
+        </span>
+      </nav>
     <h1 class="text-white text-center text-3xl title-text pb-14 pt-3">HALAMAN ADMIN</h1>
     <form id="displayDataForm" class="form-style px-32 pb-14">
         <a href="../index.html" class="button-back">
@@ -83,5 +93,18 @@
     </div>  
     <script type="module" src="admin.js"></script>
     <script src="../admin/dashboard.js"></script>
+
+    <footer class="bg-zinc-950 text-center lg:text-left">
+        <div class="bg-black/5 pt-3 text-lg flex justify-center items-center gap-2 text-white">
+          <img src="img/logo.png" alt="" class="mr-2" width="40">
+          <p class="pb-1 border-2 border-transparent border-l-white px-3">Developed by 
+            <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-[#6454F0] to-[#6EE2F5] font-semibold" href="https://github.com/irgifauzi">Irgi</a> w/ 
+            <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 font-semibold" href="https://github.com/Revan232">Revan</a>
+          </p>
+        </div>
+        <div class="pb-3">
+          <p class="text-white text-center text-sm"><a href="/aboutus/aboutus.html" target="_blank"><span class="hover:text-sky-500">About Us</span></a> | 2024 All Rights Reserved</p>
+        </div>
+      </footer>
 </body>
 </html>
