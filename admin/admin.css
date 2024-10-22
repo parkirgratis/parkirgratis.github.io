@@ -146,3 +146,16 @@ button[type="submit"]:hover {
     from {transform: translateY(-50px);}
     to {transform: translateY(0);}
 }
+
+.button-logout button {
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'REM', sans-serif;
+}
+
+.button-logout button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
