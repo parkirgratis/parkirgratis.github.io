@@ -113,6 +113,10 @@
     border: none;
     cursor: pointer;
   }
+
+  .nav-title {
+    font-family: 'REM', serif;
+  }
   
   #placeForm button:hover {
     background-color: #0056b3;

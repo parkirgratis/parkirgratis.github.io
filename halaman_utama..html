@@ -5,17 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkir Gratis Bandung </title>
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
-    <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/style.css">
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=REM">
 </head>
 <body>
-    <nav class="navbar flex justify-center items-center">
-        <img src="img/map.png" class="navbar-img" alt="Map Icon">
-        <h1>Map View</h1>
-    </nav>
+    <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-12 py-8">
+        <a href="../index.html" class="hidden md:block ml-5">
+          <img src="../img/logo.png" width="50" height="24">
+        </a>    
+        <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
+          
+            <a href="aboutus/aboutus.html">
+                <button class="nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+                    <span>
+                        <img src="../img/about.png" class="nav-logo" alt="" width="15px">
+                    </span>&nbsp;ABOUT
+                </button>
+            </a>
+  
+            <a href="https://parkirgratis.if.co.id/input/" class="md:block sm:block hidden">
+                <button class="nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+                    <span>
+                      <img src="../img/input.png" class="nav-logo" alt="" width="15px">
+                    </span>&nbsp;INPUT DATA
+                </button>
+            </a>
+            <a href="../login/login.html">
+              <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+                  <span>
+                      <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
+                  </span>
+                  <div class="flex flex-wrap -m-2">
+                      <div class="w-auto p-2">
+                          <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
+                          <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block nav-title">Login Here</p>
+                          <p class="text-sm text-left px-2 md:hidden nav-title">LOGIN</p>
+                      </div>
+                  </div>
+              </button>
+          </a>
+        </span>
+      </nav>
 
     <button id="showFormButton">Tambah Tempat Parkir</button>
     
