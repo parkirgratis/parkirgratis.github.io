@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
    
     document.getElementById('loginForm').addEventListener('submit', (event) => {
         event.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
         login(username, password);
     });
 
