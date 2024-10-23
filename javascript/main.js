@@ -3,8 +3,8 @@ import View from 'https://cdn.skypack.dev/ol/View.js';
 import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
 import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
 import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
-import { createMarker } from './controller/markers.js';
-import { createPopups, displayPopup } from './controller/popups.js';
+import { createMarker } from '../javascript/controller/markers.js';
+import { createPopups, displayPopup } from '../javascript/controller/popups.js';
 import {
   setInner,
   show,
