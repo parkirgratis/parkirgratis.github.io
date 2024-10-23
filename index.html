@@ -12,21 +12,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body class="bg-[#222831]">
+<body class="bg-[#0f172a]">
 
-    <nav class="fixed top-0 z-10 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
+    <nav class="fixed top-0 z-10 border border-transparent border-b-black backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
         <a class="hidden md:block ml-5">
             <img src="img/logo.png" alt="Bootstrap" width="50" height="24">
         </a>
         <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
             <a href="pages/login/login.html">
-                <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+                <button class="border-2 border-transparent border-l-gray-500 shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
                     <span>
                         <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
                     </span>
                     <div class="flex flex-wrap -m-2">
                         <div class="w-auto p-2">
-                            <h2 class="text-sm text-left px-2 hidden md:block">Are you admin?</h2>
+                            <h2 class="text-sm text-gray-400 text-left px-2 hidden md:block">Are you admin?</h2>
                             <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block">Login Here</p>
                             <p class="text-sm text-left px-2 md:hidden">LOGIN</p>
                         </div>
@@ -36,19 +36,22 @@
         </span>
     </nav>    
 
-    <section class="text-white bg-cover mt-[-30px]" style="background-image: url('img/1580.jpg');">
-    <div class="container mx-auto px-4 py-64 text-center">
-        <img class="mx-auto pb-8 shadow-lg" width="120" src="https://img.freepik.com/premium-vector/bike-park-sign-drawing-by-illustration-parkin-allowed-only-bike-icon_872756-218.jpg" alt="">
-        <h2 class="text-4xl font-bold mb-4 shadow-lg">Selamat Datang di <span class="text-sky-500">Parkir Gratis Bandung</span></h2>
-        <p class="text-lg mb-8 shadow-lg">Temukan tempat parkir tanpa biaya, cepat, dan aman. <span class="text-blue-500">Hemat waktu dan uang dengan solusi parkir gratis yang kami sediakan.</span></p>
-        <a href="#featuremenu" class="bg-white text-blue-600 px-6 py-3 capitalize rounded-full font-semibold hover:bg-sky-500 hover:text-white transition delay-70">LIHAT FITUR</a>
-    </div>
-</section>
-
-
+    <section class="text-white bg-cover" style="background-image: url('img/land_bg.jpg');">
+        <div class="container mx-auto px-2 py-48 text-center">
+            <img class="mx-auto z-10 shadow-lg" width="200" src="img/logo_landing.png" alt="">
+            <h2 class="text-4xl font-bold mb-6 shadow-lg">Selamat Datang di <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-300 to-violet-400">Parkir Gratis Bandung</h2>
+            <p class="text-xl text-gray-400 !leading-normal mb-8 shadow-lg">Temukan tempat parkir <span class="font-semibold  bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">tanpa biaya, cepat, dan aman.</span><br>Hemat waktu dan uang dengan solusi parkir gratis yang kami sediakan.</span></p>
+            <a href="#featuremenu" class="bg-violet-500 text-white px-6 py-3 capitalize rounded-full font-semibold hover:bg-violet-800 hover:text-white transition delay-70 inline-flex items-center gap-2">
+                LIHAT FITUR
+            </a>
+            <div class="flex justify-center mt-8">
+                <img src="img/arrow_down.svg" alt="Arrow Icon" class="w-6 h-6 filter invert animate-bounce">
+            </div>
+        </div>
+    </section>
 
     <section id="featuremenu">
-        <div class="container-lg md:py-10 py-5 md:px-20 px-8">
+        <div class="container-lg md:py-20 py-10 md:px-20 px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
@@ -138,15 +141,15 @@
     </section>
     
     <!-- Footer -->
-    <footer class="bg-zinc-950 text-center lg:text-left">
+    <footer class="backdrop-blur-lg bg-black/50 text-center lg:text-left">
         <div class="bg-black/5 pt-3 text-lg flex justify-center items-center gap-2 text-white">
           <img src="img/logo.png" alt="" class="mr-2" width="40">
-          <p class="pb-1 border-2 border-transparent border-l-white px-3">Developed by 
+          <p class="pb-1 border-2 border-transparent border-l-gray-500 px-3">Developed by 
             <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-[#6454F0] to-[#6EE2F5] font-semibold" href="aboutus/aboutus.html#team">Team Parkir Gratis</a>
           </p>
         </div>
         <div class="pb-3">
-          <p class="text-white text-center text-sm"><a href="pages/aboutus/aboutus.html"><span class="hover:text-sky-500">About Us</span></a> | 2024 All Rights Reserved</p>
+          <p class="text-white text-center text-sm"><a href="pages/aboutus/aboutus.html"><span class="hover:text-sky-500 border border-transparent border-r-gray-500">About Us &nbsp;</span></a>&nbsp; 2024 All Rights Reserved</p>
         </div>
       </footer>
 </body>
