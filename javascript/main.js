@@ -104,20 +104,21 @@ function createMapMarkers() {
 function displayPopupForCoordinate(coordinate, content) {
     const popupIndex = popupsData.findIndex(item => item.coordinate.toString() === coordinate.toString());
     if (popupIndex !== -1) {
-        const { popup } = popups[popupIndex];
-        displayPopup(popup, coordinate, content);
+        const popupContentContainer = document.getElementById('popup-content-container');
+        popupContentContainer.innerHTML = content;
+        const popupSidebar = document.getElementById('popup-sidebar');
+        popupSidebar.style.display = 'block';
         map.getView().animate({ center: fromLonLat(coordinate), zoom: 14 });
     } else {
         console.error('Popup tidak ditemukan untuk koordinat:', coordinate);
     }
 }
 
+// Tambahkan event listener untuk menutup popup sidebar ketika marker diklik lagi
 map.on('click', function(event) {
-    popups.forEach(({ popup }) => {
-        popup.setPosition(null);
+    const popupSidebar = document.getElementById('popup-sidebar');
+    popupSidebar.style.display = 'none';
 
-});
-    document.getElementById('placeForm').style.display = 'none';
 });
 
 window.uploadImage = uploadImage;
@@ -233,4 +234,6 @@ document.getElementById('showFormButton').addEventListener('click', function() {
         form.style.display = 'block';
     }
 });
+
+
 
