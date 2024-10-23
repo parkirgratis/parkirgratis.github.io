@@ -1,0 +1,70 @@
+html, body {
+    height: 100%;
+}
+
+#contact {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.team {
+    background-color: #f7f7f7;
+    padding: 40px 0;
+}
+
+.team-member {
+    margin-bottom: 20px;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-links li {
+    margin-right: 10px;
+}
+
+.social-links a {
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: #666;
+}
+
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+p {
+    line-height: 1.6;
+}
+
+.title {
+    font-family: 'REM', serif;
+}
+
+.desc {
+    font-family: 'Outfit', serif;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.uniform-size {
+    width: 100%; 
+    max-width: 800px; 
+    height: auto; 
+    object-fit: cover; 
+    display: block; 
+}
+
+
+
+
