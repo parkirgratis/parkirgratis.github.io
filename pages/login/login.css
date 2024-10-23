@@ -58,7 +58,7 @@ body::before {
 
 body.dark-mode {
     background-color: #f9f9f9;
-    color: #ffffff;
+    color: #000000;
 }
 
 .login-container.dark-mode {
@@ -78,3 +78,5 @@ input.dark-mode, .login-button.dark-mode {
 .form-group label.dark-mode {
     color: #ffffff;
 }
+
+
