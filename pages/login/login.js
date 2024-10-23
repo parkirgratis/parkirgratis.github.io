@@ -56,3 +56,33 @@ document.addEventListener('DOMContentLoaded', function() {
         darkModeIcon.classList.toggle('fa-sun');
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const darkModeIcon = document.getElementById("darkModeIcon");
+
+    // Check the initial theme and set the correct icon
+    if (localStorage.getItem("theme") === "dark" || window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+        darkModeIcon.classList.remove("fa-sun");
+        darkModeIcon.classList.add("fa-moon");
+    } else {
+        document.documentElement.classList.remove("dark");
+        darkModeIcon.classList.remove("fa-moon");
+        darkModeIcon.classList.add("fa-sun");
+    }
+
+    // Toggle between light and dark mode
+    darkModeToggle.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        if (document.documentElement.classList.contains("dark")) {
+            darkModeIcon.classList.remove("fa-sun");
+            darkModeIcon.classList.add("fa-moon");
+            localStorage.setItem("theme", "dark");
+        } else {
+            darkModeIcon.classList.remove("fa-moon");
+            darkModeIcon.classList.add("fa-sun");
+            localStorage.setItem("theme", "light");
+        }
+    });
+});
