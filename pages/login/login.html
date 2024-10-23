@@ -5,19 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link rel="stylesheet" href="login.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../img/logo.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-
-    
-
     <div class="flex flex-col justify-center items-center min-h-screen">
         <div class="login-container p-6 rounded-lg shadow-lg mx-auto" style="max-width: 400px; width: 90vw;">
             <h2 class="flex justify-center items-center py-5 gap-2">
                 <a href="../index.html">
-                    <img src="../img/logo.png" alt="Logo" class="logo w-12 h-12 rounded-full object-cover">
+                    <img src="../../img/logo.png" alt="Logo" class="logo w-12 h-12 rounded-full object-cover">
                 </a>                
                 <p class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500 font-bold text-xl">Admin Login</p>
                 <button id="darkModeToggle" class="dark-mode-toggle fixed top-5 right-5 p-2 rounded-full bg-black text-white hover:bg-gray-700">
@@ -38,7 +35,7 @@
                     </div>
                 </div>
                 <button type="submit" class="login-button text-white bg-black hover:bg-blue-800 py-2 px-4 rounded w-full transition transform duration-300 ease-in-out hover:scale-110">Login</button>
-                <a href="../index.html" class="flex rounded-md hover:bg-red-800 no-underline hover:scale-105 duration-300 transition decoration-none justify-center items-center hover:text-white back-text text-white bg-black py-2 px-4 mt-4">Back</a>
+                <a href="javascript:history.back()" class="flex rounded-md hover:bg-red-800 no-underline hover:scale-105 duration-300 transition decoration-none justify-center items-center hover:text-white back-text text-white bg-black py-2 px-4 mt-4">Back</a>
             </form>
 
             <div id="message" class="text-center mt-4"></div>

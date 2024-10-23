@@ -9,82 +9,51 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=REM">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
-    <link rel="shortcut icon" type="image/x-icon" href="../img/logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/logo.png" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" href="../css/lightslider.css" />                  
+    <link type="text/css" rel="stylesheet" href="../../css/lightslider.css" />                  
 </head>
 <body class="bg-gray-700">
-   <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
-      <a href="../index.html" class="hidden md:block ml-5">
-        <img src="../img/logo.png" width="50" height="24">
+    <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
+      <a href="../../index.html" class="hidden md:block ml-5">
+        <img src="../../img/logo.png" width="50" height="24">
       </a>    
       <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
-        <details class="md:hidden">
-          <summary class="text-white cursor-pointer">Menu</summary>
-          <div class="flex flex-col">
-            <a href="#about">
+        
+          <a href="#about">
               <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-                <span>
-                  <img src="../img/about.png" class="nav-logo" alt="" width="15px">
-                </span>&nbsp;ABOUT
+                  <span>
+                      <img src="../../img/about.png" class="nav-logo" alt="" width="15px">
+                  </span>&nbsp;ABOUT
               </button>
-            </a>
-            <a href="#team">
+          </a>
+
+          <a href="#team" class="md:block sm:block hidden">
               <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-                <span>
-                  <img src="../img/group.png" class="nav-logo" alt="" width="15px">
-                </span>&nbsp;TEAM
+                  <span>
+                    <img src="../../img/group.png" class="nav-logo" alt="" width="15px">
+                  </span>&nbsp;TEAM
               </button>
-            </a>
-            <a href="../login/login.html">
-              <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+          </a>
+          <a href="../login/login.html">
+            <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
                 <span>
-                  <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
+                    <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
                 </span>
                 <div class="flex flex-wrap -m-2">
-                  <div class="w-auto p-2">
-                    <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
-                    <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block desc">Login Here</p>
-                    <p class="text-sm text-left px-2 md:hidden desc">LOGIN</p>
-                  </div>
+                    <div class="w-auto p-2">
+                        <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
+                        <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block desc">Login Here</p>
+                        <p class="text-sm text-left px-2 md:hidden desc">LOGIN</p>
+                    </div>
                 </div>
-              </button>
-            </a>
-          </div>
-        </details>
-        <a href="#about" class="hidden md:block">
-          <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-            <span>
-              <img src="../img/about.png" class="nav-logo" alt="" width="15px">
-            </span>&nbsp;ABOUT
-          </button>
-        </a>
-        <a href="#team" class="md:block sm:block hidden">
-          <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-            <span>
-              <img src="../img/group.png" class="nav-logo" alt="" width="15px">
-            </span>&nbsp;TEAM
-          </button>
-        </a>
-        <a href="../login/login.html" class="hidden md:block">
-          <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
-            <span>
-              <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
-            </span>
-            <div class="flex flex-wrap -m-2">
-              <div class="w-auto p-2">
-                <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
-                <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block desc">Login Here</p>
-                <p class="text-sm text-left px-2 md:hidden desc">LOGIN</p>
-              </div>
-            </div>
-          </button>
+            </button>
         </a>
       </span>
     </nav>
     <div id="about" class="pt-20 relative bg-gradient-to-b from-sky-500 to-blue-600 text-white text-center py-12 px-8 font-serif">
-      <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('../img/team.jpg');"></div>
+      <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('../../img/team.jpg');"></div>
       <div class="relative z-10 max-w-4xl mx-auto">
           <h2 class="title md:text-3xl text-xl font-bold text-sky-500 mb-6 py-2 bg-white inline-block px-8 rounded-lg">Tentang Kami</h2>
           <p class="text-lg text-white mb-6 px-6 lg:px-12 desc text-justify">
@@ -120,23 +89,23 @@
 
     <ul id="autoplay" class="md:py-6 py-2">
       <li>
-        <img class="rounded-lg uniform-size" src="../img/parkir gratis 1.jpeg" alt="">
+        <img class="rounded-lg uniform-size" src="../../img/parkir gratis 1.jpeg" alt="">
     </li>
     <li>
-        <img class="rounded-lg uniform-size" src="../img/parkir gratis 2.jpg" alt="">
+        <img class="rounded-lg uniform-size" src="../../img/parkir gratis 2.jpg" alt="">
     </li>
     <li>
-        <img class="rounded-lg uniform-size" src="../img/parkir gratis 3.jpg" alt="">
+        <img class="rounded-lg uniform-size" src="../../img/parkir gratis 3.jpg" alt="">
     </li>
     <li>
-        <img class="rounded-lg uniform-size" src="../img/parkir gratis 4.png" alt="">
+        <img class="rounded-lg uniform-size" src="../../img/parkir gratis 4.png" alt="">
     </li>
     <li>
-        <img class="rounded-lg uniform-size" src="../img/parkir gratis 5.jpeg" alt="">
+        <img class="rounded-lg uniform-size" src="../../img/parkir gratis 5.jpeg" alt="">
     </li>
     </ul>
 
-    <section id="team" class="bg-cover bg-center bg-no-repeat text-white text-center" style="background-image: url('../img/team-wp.jpg');">
+    <section id="team" class="bg-cover bg-center bg-no-repeat text-white text-center" style="background-image: url('../../img/team-wp.jpg');">
       <div class="bg-sky-500/50 text-white py-20 text-center w-full">
         <h2 class="title font-bold md:text-3xl text-xl mb-8 py-2 bg-white text-sky-500 inline-block px-8 rounded-lg">
           Tim Kami 
@@ -241,7 +210,7 @@
 
     <footer class="bg-zinc-950 text-center lg:text-left">
       <div class="bg-black/5 pt-3 text-lg flex justify-center items-center gap-2 text-white">
-        <img src="../img/logo.png" alt="" class="mr-2" width="40">
+        <img src="../../img/logo.png" alt="" class="mr-2" width="40">
         <p class="pb-1 border-2 border-transparent border-l-white px-3">Developed by 
           <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-[#6454F0] to-[#6EE2F5] font-semibold" href="#team">Team Parkir Gratis</a>
         </p>
@@ -251,8 +220,8 @@
       </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../js/lightslider.js"></script>
-    <script src="../aboutus/aboutus.js"></script>
+    <script src="../../js/lightslider.js"></script>
+    <script src="aboutus.js"></script>
 </body>
 </html>
         
