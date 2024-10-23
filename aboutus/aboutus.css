@@ -65,6 +65,47 @@ p {
     display: block; 
 }
 
+@media (max-width: 768px) {
+    #dropdownMenu {
+        display: none;
+    }
+    details[open] > div {
+        display: block;
+        background-color: #000;
+        padding: 1px;
+        border-radius: 3px;
+        width: auto;
+        box-sizing: border-box;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 10;
+        text-align: left; /* Menyelaraskan teks ke kiri */
+    }
+    details > div {
+        display: none;
+    }
+    .nav-logo {
+        margin-right: 5px; 
+    }
+}
+
+nav {
+    padding: 5px; 
+    width: 100%;
+}
+
+button {
+    width: auto;
+    text-align: left; /* Menyelaraskan teks tombol ke kiri */
+    margin-bottom: 2px;
+    box-sizing: border-box;
+}
+
+button img {
+    margin-left: 5px; 
+}
+
 
 
 
