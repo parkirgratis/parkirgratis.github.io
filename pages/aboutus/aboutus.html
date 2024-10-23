@@ -15,43 +15,74 @@
     <link type="text/css" rel="stylesheet" href="../../css/lightslider.css" />                  
 </head>
 <body class="bg-gray-700">
-    <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
-      <a href="../../index.html" class="hidden md:block ml-5">
-        <img src="../../img/logo.png" width="50" height="24">
-      </a>    
-      <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
-        
+  <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
+    <a href="../index.html" class="hidden md:block ml-5">
+      <img src="../img/logo.png" width="50" height="24">
+    </a>    
+    <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
+      <details class="md:hidden">
+        <summary class="text-white cursor-pointer">Menu</summary>
+        <div class="flex flex-col">
           <a href="#about">
-              <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-                  <span>
-                      <img src="../../img/about.png" class="nav-logo" alt="" width="15px">
-                  </span>&nbsp;ABOUT
-              </button>
+            <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+              <span>
+                <img src="../img/about.png" class="nav-logo" alt="" width="15px">
+              </span>&nbsp;ABOUT
+            </button>
           </a>
-
-          <a href="#team" class="md:block sm:block hidden">
-              <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-                  <span>
-                    <img src="../../img/group.png" class="nav-logo" alt="" width="15px">
-                  </span>&nbsp;TEAM
-              </button>
+          <a href="#team">
+            <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+              <span>
+                <img src="../img/group.png" class="nav-logo" alt="" width="15px">
+              </span>&nbsp;TEAM
+            </button>
           </a>
           <a href="../login/login.html">
             <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
-                <span>
-                    <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
-                </span>
-                <div class="flex flex-wrap -m-2">
-                    <div class="w-auto p-2">
-                        <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
-                        <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block desc">Login Here</p>
-                        <p class="text-sm text-left px-2 md:hidden desc">LOGIN</p>
-                    </div>
+              <span>
+                <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
+              </span>
+              <div class="flex flex-wrap -m-2">
+                <div class="w-auto p-2">
+                  <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
+                  <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block desc">Login Here</p>
+                  <p class="text-sm text-left px-2 md:hidden desc">LOGIN</p>
                 </div>
+              </div>
             </button>
-        </a>
-      </span>
-    </nav>
+          </a>
+        </div>
+      </details>
+      <a href="#about" class="hidden md:block">
+        <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+          <span>
+            <img src="../img/about.png" class="nav-logo" alt="" width="15px">
+          </span>&nbsp;ABOUT
+        </button>
+      </a>
+      <a href="#team" class="md:block sm:block hidden">
+        <button class="desc border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+          <span>
+            <img src="../img/group.png" class="nav-logo" alt="" width="15px">
+          </span>&nbsp;TEAM
+        </button>
+      </a>
+      <a href="../login/login.html" class="hidden md:block">
+        <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+          <span>
+            <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
+          </span>
+          <div class="flex flex-wrap -m-2">
+            <div class="w-auto p-2">
+              <h2 class="text-sm text-left px-2 hidden md:block title">Are you admin?</h2>
+              <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block desc">Login Here</p>
+              <p class="text-sm text-left px-2 md:hidden desc">LOGIN</p>
+            </div>
+          </div>
+        </button>
+      </a>
+    </span>
+  </nav>
     <div id="about" class="pt-20 relative bg-gradient-to-b from-sky-500 to-blue-600 text-white text-center py-12 px-8 font-serif">
       <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('../../img/team.jpg');"></div>
       <div class="relative z-10 max-w-4xl mx-auto">
