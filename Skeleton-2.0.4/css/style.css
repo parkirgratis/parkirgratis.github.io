@@ -20,15 +20,11 @@
     height: 100%;
     background-color: #fff;
     border: 1px solid #ddd;
-    padding: 10px;
     display: none;
-    margin-top: 50px;
+  
 }
 
-.popup-content-container {
-    overflow-y: auto;
-    max-height: 100%;
-}
+
     
   img {
     max-width: 220px; 
