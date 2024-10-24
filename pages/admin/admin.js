@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
+    const totalLocElement = document.getElementById('totalLoc');
 
     fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/lokasi')
         .then(response => response.json())
         .then(data => {
+            let totalLocations = 0;
             data.forEach(item => {
                 const row = dataDisplayTable.insertRow();
                 
@@ -42,7 +44,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                                         <button type="button" class="text-white bg-green-500 px-2 py-1 rounded-md" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${item.gambar}')">Update</button>
                                         <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat}, this)">Delete</button>
                                     </div>`;
+                totalLocations++;
             });
+            totalLocElement.innerHTML = totalLocations;
         })
         .catch(error => {
             console.error('Error fetching data:', error);
