@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             title: "Can't Access Dashboard",
             text: "You need to login before accessing dashboard!",
             timer: 2000,
+            customClass: {
+                container: 'backdrop-blur-md',
+            },
             showConfirmButton: false
           });
           setTimeout(() => {
@@ -32,12 +35,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (response.status === 200) {
             if (!localStorage.getItem('alertShown')) {
-                Swal.fire({
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    backdrop: false,
+                    customClass: {
+                        container: 'no-blur-container',
+                    },
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
                     icon: "success",
                     title: "Anda telah masuk",
                     text: data.message + " dengan ID Admin: " + data.admin_id,
-                    timer: 2000,
-                    showConfirmButton: false
                 });
                 localStorage.setItem('alertShown', 'true');
             }
@@ -47,6 +63,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 title: "Access Restricted",
                 text: data.message,
                 timer: 2000,
+                backdrop: true,
+                customClass: {
+                    container: 'backdrop-blur-md',
+                },
                 showConfirmButton: false
             });
             setTimeout(() => {
@@ -59,6 +79,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             title: "Access Restricted",
             text: data.message,
             timer: 2000,
+            backdrop: true,
+            customClass: {
+                container: 'backdrop-blur-md',
+            },
             showConfirmButton: false
         });
         setTimeout(() => {

@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: "error",
                     title: "Login Failed",
                     text: "Username atau password salah!",
+                    
                 });
             }
         } catch (error) {
@@ -66,9 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('darkModeToggle').addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
         document.querySelector('.login-container').classList.toggle('dark-mode');
-        document.querySelector('footer').classList.toggle('dark-mode');
 
-        const inputs = document.querySelectorAll('input, .login-button');
+        const inputs = document.querySelectorAll('input');
         inputs.forEach(input => input.classList.toggle('dark-mode'));
 
         // Toggle icon
