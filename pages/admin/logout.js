@@ -29,6 +29,10 @@ async function logout() {
                 title: "Logout Successful",
                 text: "You will be directed to login page",
                 timer: 2000,
+                backdrop: true,
+                customClass: {
+                    container: 'backdrop-blur-md',
+                },
                 showConfirmButton: false
               });
               setTimeout(() => {
@@ -44,6 +48,9 @@ async function logout() {
         Swal.fire({
             icon: "error",
             title: "Logout Failed",
+            customClass: {
+                container: 'backdrop-blur-md',
+            },
             text: console.error(error)
         });
     }
