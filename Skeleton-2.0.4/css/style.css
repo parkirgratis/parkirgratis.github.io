@@ -12,7 +12,8 @@
   }
   
   /* CSS untuk popup */
-  .popup-sidebar {
+ 
+.popup-sidebar {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,11 +22,21 @@
     background-color: #fff;
     border: 1px solid #ddd;
     display: none;
-  
 }
 
+/* untuk spasi pada table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+th {
+  font-weight: bold;
+}
 
-    
   img {
     max-width: 220px; 
     max-height: 120px; 
