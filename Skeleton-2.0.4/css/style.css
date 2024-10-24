@@ -24,6 +24,24 @@
     display: none;
 }
 
+/* untuk nav di bawah image */
+.red-sidebar {
+  background-color: red;
+  height: 50px; 
+  margin-top: -10px;
+  margin-left: -1px;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-nav-text {
+  color: white;
+  font-weight: bold;
+}
+
 /* untuk spasi pada table */
 table {
   width: 100%;
