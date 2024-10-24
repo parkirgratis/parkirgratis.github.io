@@ -7,7 +7,6 @@
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
     <link rel="icon" href="../../img/logo.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="submitform.css">
 </head>
 <body>
     <div>
@@ -236,14 +235,12 @@
                                             <div id="map" class="w-full h-64"></div>
                                           </div>                                          
                                         <div class="flex items-center justify-end gap-3">
-                                            <button id="button" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                            <button id="submitButton" class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                                 Save
                                             </button>
-                                            <a href="admin.html">
-                                                <button class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                                                    Cancel
-                                                </button>
-                                            </a>
+                                            <button id="cancelButton" class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                                Cancel
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -256,5 +253,6 @@
     </div>
     <script type="module" src="dashboard.js"></script>
     <script type="module" src="adminform_map.js"></script>
+    <script type="module" src="submitform.js"></script>
 </body>
 </html>

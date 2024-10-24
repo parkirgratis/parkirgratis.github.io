@@ -90,3 +90,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 2000);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (localStorage.getItem('cancelToast') === 'true') {
+
+      localStorage.removeItem('cancelToast');
+  
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+  
+      Toast.fire({
+        icon: "info",
+        title: "You canceled the action."
+      });
+    }
+});

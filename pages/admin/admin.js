@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             totalLocElement.innerHTML = totalLocations;
         })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
 });
