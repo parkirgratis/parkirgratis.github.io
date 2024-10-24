@@ -1,3 +1,8 @@
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
+import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
+
+addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+
 document.addEventListener('DOMContentLoaded', function() {
     // Login function
     async function login(username, password) {
@@ -14,14 +19,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.status === 200) {
                 localStorage.setItem('token', data.token);
-                alert('Login successful');
-                window.location.href = '../admin/admin.html';
+                Swal.fire({
+                    icon: "success",
+                    title: "Login Successful",
+                    text: "You will be directed to dashboard",
+                    timer: 2000,
+                    showConfirmButton: false
+                  });
+                  setTimeout(() => {
+                    window.location.href = '../admin/admin.html';
+                  }, 2000);
             } else {
-                alert(data.message || 'Login failed');
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Failed",
+                    text: "Username atau password salah!",
+                });
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Login failed');
+            Swal.fire({
+                icon: "warning",
+                title: "Login Failed",
+                text: console.error(error)
+            });
         }
     }
 

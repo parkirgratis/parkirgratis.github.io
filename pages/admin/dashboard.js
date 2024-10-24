@@ -1,9 +1,22 @@
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
+import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
+
+addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        alert('You need to log in first');
-        window.location.href = '../login/login.html';
+        Swal.fire({
+            icon: "warning",
+            title: "Can't Access Dashboard",
+            text: "You need to login before accessing dashboard!",
+            timer: 2000,
+            showConfirmButton: false
+          });
+          setTimeout(() => {
+            window.location.href = '../login/login.html';
+          }, 2000);
         return;
     }
 
@@ -19,16 +32,37 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (response.status === 200) {
             if (!localStorage.getItem('alertShown')) {
-                alert('Dashboard access successful\nMessage: ' + data.message + '\nAdmin id: ' + data.admin_id);
+                Swal.fire({
+                    icon: "success",
+                    title: "Anda telah masuk",
+                    text: data.message + " dengan ID Admin: " + data.admin_id,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
                 localStorage.setItem('alertShown', 'true');
             }
         } else {
-            alert('Unauthorized access\nMessage: ' + data.message);
-            window.location.href = '../login/login.html';
+            Swal.fire({
+                icon: "error",
+                title: "Access Restricted",
+                text: data.message,
+                timer: 2000,
+                showConfirmButton: false
+            });
+            setTimeout(() => {
+                window.location.href = '../login/login.html';
+            }, 2000);
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Unauthorized access\nError: ' + error.message);
-        window.location.href = '../login/login.html';
+        Swal.fire({
+            icon: "error",
+            title: "Access Restricted",
+            text: data.message,
+            timer: 2000,
+            showConfirmButton: false
+        });
+        setTimeout(() => {
+            window.location.href = '../login/login.html';
+        }, 2000);
     }
 });
