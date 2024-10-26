@@ -64,9 +64,9 @@ function fetchPopupData() {
                                       <p class="side-nav-text">INFORMASI LOKASI</p>
                                       </div>
                                         <table>
-                                            <tr><th class="text-title">Nama Tempat</th><td>${item.nama_tempat}</td></tr>
-                                            <tr><th class="text-title">Lokasi</th><td>${item.lokasi}</td></tr>
-                                            <tr><th class="text-title">Fasilitas</th><td>${item.fasilitas}</td></tr>
+                                            <tr class = "px-6 py-4 whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Nama Tempat</th><td>${item.nama_tempat}</td></tr>
+                                            <tr  class = "px-6 py-4 whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Lokasi</th><td>${item.lokasi}</td></tr>
+                                            <tr  class = "px-6 py-4 whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Fasilitas</th><td>${item.fasilitas}</td></tr>
                                         </table>
                                     </div>`
                              }));
