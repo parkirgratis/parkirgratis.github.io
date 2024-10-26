@@ -110,7 +110,7 @@ function displayPopupForCoordinate(coordinate, content) {
         popupContentContainer.innerHTML = content;
         const popupSidebar = document.getElementById('popup-sidebar');
         popupSidebar.style.display = 'block';
-        map.getView().animate({ center: fromLonLat(coordinate), zoom: 14 });
+        map.getView().animate({ center: fromLonLat(coordinate), zoom: 20 });
     } else {
         console.error('Popup tidak ditemukan untuk koordinat:', coordinate);
     }
@@ -120,6 +120,7 @@ function displayPopupForCoordinate(coordinate, content) {
 map.on('click', function(event) {
     const popupSidebar = document.getElementById('popup-sidebar');
     popupSidebar.style.display = 'none';
+    
 
 });
 
