@@ -1,10 +1,19 @@
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
+import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
+
+addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+
 document.getElementById('saranForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const saranInput = document.getElementById('saran').value;
 
     if (!saranInput) {
-        alert('Saran tidak boleh kosong!');
+        Swal.fire({
+            icon: "warning",
+            title: "Tidak dapat mengirim saran!",
+            text: "Textbox saran tidak boleh kosong.."
+        });
         return;
     }
 
@@ -22,13 +31,24 @@ document.getElementById('saranForm').addEventListener('submit', async function (
         });
 
         if (response.ok) {
-            alert('Saran berhasil dikirim!');
+            Swal.fire({
+                icon: "success",
+                title: "Terima Kasih",
+                text: "Kritik dan saran anda telah kami simpan, semoga harimu selalu senin"
+            });
             document.getElementById('saranForm').reset();
         } else {
-            alert('Gagal mengirim saran. Coba lagi.');
+            Swal.fire({
+                icon: "warning",
+                title: "Gagal mengirim feedback",
+                text: "Kritik dan saran anda telah kami simpan, semoga harimu selalu senin"
+            });
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan. Coba lagi.');
+        Swal.fire({
+            icon: "error",
+            title: "Gagal mengirim feedback",
+            text: error
+        });
     }
 });

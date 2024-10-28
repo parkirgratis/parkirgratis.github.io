@@ -10,26 +10,28 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=REM">
 </head>
 <body class="bg-[#222831] text-white min-h-screen flex flex-col">
-    <h1 class="title-prop bg-sky-500 md:text-3xl sm:text-2xl text-xl font-bold text-center mb-12 pb-10 py-3 px-4 flex flex-col items-center justify-center gap-2 relative">
+    <h1 class="title-prop border-b border-white fixed top-0 left-0 w-full backdrop-blur-lg bg-black/40 md:text-3xl sm:text-2xl text-xl font-bold text-center mb-12 pb-10 py-3 px-4 flex flex-col items-center justify-center gap-2">
         <div class="flex items-center gap-2">
             Berikan Saran Anda
             <span>
                 <img src="https://media.tenor.com/iRCGgt_NkvkAAAAi/amelia-watson-hololive.gif" width="40" alt="">
             </span>
         </div>
-        <p class="text-center text-xs md:text-sm mt-20 bg-white px-3 py-1 rounded-lg text-sky-500 animated-text">
+        <p class="text-center text-xs md:text-sm mt-20 bg-white px-3 py-1 rounded-lg text-violet-500 animated-text">
             Saran anda dapat membantu kami dalam mengembangkan website ini menjadi lebih baik dan sesuai dengan kebutuhan anda!
         </p>
-    </h1>
-    
+    </h1>    
     
     <div class="flex-grow md:px-40 px-1 pb-16">
         <div class="background"></div>
-        <div class="content container mx-auto p-10">
-            <form id="saranForm" class="bg-gray-800 p-6 rounded-lg">
+        <div class="content container mx-auto pt-32 p-10">
+            <form id="saranForm" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-center mb-4">
+                    <img src="../../img/logo.png" class="w-24" alt="">
+                </div>
                 <div class="mb-4">
-                    <label for="saran" class="block text-lg font-semibold">Saran dan Kritik:</label>
-                    <textarea id="saran" class="w-full p-3 rounded bg-gray-700 text-white h-40" placeholder="Tulis saran Anda di sini..."></textarea>
+                    <label for="saran" class="block text-lg font-semibold pb-2 text-slate-500">Saran dan Kritik:</label>
+                    <textarea id="saran" class="w-full p-3 rounded bg-slate-200 text-gray-700 h-40" placeholder="Tulis saran Anda di sini..."></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded transition transform duration-300 ease-in-out hover:scale-110">Kirim</button>
@@ -40,7 +42,7 @@
 
     <!-- Footer -->
     <footer class="bg-zinc-950 text-center lg:text-left">
-        <div class="bg-black/5 pt-3 text-lg flex justify-center items-center gap-2 text-white">
+        <div class="bg-black/10 pt-3 text-lg flex justify-center items-center gap-2 text-white">
             <img src="../../img/logo.png" alt="" class="mr-2" width="40">
             <p class="pb-1 border-2 border-transparent border-l-white px-3">Developed by 
                 <a class="pb-1 bg-clip-text text-transparent bg-gradient-to-r from-[#6454F0] to-[#6EE2F5] font-semibold" href="../aboutus/aboutus.html#team">Team Parkir Gratis</a>
@@ -54,6 +56,6 @@
 
     </footer>
 
-    <script src="saran.js"></script>
+    <script type="module" src="saran.js"></script>
 </body>
 </html>

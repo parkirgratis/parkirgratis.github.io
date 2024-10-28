@@ -7,9 +7,18 @@ async function logout() {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        alert('You are not logged in');
-        window.location.href = '../login/login.html';
-        return;
+        Swal.fire({
+            icon: "error",
+            title: "Problem Occured!",
+            customClass: {
+                container: 'backdrop-blur-md',
+            },
+            text: "You have no valid token session.",
+            footer: "automatically directed to login menu.",
+            timer: 2000
+        });setTimeout(() => {
+            window.location.href = '../login/login.html';
+        }, 2000);
     }
 
     try {
