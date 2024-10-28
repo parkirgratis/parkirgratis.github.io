@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkir Gratis Bandung</title>
-    <!-- <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
-    <link rel="stylesheet" href="../Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="../Skeleton-2.0.4/css/skeleton.css"> -->
     <link rel="stylesheet" href="admin.css">
     <link rel="shortcut icon" type="image/x-icon" href="../../img/logo.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=REM">
@@ -28,7 +25,7 @@
                 </div>
         
                 <nav class="mt-10">
-                    <a class="flex items-center px-6 py-2 mt-4 text-gray-100 bg-gray-700 bg-opacity-25" href="#">
+                    <a class="flex items-center px-6 py-2 mt-4 text-gray-100 bg-gray-700 bg-opacity-25" href="admin.html">
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -40,7 +37,7 @@
                     </a>
 
                     <a class="flex items-center px-6 py-2 mt-4 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="saran.html">
-                        <svg class="w-6 h-6" xmlns="" fill="none" viewBox="0 0 24 24"
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z">
@@ -48,6 +45,7 @@
                         </svg>
         
                         <span class="mx-3">Saran</span>
+                    </a>
 
                     <a class="flex items-center px-6 py-2 mt-4 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100" href="submitform.html">
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -61,7 +59,7 @@
                     </a>
 
                    
-                    </a>
+
                 </nav>
             </div>
             <div class="flex flex-col flex-1 overflow-hidden">
@@ -169,24 +167,9 @@
                 </header>
                 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                     <div class="container px-6 py-8 mx-auto">
-                        <h3 class="text-3xl font-medium text-gray-700">Dashboard</h3>
+                        <h3 class="text-3xl font-medium text-gray-700">Saran</h3>
         
-                        <div class="mt-4">
-                            <div class="flex flex-wrap -mx-6">
-                                <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
-                                    <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
-                                        <div class="p-3 bg-slate-600 bg-opacity-75 rounded-full">
-                                            <img src="../../img/marker.png" width="28" alt="">
-                                        </div>
-        
-                                        <div class="mx-5">
-                                            <h4 id="totalLoc" class="text-2xl font-semibold text-gray-700">0</h4>
-                                            <div class="text-gray-500">Data Lokasi</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
         
                         <div class="mt-8">
         
@@ -199,13 +182,12 @@
                                         <thead>
                                             <tr>
                                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                    Lokasi</th>
+                                                    Nama</th>
                                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                    Koordinat</th>
+                                                    Email</th>
                                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                    Fasilitas</th>
-                                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                    Gambar</th>
+                                                    Saran</th>
+
                                                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">Pengaturan</th>
                                             </tr>
                                         </thead>
@@ -222,7 +204,7 @@
             </div>
         </div>
     </div>
-    <script src="admin.js"></script>
+    <script src="saran.js"></script>
     <script type="module" src="logout.js"></script>
     <script type="module" src="dashboard.js"></script>
 </body>
