@@ -109,19 +109,31 @@ function displayPopupForCoordinate(coordinate, content) {
         const popupContentContainer = document.getElementById('popup-content-container');
         popupContentContainer.innerHTML = content;
         const popupSidebar = document.getElementById('popup-sidebar');
+
+        // Ensure the sidebar is displayed and slides up on mobile
         popupSidebar.style.display = 'block';
+        popupSidebar.classList.add('active'); 
         map.getView().animate({ center: fromLonLat(coordinate), zoom: 20 });
     } else {
-        console.error('Popup tidak ditemukan untuk koordinat:', coordinate);
+        console.error('Popup not found for coordinate:', coordinate);
     }
 }
 
-// Tambahkan event listener untuk menutup popup sidebar ketika marker diklik lagi
+
+// Event listener to close sidebar on map click
+map.on('click', function() {
+    document.getElementById('popup-sidebar').style.display = 'none';
+});
+
+document.getElementById('toggle-sidebar-btn').addEventListener('click', function() {
+    const popupSidebar = document.getElementById('popup-sidebar');
+    popupSidebar.classList.toggle('active'); // Toggle the active class to show/hide
+});
+
+// Ensure the sidebar is closed when map is clicked
 map.on('click', function(event) {
     const popupSidebar = document.getElementById('popup-sidebar');
-    popupSidebar.style.display = 'none';
-    
-
+    popupSidebar.classList.remove('active'); // Hide sidebar on map click
 });
 
 window.uploadImage = uploadImage;
