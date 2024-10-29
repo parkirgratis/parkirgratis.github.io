@@ -19,36 +19,37 @@ const map = new Map({
     })
 });
 
+let markerOverlay = createMarkerOverlay(); 
 
-export function createMarker(map, coordinates) {
-    const marker = new Overlay({
-        position: fromLonLat(coordinates),
+// Fungsu membuat marker
+function createMarkerOverlay() {
+    const element = createMarkerElement();
+    const overlay = new Overlay({
         positioning: 'center-center',
-        element: createMarkerElement(),
+        element: element,
         stopEvent: false
     });
-    map.addOverlay(marker);
-    return marker;
+    map.addOverlay(overlay);
+    return overlay;
 }
 
 
 function createMarkerElement() {
     const element = document.createElement('div');
-    element.innerHTML = '<img src="https://png.pngtree.com/png-vector/20230106/ourmid/pngtree-flat-red-location-sign-png-image_6553065.png" alt="Marker" style="width: 20px; height: 20px;">';
-
+    element.innerHTML = '<img src="https://png.pngtree.com/png-vector/20230106/ourmid/pngtree-flat-red-location-sign-png-image_6553065.png" alt="Marker" style="width: 20px; height: 20px;">'; // Update path if necessary
     return element;
 }
 
 
 map.on('click', (event) => {
-
+    // Get the clicked coordinates in latitude and longitude
     const coordinates = toLonLat(event.coordinate);
     const longitude = coordinates[0];
     const latitude = coordinates[1];
 
-
+  
     document.getElementById('long').value = longitude.toFixed(6);
     document.getElementById('lat').value = latitude.toFixed(6);
 
-    createMarker(map, coordinates);
+    markerOverlay.setPosition(fromLonLat(coordinates));
 });
