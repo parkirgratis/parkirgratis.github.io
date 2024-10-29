@@ -59,8 +59,8 @@ function fetchPopupData() {
                                  coordinate: [item.lon, item.lat],
                                  content: `
                                     <div class="popup-content">
-                                   <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-left: -1px;  margin-right: -100px;">
-                                      <div class="red-sidebar">
+                                   <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
+                                     <div class="red-sidebar">
                                       <p class="side-nav-text">INFORMASI LOKASI</p>
                                       </div>
                                         <table>
