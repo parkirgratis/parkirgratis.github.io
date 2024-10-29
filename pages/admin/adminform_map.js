@@ -3,7 +3,7 @@ import View from 'https://cdn.skypack.dev/ol/View.js';
 import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
 import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
 import { fromLonLat, toLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
-import { fromEvent } from 'https://cdn.skypack.dev/rxjs';
+import Overlay from 'https://cdn.skypack.dev/ol/Overlay.js';
 
 // Initialize the map
 const map = new Map({
@@ -19,14 +19,36 @@ const map = new Map({
     })
 });
 
-// tambah saat klik map
+
+export function createMarker(map, coordinates) {
+    const marker = new Overlay({
+        position: fromLonLat(coordinates),
+        positioning: 'center-center',
+        element: createMarkerElement(),
+        stopEvent: false
+    });
+    map.addOverlay(marker);
+    return marker;
+}
+
+
+function createMarkerElement() {
+    const element = document.createElement('div');
+    element.innerHTML = '<img src="https://png.pngtree.com/png-vector/20230106/ourmid/pngtree-flat-red-location-sign-png-image_6553065.png" alt="Marker" style="width: 20px; height: 20px;">';
+
+    return element;
+}
+
+
 map.on('click', (event) => {
-    // mendapatkan lon lat saat mengklik map
+
     const coordinates = toLonLat(event.coordinate);
     const longitude = coordinates[0];
     const latitude = coordinates[1];
 
-    
-    document.getElementById('long').value = longitude.toFixed(6); 
-    document.getElementById('lat').value = latitude.toFixed(6); 
+
+    document.getElementById('long').value = longitude.toFixed(6);
+    document.getElementById('lat').value = latitude.toFixed(6);
+
+    createMarker(map, coordinates);
 });
