@@ -44,7 +44,7 @@ function requestLocation() {
                 ],
                 view: new View({
                     center: fromLonLat([longitude, latitude]),
-                    zoom: 15,
+                    zoom: 14,
                 }),
             });
 
