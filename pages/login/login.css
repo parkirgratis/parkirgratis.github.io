@@ -79,4 +79,8 @@ input.dark-mode, .login-button.dark-mode {
     color: #ffffff;
 }
 
+.dark-mode-label {
+    color: white;
+}
+
 

@@ -63,15 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.toggle('fa-eye-slash');
     });
 
-    // Toggle dark mode
     document.getElementById('darkModeToggle').addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
         document.querySelector('.login-container').classList.toggle('dark-mode');
-
+    
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => input.classList.toggle('dark-mode'));
-
-        // Toggle icon
+    
+        const labels = document.querySelectorAll('label');
+        labels.forEach(label => label.classList.toggle('dark-mode-label'));
+    
         const darkModeIcon = document.getElementById('darkModeIcon');
         darkModeIcon.classList.toggle('fa-moon');
         darkModeIcon.classList.toggle('fa-sun');
