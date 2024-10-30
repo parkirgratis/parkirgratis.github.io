@@ -6,6 +6,7 @@ addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
     const totalLocElement = document.getElementById('totalLoc');
+    const searchBar = document.getElementById('searchBar');
 
     fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/lokasi')
         .then(response => response.json())
@@ -53,6 +54,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
     .catch(error => {
         console.error('Error fetching data:', error);
+    });
+    searchBar.addEventListener('input', () => {
+        const searchTerm = searchBar.value.toLowerCase();
+        const rows = dataDisplayTable.getElementsByTagName('tr');
+
+        Array.from(rows).forEach(row => {
+            const locationName = row.cells[0].innerText.toLowerCase(); // Adjust index for search column
+            const coordinates = row.cells[1].innerText.toLowerCase();
+            
+            if (locationName.includes(searchTerm) || coordinates.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
     });
 });
 
