@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
-    const totalLocElement = document.getElementById('totalLocations'); // Add this to display total locations if needed
+    const totalLocElement = document.getElementById('totalLocations'); 
 
     fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/saran')
         .then(response => response.json())
@@ -9,36 +9,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             data.forEach(item => {
                 const row = dataDisplayTable.insertRow();
 
-                // Gmail Column
+                // Gmail kolom
                 let cell1 = row.insertCell(0);
-                cell1.className = "px-6 py-4 whitespace-no-wrap border-b border-gray-200";
-                cell1.innerHTML = `<div class="flex items-center">
-                                        <div class="ml-4">
-                                            <div class="md:block hidden text-sm leading-5 text-gray-500">${item.gmail}</div>
-                                        </div>
-                                   </div>`;
+                cell1.className = "px-10 py-4 whitespace-nowrap border-b border-gray-200";
+                cell1.innerHTML = `<div class="text-sm text-gray-900">${item.gmail || 'No Gmail provided'}</div>`;
 
-                // Nama Column
+                // Nama kolom
                 let cell2 = row.insertCell(1);
-                cell2.className = "px-6 py-4 whitespace-no-wrap border-b border-gray-200";
-                cell2.innerHTML = `<div class="flex items-center">
-                                       <div class="ml-4">
-                                           <div class="md:block hidden text-sm leading-5 text-gray-500">${item.nama}</div>
-                                       </div>
-                                   </div>`;
+                cell2.className = "px-6 py-4 whitespace-nowrap border-b border-gray-200";
+                cell2.innerHTML = `<div class="text-sm text-gray-900">${item.nama || 'No Name provided'}</div>`;
 
-                // Saran Column
+                // Saran kolom
                 let cell3 = row.insertCell(2);
-                cell3.className = "px-6 py-4 whitespace-no-wrap border-b border-gray-200";
-                cell3.innerHTML = `<div class="flex items-center">
-                                       <div class="ml-4">
-                                           <div class="md:block hidden text-sm leading-5 text-gray-500">${item.saran_user}</div>
-                                       </div>
-                                   </div>`;
+                cell3.className = "px-6 py-4 whitespace-nowrap border-b border-gray-200";
+                cell3.innerHTML = `<div class="text-sm text-gray-900">${item.saran_user || 'No Feedback provided'}</div>`;
 
                 totalLocations++;
             });
-            
+
+         
             if (totalLocElement) {
                 totalLocElement.innerHTML = totalLocations;
             }
