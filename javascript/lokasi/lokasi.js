@@ -44,7 +44,7 @@ function requestLocation() {
                 ],
                 view: new View({
                     center: fromLonLat([longitude, latitude]),
-                    zoom: 14,
+                    zoom: 15,
                 }),
             });
 
@@ -56,7 +56,7 @@ function requestLocation() {
                 new Style({
                     image: new Icon({
                         src: '../img/location-marker.png',
-                        scale: 0.06,
+                        scale: 0.05,
                     }),
                 })
             );
