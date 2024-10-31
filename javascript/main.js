@@ -61,12 +61,12 @@ function fetchPopupData() {
                                     <div class="popup-content">
                                    <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
                                      <div class="red-sidebar">
-                                      <p class="side-nav-text">INFORMASI LOKASI</p>
+                                      <p class="side-nav-text font-sidebar text-white">INFORMASI LOKASI</p>
                                       </div>
                                         <table>
-                                            <tr class = "px-6 py-4 whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Nama Tempat</th><td>${item.nama_tempat}</td></tr>
-                                            <tr  class = "px-6 py-4 whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Lokasi</th><td>${item.lokasi}</td></tr>
-                                            <tr  class = "px-6 py-4 whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Fasilitas</th><td>${item.fasilitas}</td></tr>
+                                            <tr class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Nama Tempat</th><td>${item.nama_tempat}</td></tr>
+                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Lokasi</th><td>${item.lokasi}</td></tr>
+                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title">Fasilitas</th><td>${item.fasilitas}</td></tr>
                                         </table>
                                     </div>`
                              }));
