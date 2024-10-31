@@ -106,22 +106,10 @@
       padding: 6px;
   }
 }
-
-
-
-  img {
-    max-width: 220px; 
-    max-height: 120px; 
-    border-radius: 1px;
-    margin: 10px;
-  }
-  
  
   .nav-title {
-    font-family: 'REM', serif;
+    font-family: "Poppins", serif;
   }
-  
- 
   .text-title {
     font-family: 'Noto Sans', serif;
     color: #333;
