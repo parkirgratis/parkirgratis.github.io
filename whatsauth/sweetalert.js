@@ -42,3 +42,10 @@ function openSweetAlertLogin(){
         }
       });
 }
+
+// Fungsi untuk menutup SweetAlert
+function closeSweetAlert() {
+    Swal.close();
+    getWithHeader("https://mrt.ulbi.ac.id/notif/ux/getdatauser","login",getCookie("login"),getUserFunction);
+    show("saveForm");
+}
