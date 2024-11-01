@@ -87,7 +87,6 @@
 @media (max-width: 480px) {
   .popup-sidebar {
       height: 60%; 
-      padding: 10px;
   }
 
   .popup-content img {
