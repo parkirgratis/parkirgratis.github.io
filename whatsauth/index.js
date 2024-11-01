@@ -1,11 +1,21 @@
-//import js whatsauth yang terbaru
-import {qrController,deleteCookie} from "https://cdn.jsdelivr.net/gh/whatsauth/js@0.1.7/whatsauth.js";
-import { wauthparam } from "https://cdn.jsdelivr.net/gh/whatsauth/js@0.1.7/config.js";
+import {getCookie} from "https://cdn.jsdelivr.net/gh/jscroot/cookie@0.0.1/croot.js";
+import {setInner} from "https://cdn.jsdelivr.net/gh/jscroot/element@0.1.5/croot.js";
+import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
+import {redirect} from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js";
 
-//definisikan url wss dan keyword menggunakan base64
-wauthparam.auth_ws="d3NzOi8vYXBpLndhLm15LmlkL3dzL3doYXRzYXV0aC9wdWJsaWM=";
-wauthparam.keyword="aHR0cHM6Ly93YS5tZS82MjgzMTMxODk1MDAwP3RleHQ9d2g0dDVhdXRoMA==";
+if (getCookie("login")===""){
+    redirect("/");
+}
 
-//delete cookies session and call whatsauth qrController
-deleteCookie(wauthparam.tokencookiename);
-qrController(wauthparam);
+getJSON("https://api.do.my.id/data/user","login",getCookie("login"),responseFunction)
+
+function responseFunction(result){
+    if (result.status === 404){
+        setInner("content","Silahkan lakukan pendaftaran terlebih dahulu "+result.data.name);
+        redirect("/parkirgratis.github.io/signup/pages/login/login.html");
+    }else{
+        setInner("content","Selamat datang "+result.data.name);
+        redirect("parkirgratis.github.io/pages/admin/addata.html");
+    }
+    console.log(result);
+}
