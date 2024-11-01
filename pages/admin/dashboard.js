@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/admin/dashboard', {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/admin/dashboard', {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token

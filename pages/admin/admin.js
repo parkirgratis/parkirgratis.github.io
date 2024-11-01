@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
     const totalLocElement = document.getElementById('totalLoc');
     const searchBar = document.getElementById('searchBar');
+    const notificationDropdown = document.getElementById('notificationDropdown');
 
-    fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/lokasi')
+    fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/lokasi')
         .then(response => response.json())
         .then(data => {
             let totalLocations = 0;
@@ -70,6 +71,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     });
+
+    try {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/lokasi');
+        const data = await response.json();
+        console.log(data);
+        
+        const latestData = data.slice(-5).reverse();
+
+        latestData.forEach(item => {
+            const notificationItem = document.createElement('a');
+            notificationItem.href = "#";
+            notificationItem.className = "flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600";
+            notificationItem.innerHTML = `
+                <img class="object-cover w-8 h-8 mx-1 rounded-full" src="${item.gambar || 'default-avatar.jpg'}" alt="avatar">
+                <p class="mx-2 text-sm">
+                    <span class="font-semibold">Lokai baru telah ditambahkan</span> - <span class="text-indigo-400 font-bold">${item.nama_tempat}</span>
+                </p>`;
+            
+            notificationDropdown.appendChild(notificationItem);
+        });
+    } catch (error) {
+        console.error('Error fetching notifications:', error);
+    }
 });
 
 window.deleteData = function(id, lon, lat) {
@@ -87,7 +111,7 @@ window.deleteData = function(id, lon, lat) {
 
         console.log(`Deleting item with ID: ${id}`);
 
-        fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/tempat', {
+        fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/tempat', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +131,7 @@ window.deleteData = function(id, lon, lat) {
         })
         .then(({ status, body }) => {
             if (status === 200) {
-                fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/koordinat', {
+                fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/koordinat', {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

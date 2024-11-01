@@ -17,7 +17,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 400px;
   height: 100%;
   background-color: #fff; 
   border: 1px solid #ddd;
@@ -106,22 +106,10 @@
       padding: 6px;
   }
 }
-
-
-
-  img {
-    max-width: 220px; 
-    max-height: 120px; 
-    border-radius: 1px;
-    margin: 10px;
-  }
-  
  
   .nav-title {
-    font-family: 'REM', serif;
+    font-family: "Poppins", serif;
   }
-  
- 
   .text-title {
     font-family: 'Noto Sans', serif;
     color: #333;

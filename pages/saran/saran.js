@@ -6,8 +6,9 @@ addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 document.getElementById('saranForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const gmailUser = document.getElementById('gmail').value;
+ 
     const namaUser = document.getElementById('nama').value;
+    const gmailUser = document.getElementById('gmail').value;
     const saranInput = document.getElementById('saran').value;
 
     if (!saranInput) {
@@ -26,7 +27,7 @@ document.getElementById('saranForm').addEventListener('submit', async function (
     };
 
     try {
-        const response = await fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/data/saran', {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/saran', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

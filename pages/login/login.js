@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Login function
     async function login(username, password) {
         try {
-            const response = await fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/admin/login', {
+            const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/admin/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

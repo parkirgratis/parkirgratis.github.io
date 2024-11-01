@@ -22,7 +22,7 @@ async function logout() {
     }
 
     try {
-        const response = await fetch('https://asia-southeast2-backend-438507.cloudfunctions.net/parkirgratisbackend/admin/logout', {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/admin/logout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
