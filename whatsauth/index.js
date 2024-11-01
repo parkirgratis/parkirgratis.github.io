@@ -15,7 +15,7 @@ function responseFunction(result){
         redirect("/parkirgratis.github.io/signup/pages/login/login.html");
     }else{
         setInner("content","Selamat datang "+result.data.name);
-        redirect("parkirgratis.github.io/pages/admin/addata.html");
+        redirect("/parkirgratis.github.io/pages/admin/addata.html");
     }
     console.log(result);
 }

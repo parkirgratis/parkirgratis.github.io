@@ -1,7 +1,7 @@
 import { IsMobile,getParamsfromURL } from "./whatsauth.js"
 
 export let wauthparam={
-    redirect : "./auth",
+    redirect : "/parkirgratis.github.io/pages/admin/addata.html",
     auth_ws : "d3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==",
     keyword : "aHR0cHM6Ly93YS5tZS82MjgxMTIwMDAyNzk/dGV4dD13aDR0NWF1dGgw",
     domaincookie : window.location.host,
