@@ -15,6 +15,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             let totalLocations = 0;
             data.forEach(item => {
                 const row = dataDisplayTable.insertRow();
+                const facilities = item.fasilitas.split(' ').reduce((acc, word, index, arr) => {
+                    if (word === "Tidak" && arr[index + 1] === "ada") {
+                        acc.push(`<span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full mr-1">Tidak ada</span>`);
+                        arr.splice(index + 1, 1);
+                    } else if (word !== "ada") {
+                        acc.push(`<span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full mr-1">${word}</span>`);
+                    }
+                    return acc;
+                }, []).join('');
                 
                 // Name Column
                 let cell1 = row.insertCell(0);
@@ -34,9 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Status (Fasilitas) Column
                 let cell3 = row.insertCell(2);
                 cell3.className = "px-6 py-4 whitespace-no-wrap border-b border-gray-200";
-                cell3.innerHTML = `<span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                    ${item.fasilitas}
-                                </span>`;
+                cell3.innerHTML = facilities;
 
                 let cell4 = row.insertCell(3);
                 cell4.className = "px-6 py-4 whitespace-no-wrap border-b border-gray-200";
@@ -86,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             notificationItem.innerHTML = `
                 <img class="object-cover w-8 h-8 mx-1 rounded-full" src="${item.gambar || 'default-avatar.jpg'}" alt="avatar">
                 <p class="mx-2 text-sm">
-                    <span class="font-semibold">Lokai baru telah ditambahkan</span> - <span class="text-indigo-400 font-bold">${item.nama_tempat}</span>
+                    <span class="font-semibold">Lokasi baru telah ditambahkan</span> - <span class="text-indigo-400 font-bold">${item.nama_tempat}</span>
                 </p>`;
             
             notificationDropdown.appendChild(notificationItem);
