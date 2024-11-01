@@ -67,7 +67,7 @@ body.dark-mode {
 
 input.dark-mode, .login-button.dark-mode {
     background-color: #f3efef;
-    color: #fff;
+    color: #000000;
     border: none;
 }
 
@@ -82,5 +82,3 @@ input.dark-mode, .login-button.dark-mode {
 .dark-mode-label {
     color: white;
 }
-
-
