@@ -49,3 +49,9 @@ function closeSweetAlert() {
     getWithHeader("https://mrt.ulbi.ac.id/notif/ux/getdatauser","login",getCookie("login"),getUserFunction);
     show("saveForm");
 }
+// Mengecek Cookies Login
+if (getCookie("login")===""){
+    openSweetAlertLogin();
+}else{
+    getWithHeader("https://mrt.ulbi.ac.id/notif/ux/getdatauser","login",getCookie("login"),getUserFunction);
+}
