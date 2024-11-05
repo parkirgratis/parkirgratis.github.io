@@ -252,3 +252,22 @@ document.getElementById('showFormButton').addEventListener('click', function() {
 
 
 
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            document.getElementById('location').innerText = `Latitude: ${lat}, Longitude: ${lon}`;
+        }, function(error) {
+            console.error('Error getting location: ', error);
+            document.getElementById('location').innerText = 'Gagal mendapatkan lokasi.';
+        });
+    } else {
+        alert('Geolocation tidak didukung oleh browser ini.');
+    }
+}
+
+// Memanggil fungsi getLocation saat DOM sudah sepenuhnya dimuat
+window.addEventListener('DOMContentLoaded', (event) => {
+    getLocation();
+});
