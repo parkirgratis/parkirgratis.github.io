@@ -304,6 +304,118 @@ function getLocation() {
     }
 }
 
+// Fungsi untuk mendapatkan lokasi pengguna
+function getUserLocation() {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error('Geolocation tidak didukung oleh browser ini.'));
+      } else {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      }
+    });
+  }
+
+// Fungsi untuk membuat peta
+function createMap(center) {
+    return new Map({
+      target: 'map',
+      layers: [
+        new TileLayer({
+          source: new OSM()
+        })
+      ],
+      view: new View({
+        center: center,
+        zoom: 15 // Zoom level yang lebih dekat
+      })
+    });
+  }
+
+  async function initMap() {
+    let center = fromLonLat([107.6098, -6.9175]); // Lokasi default (Bandung)
+  
+    try {
+      const position = await getUserLocation();
+      center = fromLonLat([position.coords.longitude, position.coords.latitude]);
+    } catch (error) {
+      console.warn('Tidak bisa mendapatkan lokasi pengguna:', error.message);
+    }
+  
+    const map = createMap(center);
+  
+    const markerCoords = [
+      [107.57806170827054, -6.87616450819235],
+      [107.57441932515601, -6.865637836144359],
+      [107.58023768006228, -6.8739512071239846],
+      [107.55091369885083, -6.8622383054487806],
+      [107.57613168830173, -6.8620573920747585],
+      [107.6916921488174, -6.901263021760781]
+    ];
+
+    const popupsData = [
+        {
+          coordinate: markerCoords[0],
+          content: `<div class="popup-content">
+            <h3>Alfamart Sarimanah</h3>
+            <p>Lokasi: Sarimanah</p>
+          </div>`
+        },
+        {
+          coordinate: markerCoords[1],
+          content: `<div class="popup-content">
+            <h3>Alfamart Ciwaruga</h3>
+            <p>Lokasi: Jl. Ciwaruga-Ters, Jl. Gegerkalong Hilir No.37, RT.01/RW.03, Ciwaruga, Kec. Parongpong, Kabupaten Bandung Barat, Jawa Barat 40559</p>
+          </div>`
+        },
+        {
+          coordinate: markerCoords[2],
+          content: `<div class="popup-content">
+            <h3>Yomart Sarimanah</h3>
+            <p>Lokasi: Jl. Sarimanah No.106, Sarijadi, Kec. Sukasari, Kota Bandung, Jawa Barat 40151</p>
+          </div>`
+        },
+        {
+          coordinate: markerCoords[3],
+          content: `<div class="popup-content">
+            <h3>Alfamart Citeureup</h3>
+            <p>Lokasi: Jl. Citeureup Kel No.87, Citeureup, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40512</p>
+          </div>`
+        },
+        {
+          coordinate: markerCoords[4],
+          content: `<div class="popup-content">
+            <h3>Indomaret Warugajaya</h3>
+            <p>Lokasi: 4HQG+5C6, Jalan Waruga Jaya, Ciwaruga, Kec. Parongpong, Kota Bandung, Jawa Barat 40559</p>
+          </div>`
+        },
+        {
+          coordinate: markerCoords[5],
+          content: `<div class="popup-content">
+            <h3>Yomart Jalan Kosar</h3>
+            <p>Lokasi: Jl. Simpay Asih, Pasir Endah, Kec. Ujung Berung, Kota Bandung, Jawa Barat 40619</p>
+          </div>`
+        }
+      ];
+    
+      const markers = markerCoords.map(coord => createMarker(map, coord));
+      const popups = createPopups(map, popupsData);
+    
+      markers.forEach((marker, index) => {
+        marker.getElement().addEventListener('click', () => {
+          const popup = popups[index];
+          displayPopup(popup, popupsData[index].coordinate, popupsData[index].content);
+        });
+      });
+    
+      map.on('click', function(event) {
+        popups.forEach(popup => {
+          popup.setPosition(null);
+        });
+      });
+    }
+    
+    window.addEventListener('load', initMap);
+
 // Memanggil fungsi getLocation saat DOM sudah sepenuhnya dimuat
 window.addEventListener('DOMContentLoaded', (event) => {
     getLocation();
