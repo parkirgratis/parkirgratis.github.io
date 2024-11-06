@@ -118,12 +118,14 @@ button img {
 }
 
 .custom-logo {
-    /* Tambahkan gaya CSS khusus di sini */
-    border-radius: 50%; /* contoh membuat logo menjadi lingkaran */
+    border-radius: 50%; 
+    border: 2px solid #333; 
+    padding: 3px; 
+    position: absolute;
+    left: 15px; 
+    top: 10px; 
     
-    padding: 5px;
-  }
-  
+}
 
 
 
