@@ -31,6 +31,43 @@ const map = new Map({
 let markerCoords = [];
 let popupsData = [];
 
+document.addEventListener('DOMContentLoaded', function() {
+    requestLocationPermission();
+});
+
+function requestLocationPermission() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                document.getElementById('location').innerText = `Latitude: ${lat}, Longitude: ${lon}`;
+            },
+            function(error) {
+                if (error.code === error.PERMISSION_DENIED) {
+                    alert("Anda perlu mengaktifkan lokasi/GPS untuk menggunakan aplikasi ini.");
+                    showPermissionPopup();
+                } else {
+                    console.error("Error getting location: ", error);
+                    document.getElementById('location').innerText = 'Gagal mendapatkan lokasi.';
+                }
+            }
+        );
+    } else {
+        alert("Geolocation tidak didukung oleh browser ini.");
+    }
+}
+
+function showPermissionPopup() {
+    document.getElementById('permission-popup').style.display = 'flex';
+}
+
+function requestLocation() {
+    document.getElementById('permission-popup').style.display = 'none';
+    requestLocationPermission();
+}
+
+
 // Fetch marker data
 fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/marker')
     .then(response => response.json())

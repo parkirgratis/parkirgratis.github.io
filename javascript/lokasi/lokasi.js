@@ -76,4 +76,6 @@ function requestLocation() {
     );
 }
 
+
+
 window.requestLocation = requestLocation;
