@@ -173,3 +173,54 @@ map.on('click', function(event) {
     popupSidebar.classList.remove('active'); // Hide sidebar on map click
 });
 
+// Fungsi untuk menambahkan marker pada lokasi pengguna
+export function addUserLocationMarker() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userCoordinates = [position.coords.longitude, position.coords.latitude];
+          const userMarker = new Feature({
+            geometry: new Point(fromLonLat(userCoordinates)),
+          });
+          userMarker.setStyle(
+            new Style({
+              image: new Icon({
+                anchor: [0.5, 1],
+                src: 'https://i.ibb.co.com/8dtr6zc/man.png',
+                scale: 1.0
+              }),
+            })
+          );
+  
+          const vectorSource = new VectorSource({
+            features: [userMarker],
+          });
+  
+          const vectorLayer = new VectorLayer({
+            source: vectorSource,
+          });
+  
+          map.addLayer(vectorLayer);
+          map.getView().setCenter(fromLonLat(userCoordinates));
+          map.getView().setZoom(17); 
+        },
+        (error) => {
+          console.error('Error mendapatkan lokasi pengguna:', error);
+          Swal.fire({
+            icon: "warning",
+            title: "Gagal mengakses lokasi",
+            text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
+          });
+        }
+      );
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Geolocation tidak didukung",
+        text: "Geolocation tidak didukung oleh browser ini."
+      });
+    }
+  }
+  
+  // Panggil fungsi ini saat halaman dimuat
+  document.addEventListener('DOMContentLoaded', addUserLocationMarker);
