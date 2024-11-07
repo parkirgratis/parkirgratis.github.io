@@ -1,3 +1,8 @@
+import Feature from 'https://cdn.skypack.dev/ol/Feature.js';
+import Point from 'https://cdn.skypack.dev/ol/geom/Point.js';
+import VectorSource from 'https://cdn.skypack.dev/ol/source/Vector.js';
+import {Vector as VectorLayer} from 'https://cdn.skypack.dev/ol/layer.js';
+import {Icon, Style} from 'https://cdn.skypack.dev/ol/style.js';
 import Map from 'https://cdn.skypack.dev/ol/Map.js';
 import View from 'https://cdn.skypack.dev/ol/View.js';
 import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
@@ -5,15 +10,10 @@ import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
 import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
 import { createMarker } from '../javascript/controller/markers.js';
 import { createPopups, displayPopup } from '../javascript/controller/popups.js';
-import {
-  setInner,
-  show,
-  hide,
-  getValue,
-  getFileSize
-} from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
+import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
 
-import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
+addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 
 const map = new Map({
     target: 'map',
@@ -30,42 +30,6 @@ const map = new Map({
 
 let markerCoords = [];
 let popupsData = [];
-
-document.addEventListener('DOMContentLoaded', function() {
-    requestLocationPermission();
-});
-
-function requestLocationPermission() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                document.getElementById('location').innerText = `Latitude: ${lat}, Longitude: ${lon}`;
-            },
-            function(error) {
-                if (error.code === error.PERMISSION_DENIED) {
-                    alert("Anda perlu mengaktifkan lokasi/GPS untuk menggunakan aplikasi ini.");
-                    showPermissionPopup();
-                } else {
-                    console.error("Error getting location: ", error);
-                    document.getElementById('location').innerText = 'Gagal mendapatkan lokasi.';
-                }
-            }
-        );
-    } else {
-        alert("Geolocation tidak didukung oleh browser ini.");
-    }
-}
-
-function showPermissionPopup() {
-    document.getElementById('permission-popup').style.display = 'flex';
-}
-
-function requestLocation() {
-    document.getElementById('permission-popup').style.display = 'none';
-    requestLocationPermission();
-}
 
 
 // Fetch marker data
@@ -162,10 +126,10 @@ map.on('click', function() {
     document.getElementById('popup-sidebar').style.display = 'none';
 });
 
-document.getElementById('toggle-sidebar-btn').addEventListener('click', function() {
-    const popupSidebar = document.getElementById('popup-sidebar');
-    popupSidebar.classList.toggle('active'); // Toggle the active class to show/hide
-});
+// document.getElementById('toggle-sidebar-btn').addEventListener('click', function() {
+//     const popupSidebar = document.getElementById('popup-sidebar');
+//     popupSidebar.classList.toggle('active'); // Toggle the active class to show/hide
+// });
 
 // Ensure the sidebar is closed when map is clicked
 map.on('click', function(event) {
@@ -174,53 +138,108 @@ map.on('click', function(event) {
 });
 
 // Fungsi untuk menambahkan marker pada lokasi pengguna
-export function addUserLocationMarker() {
+function addUserLocationMarker() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userCoordinates = [
+                    position.coords.longitude,
+                    position.coords.latitude
+                ];
+
+                // Create a marker for the user's location
+                const userMarker = new Feature({
+                    geometry: new Point(fromLonLat(userCoordinates)),
+                });
+
+                // Style the user marker with a custom icon
+                userMarker.setStyle(
+                    new Style({
+                        image: new Icon({
+                            anchor: [0.5, 1],  // Center the icon
+                            src: 'https://i.ibb.co.com/8dtr6zc/man.png', // Set custom marker image
+                            scale: 1.0 // Adjust size
+                        }),
+                    })
+                );
+
+                // Create a vector source to hold the marker
+                const vectorSource = new VectorSource({
+                    features: [userMarker],
+                });
+
+                // Create a vector layer to display the marker on the map
+                const vectorLayer = new VectorLayer({
+                    source: vectorSource,
+                });
+
+                // Add the vector layer to the map
+                map.addLayer(vectorLayer);
+
+                // Center the map on the user's location and zoom in
+                map.getView().setCenter(fromLonLat(userCoordinates));
+                map.getView().setZoom(17);  // Adjust the zoom level as needed
+            },
+            (error) => {
+                console.error('Error mendapatkan lokasi pengguna:', error);
+                Swal.fire({
+                    icon: "warning",
+                    title: "Gagal mengakses lokasi",
+                    text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
+                });
+            }
+        );
+    } else {
+        Swal.fire({
+            icon: "warning",
+            title: "Geolocation tidak didukung",
+            text: "Geolocation tidak didukung oleh browser ini."
+        });
+    }
+}
+
+
+function centerMapOnUserLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const userCoordinates = [position.coords.longitude, position.coords.latitude];
-          const userMarker = new Feature({
-            geometry: new Point(fromLonLat(userCoordinates)),
-          });
-          userMarker.setStyle(
-            new Style({
-              image: new Icon({
-                anchor: [0.5, 1],
-                src: 'https://i.ibb.co.com/8dtr6zc/man.png',
-                scale: 1.0
-              }),
-            })
-          );
+          const view = map.getView();
+          view.setCenter(fromLonLat(userCoordinates));
+          view.setZoom(17);
   
-          const vectorSource = new VectorSource({
-            features: [userMarker],
+          // Tambahkan logika untuk menampilkan pesan izin
+          Swal.fire({
+            icon: "success",
+            title: "Terima Kasih",
+            text: "Lokasi Anda telah kami dapatkan. Semoga harimu selalu menyenangkan!"
           });
-  
-          const vectorLayer = new VectorLayer({
-            source: vectorSource,
-          });
-  
-          map.addLayer(vectorLayer);
-          map.getView().setCenter(fromLonLat(userCoordinates));
-          map.getView().setZoom(17); 
         },
         (error) => {
           console.error('Error mendapatkan lokasi pengguna:', error);
+  
+          // Tambahkan logika untuk menampilkan pesan kesalahan
           Swal.fire({
-            icon: "warning",
-            title: "Gagal mengakses lokasi",
+            icon: "error",
+            title: "Gagal Mendapatkan Lokasi",
             text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
           });
         }
       );
     } else {
       Swal.fire({
-        icon: "warning",
-        title: "Geolocation tidak didukung",
+        icon: "error",
+        title: "Geolocation Tidak Didukung",
         text: "Geolocation tidak didukung oleh browser ini."
       });
     }
   }
   
-  // Panggil fungsi ini saat halaman dimuat
-  document.addEventListener('DOMContentLoaded', addUserLocationMarker);
+  // Panggil fungsi untuk memusatkan peta pada lokasi pengguna saat halaman dimuat
+  document.addEventListener('DOMContentLoaded', centerMapOnUserLocation);
+  
+
+// Panggil fungsi ini saat halaman dimuat
+document.addEventListener('DOMContentLoaded', addUserLocationMarker);
+
+
