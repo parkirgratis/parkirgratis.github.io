@@ -127,7 +127,9 @@ button img {
     
 }
 
-
+.text-indent {
+    text-indent: 30px; /* Jarak indentasi */
+  }
 
 
 
