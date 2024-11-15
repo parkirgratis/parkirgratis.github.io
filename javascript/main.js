@@ -139,6 +139,9 @@ map.on('click', function(event) {
 
 // Fungsi untuk menambahkan marker pada lokasi pengguna
 function addUserLocationMarker() {
+    // Panggil fungsi untuk menemukan lokasi parkir terdekat
+findNearestParking(userCoordinates);
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -147,38 +150,36 @@ function addUserLocationMarker() {
                     position.coords.latitude
                 ];
 
-                // Create a marker for the user's location
+                // Tambahkan marker untuk lokasi pengguna
                 const userMarker = new Feature({
                     geometry: new Point(fromLonLat(userCoordinates)),
                 });
 
-                // Style the user marker with a custom icon
                 userMarker.setStyle(
                     new Style({
                         image: new Icon({
-                            anchor: [0.5, 1],  // Center the icon
-                            src: 'https://i.ibb.co.com/8dtr6zc/man.png', // Set custom marker image
-                            scale: 1.0 // Adjust size
+                            anchor: [0.5, 1],
+                            src: 'https://i.ibb.co.com/8dtr6zc/man.png',
+                            scale: 1.0
                         }),
                     })
                 );
 
-                // Create a vector source to hold the marker
                 const vectorSource = new VectorSource({
                     features: [userMarker],
                 });
 
-                // Create a vector layer to display the marker on the map
                 const vectorLayer = new VectorLayer({
                     source: vectorSource,
                 });
 
-                // Add the vector layer to the map
                 map.addLayer(vectorLayer);
 
-                // Center the map on the user's location and zoom in
                 map.getView().setCenter(fromLonLat(userCoordinates));
-                map.getView().setZoom(17);  // Adjust the zoom level as needed
+                map.getView().setZoom(17);
+
+                // Cari lokasi parkir terdekat
+                findNearestParking(userCoordinates);
             },
             (error) => {
                 console.error('Error mendapatkan lokasi pengguna:', error);
@@ -197,6 +198,34 @@ function addUserLocationMarker() {
         });
     }
 }
+
+// Fungsi untuk menemukan lokasi parkir terdekat
+function findNearestParking(userCoordinates) {
+    console.log("Mencari lokasi parkir terdekat dari:", userCoordinates);
+    let nearestLocation = null;
+    let minDistance = Infinity;
+
+    popupsData.forEach(({ coordinate, content }) => {
+        const distance = calculateDistance(userCoordinates, coordinate);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearestLocation = { coordinate, content };
+        }
+    });
+
+    if (nearestLocation) {
+        // Tampilkan pop-up untuk lokasi parkir terdekat
+        displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
+        
+        // Tampilkan alert untuk memberitahukan lokasi parkir terdekat
+        alert(`Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`);
+    } else {
+        alert("Tidak ada lokasi parkir terdekat yang ditemukan.");
+    }
+}
+
+
 
 
 function centerMapOnUserLocation() {
@@ -242,4 +271,21 @@ function centerMapOnUserLocation() {
 // Panggil fungsi ini saat halaman dimuat
 document.addEventListener('DOMContentLoaded', addUserLocationMarker);
 
+
+function calculateDistance(coord1, coord2) {
+    const toRad = (value) => (value * Math.PI) / 180;
+    const R = 6371; // Radius of the Earth in km
+
+    const dLat = toRad(coord2[1] - coord1[1]);
+    const dLon = toRad(coord2[0] - coord1[0]);
+    const lat1 = toRad(coord1[1]);
+    const lat2 = toRad(coord2[1]);
+
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1) * Math.cos(lat2) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c; // Distance in km
+}
 
