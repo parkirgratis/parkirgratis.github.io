@@ -5,3 +5,9 @@
 .font-navbar {
     font-family: 'REM', serif;
 }
+
+.title-text {
+    font-family: 'Open Sans, serif;
+    font-size: 15px;
+    font-weight: semibold;
+}
