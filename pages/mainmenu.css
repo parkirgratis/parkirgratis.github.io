@@ -11,3 +11,9 @@
     font-size: 15px;
     font-weight: semibold;
 }
+
+.bg-prop {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
