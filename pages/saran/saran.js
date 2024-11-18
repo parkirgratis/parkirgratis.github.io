@@ -57,4 +57,16 @@ document.getElementById('saranForm').addEventListener('submit', async function (
         });
         console.error("Error:", error);
     }
+
+    
+
+});
+
+document.getElementById('saranForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission for demo
+    const button = event.target.querySelector('button[type="submit"]');
+    button.classList.add('submitted');
+    button.innerHTML = 'Terkirim!';
+
+    
 });
