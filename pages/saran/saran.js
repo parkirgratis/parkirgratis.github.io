@@ -71,6 +71,6 @@ document.getElementById('saranForm').addEventListener('submit', function(event) 
     setTimeout(() => {
         button.classList.remove('submitted');
         button.innerHTML = 'Kirim';
-        alert('Saran Anda telah dikirim. Terima kasih!');
+        alert('Saran Anda telah dikirim. Terima kasih! Kami akan menghubungi Anda jika diperlukan untuk tindak lanjut.');
     }, 2000); // Animasi selesai dalam 2 detik
 });
