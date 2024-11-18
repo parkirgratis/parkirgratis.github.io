@@ -250,7 +250,7 @@ function centerMapOnUserLocation() {
           // Tambahkan logika untuk menampilkan pesan kesalahan
           Swal.fire({
             icon: "error",
-            title: "Gagal Mendapatkan Lokas",
+            title: "Gagal Mendapatkan",
             text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
           });
         }
