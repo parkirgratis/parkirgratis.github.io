@@ -72,6 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
         const labels = document.querySelectorAll('label');
         labels.forEach(label => label.classList.toggle('dark-mode-label'));
+
+        const images = document.querySelectorAll('#userlogo, #passlogo');
+        images.forEach(image => image.classList.toggle('invert'));
     
         const darkModeIcon = document.getElementById('darkModeIcon');
         darkModeIcon.classList.toggle('fa-moon');
