@@ -57,4 +57,20 @@ document.getElementById('saranForm').addEventListener('submit', async function (
         });
         console.error("Error:", error);
     }
+
+    
+
+});
+
+document.getElementById('saranForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission for demo
+    const button = event.target.querySelector('button[type="submit"]');
+    button.classList.add('submitted');
+    button.innerHTML = 'Terkirim!';
+
+    setTimeout(() => {
+        button.classList.remove('submitted');
+        button.innerHTML = 'Kirim';
+        alert('Saran Anda telah dikirim. Terima kasih! Kami akan menghubungi Anda jika diperlukan untuk tindak lanjut.');
+    }, 2000); // Animasi selesai dalam 2 detik
 });

@@ -74,3 +74,22 @@ nav a:hover {
 .logo-container img {
     display: block; 
 }
+
+input[type="text"], input[type="email"], textarea {
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    box-shadow: 0 0 10px rgba(100, 84, 240, 0.7);
+    transform: scale(1.02);
+}
+
+/* Animasi untuk tombol kirim */
+button[type="submit"] {
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #4C51BF; /* Warna biru lebih gelap */
+    transform: scale(1.05);
+}
