@@ -235,8 +235,6 @@ function sortDataByProximity(data, userLat, userLon) {
 }
 
 
-
-
 // Fungsi untuk menemukan lokasi parkir terdekat
 
 
