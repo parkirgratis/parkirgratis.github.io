@@ -251,20 +251,6 @@ function centerMapOnUserLocation() {
           Swal.fire({
             icon: "error",
             title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
             text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
           });
         }
