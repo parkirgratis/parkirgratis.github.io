@@ -119,8 +119,6 @@ function displayPopupForCoordinate(coordinate, content) {
 }
 
 
-
-
 // Event listener to close sidebar on map click
 map.on('click', function() {
     document.getElementById('popup-sidebar').style.display = 'none';
@@ -158,7 +156,8 @@ function addUserLocationMarker() {
                     new Style({
                         image: new Icon({
                             anchor: [0.5, 1],
-                            src: 'https://i.ibb.co/8dtr6zc/man.png', // URL gambar marker pengguna
+                            src: 'file:///C:/Users/Irgi%20Achmad%20Fauzi/Downloads/people-nearby-svgrepo-com.svg',
+
                             scale: 1.0,
                         }),
                     })
