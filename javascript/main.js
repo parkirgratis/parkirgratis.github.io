@@ -138,13 +138,12 @@ map.on('click', function(event) {
 });
 
 // Fungsi untuk menambahkan marker pada lokasi pengguna
+// Fungsi untuk menambahkan marker pada lokasi pengguna
 function addUserLocationMarker() {
-    // Panggil fungsi untuk menemukan lokasi parkir terdekat
-findNearestParking(userCoordinates);
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                // Dapatkan koordinat pengguna
                 const userCoordinates = [
                     position.coords.longitude,
                     position.coords.latitude
@@ -159,8 +158,8 @@ findNearestParking(userCoordinates);
                     new Style({
                         image: new Icon({
                             anchor: [0.5, 1],
-                            src: 'https://i.ibb.co.com/8dtr6zc/man.png',
-                            scale: 1.0
+                            src: 'https://i.ibb.co/8dtr6zc/man.png', // URL gambar marker pengguna
+                            scale: 1.0,
                         }),
                     })
                 );
@@ -198,6 +197,32 @@ findNearestParking(userCoordinates);
         });
     }
 }
+
+function calculateDistance(coord1, coord2) {
+    console.log("Koordinat 1:", coord1);
+    console.log("Koordinat 2:", coord2);
+
+    const toRadians = (degree) => degree * (Math.PI / 180);
+
+    const [lon1, lat1] = coord1;
+    const [lon2, lat2] = coord2;
+
+    const R = 6371; // Radius bumi dalam kilometer
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRadians(lat1)) *
+            Math.cos(toRadians(lat2)) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    console.log("Jarak yang dihitung:", distance);
+    return distance;
+}
+
 
 // Fungsi untuk menemukan lokasi parkir terdekat
 function findNearestParking(userCoordinates) {
@@ -237,67 +262,5 @@ function findNearestParking(userCoordinates) {
     }
 }
 
-
-
-
-
-function centerMapOnUserLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userCoordinates = [position.coords.longitude, position.coords.latitude];
-          const view = map.getView();
-          view.setCenter(fromLonLat(userCoordinates));
-          view.setZoom(17);
-  
-          // Tambahkan logika untuk menampilkan pesan izin
-          Swal.fire({
-            icon: "success",
-            title: "Terima Kasih",
-            text: "Lokasi Anda telah kami dapatkan. Semoga harimu selalu menyenangkan!"
-          });
-        },
-        (error) => {
-          console.error('Error mendapatkan lokasi pengguna:', error);
-  
-          // Tambahkan logika untuk menampilkan pesan kesalahan
-          Swal.fire({
-            icon: "error",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
-          });
-        }
-      );
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Geolocation Tidak Didukung",
-        text: "Geolocation tidak didukung oleh browser ini."
-      });
-    }
-  }
-  
-  // Panggil fungsi untuk memusatkan peta pada lokasi pengguna saat halaman dimuat
-  document.addEventListener('DOMContentLoaded', centerMapOnUserLocation);
-  
-
 // Panggil fungsi ini saat halaman dimuat
 document.addEventListener('DOMContentLoaded', addUserLocationMarker);
-
-
-
-
