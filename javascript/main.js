@@ -105,20 +105,20 @@ function createMapMarkers() {
 }
 
 function displayPopupForCoordinate(coordinate, content) {
-    const popupIndex = popupsData.findIndex(item => item.coordinate.toString() === coordinate.toString());
-    if (popupIndex !== -1) {
-        const popupContentContainer = document.getElementById('popup-content-container');
-        popupContentContainer.innerHTML = content;
-        const popupSidebar = document.getElementById('popup-sidebar');
+    console.log("Menampilkan popup untuk koordinat:", coordinate);
+    console.log("Isi konten popup:", content);
 
-        // Ensure the sidebar is displayed and slides up on mobile
-        popupSidebar.style.display = 'block';
-        popupSidebar.classList.add('active'); 
-        map.getView().animate({ center: fromLonLat(coordinate), zoom: 20 });
-    } else {
-        console.error('Popup not found for coordinate:', coordinate);
-    }
+    const popupContentContainer = document.getElementById('popup-content-container');
+    popupContentContainer.innerHTML = content;
+
+    const popupSidebar = document.getElementById('popup-sidebar');
+    popupSidebar.style.display = 'block';
+    popupSidebar.classList.add('active');
+
+    map.getView().animate({ center: fromLonLat(coordinate), zoom: 17 });
 }
+
+
 
 
 // Event listener to close sidebar on map click
