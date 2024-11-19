@@ -201,12 +201,15 @@ findNearestParking(userCoordinates);
 
 // Fungsi untuk menemukan lokasi parkir terdekat
 function findNearestParking(userCoordinates) {
-    console.log("Mencari lokasi parkir terdekat dar:", userCoordinates);
+    console.log("Lokasi pengguna:", userCoordinates);
+
     let nearestLocation = null;
     let minDistance = Infinity;
 
     popupsData.forEach(({ coordinate, content }) => {
         const distance = calculateDistance(userCoordinates, coordinate);
+
+        console.log(`Jarak ke ${coordinate}: ${distance.toFixed(2)} km`);
 
         if (distance < minDistance) {
             minDistance = distance;
@@ -214,16 +217,26 @@ function findNearestParking(userCoordinates) {
         }
     });
 
+    console.log("Lokasi parkir terdekat:", nearestLocation);
+    console.log("Jarak terkecil:", minDistance);
+
     if (nearestLocation) {
-        // Tampilkan pop-up untuk lokasi parkir terdekat
         displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
-        
-        // Tampilkan alert untuk memberitahukan lokasi parkir terdekat
-        alert(`Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`);
+
+        Swal.fire({
+            icon: "info",
+            title: "Lokasi Parkir Ditemukan",
+            text: `Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`
+        });
     } else {
-        alert("Tidak ada lokasi parkir terdekat yang ditemukan.");
+        Swal.fire({
+            icon: "warning",
+            title: "Tidak Ada Lokasi Parkir",
+            text: "Tidak ada lokasi parkir terdekat yang ditemukan."
+        });
     }
 }
+
 
 
 
