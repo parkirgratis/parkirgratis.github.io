@@ -155,13 +155,13 @@ function addUserLocationMarker() {
                 userMarker.setStyle(
                     new Style({
                         image: new Icon({
-                            anchor: [0.5, 1],
-                            src: 'file:///C:/Users/Irgi%20Achmad%20Fauzi/Downloads/people-nearby-svgrepo-com.svg',
-
-                            scale: 1.0,
+                            anchor: [0.1, 1],
+                            src: '../img/peopleloca.png',
+                            scale: 0.1, 
                         }),
                     })
                 );
+                
 
                 const vectorSource = new VectorSource({
                     features: [userMarker],
