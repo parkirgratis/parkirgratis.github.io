@@ -105,19 +105,17 @@ function createMapMarkers() {
 }
 
 function displayPopupForCoordinate(coordinate, content) {
-    const popupIndex = popupsData.findIndex(item => item.coordinate.toString() === coordinate.toString());
-    if (popupIndex !== -1) {
-        const popupContentContainer = document.getElementById('popup-content-container');
-        popupContentContainer.innerHTML = content;
-        const popupSidebar = document.getElementById('popup-sidebar');
+    console.log("Menampilkan popup untuk koordinat:", coordinate);
+    console.log("Isi konten popup:", content);
 
-        // Ensure the sidebar is displayed and slides up on mobile
-        popupSidebar.style.display = 'block';
-        popupSidebar.classList.add('active'); 
-        map.getView().animate({ center: fromLonLat(coordinate), zoom: 20 });
-    } else {
-        console.error('Popup not found for coordinate:', coordinate);
-    }
+    const popupContentContainer = document.getElementById('popup-content-container');
+    popupContentContainer.innerHTML = content;
+
+    const popupSidebar = document.getElementById('popup-sidebar');
+    popupSidebar.style.display = 'block';
+    popupSidebar.classList.add('active');
+
+    map.getView().animate({ center: fromLonLat(coordinate), zoom: 17 });
 }
 
 
@@ -138,13 +136,12 @@ map.on('click', function(event) {
 });
 
 // Fungsi untuk menambahkan marker pada lokasi pengguna
+// Fungsi untuk menambahkan marker pada lokasi pengguna
 function addUserLocationMarker() {
-    // Panggil fungsi untuk menemukan lokasi parkir terdekat
-findNearestParking(userCoordinates);
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                // Dapatkan koordinat pengguna
                 const userCoordinates = [
                     position.coords.longitude,
                     position.coords.latitude
@@ -158,12 +155,13 @@ findNearestParking(userCoordinates);
                 userMarker.setStyle(
                     new Style({
                         image: new Icon({
-                            anchor: [0.5, 1],
-                            src: 'https://i.ibb.co.com/8dtr6zc/man.png',
-                            scale: 1.0
+                            anchor: [0.1, 1],
+                            src: '../img/peopleloca.png',
+                            scale: 0.1, 
                         }),
                     })
                 );
+                
 
                 const vectorSource = new VectorSource({
                     features: [userMarker],
@@ -199,14 +197,43 @@ findNearestParking(userCoordinates);
     }
 }
 
+function calculateDistance(coord1, coord2) {
+    console.log("Koordinat 1:", coord1);
+    console.log("Koordinat 2:", coord2);
+
+    const toRadians = (degree) => degree * (Math.PI / 180);
+
+    const [lon1, lat1] = coord1;
+    const [lon2, lat2] = coord2;
+
+    const R = 6371; // Radius bumi dalam kilometer
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRadians(lat1)) *
+            Math.cos(toRadians(lat2)) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    console.log("Jarak yang dihitung:", distance);
+    return distance;
+}
+
+
 // Fungsi untuk menemukan lokasi parkir terdekat
 function findNearestParking(userCoordinates) {
-    console.log("Mencari lokasi parkir terdekat dar:", userCoordinates);
+    console.log("Lokasi pengguna:", userCoordinates);
+
     let nearestLocation = null;
     let minDistance = Infinity;
 
     popupsData.forEach(({ coordinate, content }) => {
         const distance = calculateDistance(userCoordinates, coordinate);
+
+        console.log(`Jarak ke ${coordinate}: ${distance.toFixed(2)} km`);
 
         if (distance < minDistance) {
             minDistance = distance;
@@ -214,63 +241,26 @@ function findNearestParking(userCoordinates) {
         }
     });
 
+    console.log("Lokasi parkir terdekat:", nearestLocation);
+    console.log("Jarak terkecil:", minDistance);
+
     if (nearestLocation) {
-        // Tampilkan pop-up untuk lokasi parkir terdekat
         displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
-        
-        // Tampilkan alert untuk memberitahukan lokasi parkir terdekat
-        alert(`Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`);
+
+        Swal.fire({
+            icon: "info",
+            title: "Lokasi Parkir Ditemukan",
+            text: `Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`
+        });
     } else {
-        alert("Tidak ada lokasi parkir terdekat yang ditemukan.");
+        Swal.fire({
+            icon: "warning",
+            title: "Tidak Ada Lokasi Parkir",
+            text: "Tidak ada lokasi parkir terdekat yang ditemukan."
+        });
     }
 }
 
 
-
-
-function centerMapOnUserLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userCoordinates = [position.coords.longitude, position.coords.latitude];
-          const view = map.getView();
-          view.setCenter(fromLonLat(userCoordinates));
-          view.setZoom(17);
-  
-          // Tambahkan logika untuk menampilkan pesan izin
-          Swal.fire({
-            icon: "success",
-            title: "Terima Kasih",
-            text: "Lokasi Anda telah kami dapatkan. Semoga harimu selalu menyenangkan!"
-          });
-        },
-        (error) => {
-          console.error('Error mendapatkan lokasi pengguna:', error);
-  
-          // Tambahkan logika untuk menampilkan pesan kesalahan
-          Swal.fire({
-            icon: "error",
-            title: "Gagal Mendapatkan Lokasi",
-            text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
-          });
-        }
-      );
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Geolocation Tidak Didukung",
-        text: "Geolocation tidak didukung oleh browser ini."
-      });
-    }
-  }
-  
-  // Panggil fungsi untuk memusatkan peta pada lokasi pengguna saat halaman dimuat
-  document.addEventListener('DOMContentLoaded', centerMapOnUserLocation);
-  
-
 // Panggil fungsi ini saat halaman dimuat
 document.addEventListener('DOMContentLoaded', addUserLocationMarker);
-
-
-
-

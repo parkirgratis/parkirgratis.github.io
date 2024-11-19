@@ -68,6 +68,7 @@ p {
 @media (max-width: 768px) {
     #dropdownMenu {
         display: none;
+        filter: blur();
     }
 
     details[open] > div {
@@ -97,6 +98,7 @@ p {
         background: inherit;
         z-index: -1;
         border-radius: 5px;
+        filter: drop-shadow();
     }
 }
 
