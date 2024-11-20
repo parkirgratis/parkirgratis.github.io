@@ -326,6 +326,46 @@ function findNearestParking(userCoordinates) {
     }
 }
 
+function getAccurateUserLocation() {
+    if (navigator.geolocation) {
+        // Opsi untuk meningkatkan akurasi
+        const options = {
+            enableHighAccuracy: true, 
+            timeout: 10000,          
+            maximumAge: 0             
+        };
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userCoordinates = [
+                    position.coords.longitude,
+                    position.coords.latitude,
+                ];
+                console.log("Lokasi pengguna:", userCoordinates);
+                findNearestParking(userCoordinates); // Panggil fungsi untuk mencari parkir terdekat
+            },
+            (error) => {
+                console.error("Error mendapatkan lokasi pengguna:", error);
+                Swal.fire({
+                    icon: "warning",
+                    title: "Gagal Mengakses Lokasi",
+                    text: "Tidak dapat mengakses lokasi Anda, pastikan izin lokasi diaktifkan.",
+                });
+            },
+            options // Menambahkan opsi akurasi tinggi
+        );
+    } else {
+        Swal.fire({
+            icon: "warning",
+            title: "Geolocation Tidak Didukung",
+            text: "Geolocation tidak didukung oleh browser ini.",
+        });
+    }
+}
+
+
 
 // Panggil fungsi ini saat halaman dimuat
 document.addEventListener("DOMContentLoaded", addUserLocationMarker);
+
+
