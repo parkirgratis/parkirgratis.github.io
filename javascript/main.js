@@ -186,11 +186,6 @@ function addUserLocationMarker() {
                     title: "Gagal mengakses lokasi",
                     text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
                 });
-            },
-            {
-                enableHighAccuracy: true, // Use GPS for more accurate location
-                timeout: 10000, // Timeout in milliseconds
-                maximumAge: 0 // Prevent caching of old position
             }
         );
     } else {
@@ -202,44 +197,69 @@ function addUserLocationMarker() {
     }
 }
 
-function getUserLocation(successCallback, errorCallback) {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(successCallback, (error) => {
-            console.error('Gagal mendapatkan lokasi pengguna:', error);
-            if (errorCallback) errorCallback();
-        });
-    } else {
-        console.error('Geolokasi tidak didukung oleh browser ini.');
-        if (errorCallback) errorCallback();
-    }
-}
+function calculateDistance(coord1, coord2) {
+    console.log("Koordinat 1:", coord1);
+    console.log("Koordinat 2:", coord2);
 
-function calculateDistance(lat1, lon1, lat2, lon2) {
+    const toRadians = (degree) => degree * (Math.PI / 180);
+
+    const [lon1, lat1] = coord1;
+    const [lon2, lat2] = coord2;
+
     const R = 6371; // Radius bumi dalam kilometer
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = 
-        0.5 - Math.cos(dLat)/2 + 
-        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-        (1 - Math.cos(dLon)) / 2;
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRadians(lat1)) *
+            Math.cos(toRadians(lat2)) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
 
-    return R * 2 * Math.asin(Math.sqrt(a));
-}
-
-function sortDataByProximity(data, userLat, userLon) {
-    return data.sort((a, b) => {
-        const distanceA = calculateDistance(userLat, userLon, a.lat, a.lon);
-        const distanceB = calculateDistance(userLat, userLon, b.lat, b.lon);
-        return distanceA - distanceB;
-    });
+    console.log("Jarak yang dihitung:", distance);
+    return distance;
 }
 
 
 // Fungsi untuk menemukan lokasi parkir terdekat
+function findNearestParking(userCoordinates) {
+    console.log("Lokasi pengguna:", userCoordinates);
 
+    let nearestLocation = null;
+    let minDistance = Infinity;
 
+    popupsData.forEach(({ coordinate, content }) => {
+        const distance = calculateDistance(userCoordinates, coordinate);
 
+        console.log(`Jarak ke ${coordinate}: ${distance.toFixed(2)} km`);
 
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearestLocation = { coordinate, content };
+        }
+    });
+
+    console.log("Lokasi parkir terdekat:", nearestLocation);
+    console.log("Jarak terkecil:", minDistance);
+
+    if (nearestLocation) {
+        displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
+
+        Swal.fire({
+            icon: "info",
+            title: "Lokasi Parkir Ditemukan",
+            text: `Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`
+        });
+    } else {
+        Swal.fire({
+            icon: "warning",
+            title: "Tidak Ada Lokasi Parkir",
+            text: "Tidak ada lokasi parkir terdekat yang ditemukan."
+        });
+    }
+}
 
 // Panggil fungsi ini saat halaman dimuat
 document.addEventListener('DOMContentLoaded', addUserLocationMarker);
