@@ -49,33 +49,64 @@ fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/mark
 // Fetch popup data
 function fetchPopupData() {
     fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/lokasi')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            // Validasi apakah data adalah array
             if (!Array.isArray(data)) {
                 console.error('Popup data bukan array:', data);
                 return;
             }
-            popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
-                             .map(item => ({
-                                 coordinate: [item.lon, item.lat],
-                                 content: `
-                                    <div class="popup-content">
-                                   <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
-                                     <div class="red-sidebar">
-                                      <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white">INFORMASI LOKASI</p>
-                                      </div>
-                                        <table>
-                                            <tr class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Nama Tempat</th><td class="px-2">${item.nama_tempat}</td></tr>
-                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Lokasi</th><td class="px-2">${item.lokasi}</td></tr>
-                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.fasilitas}</td></tr>
-                                        </table>
-                                    </div>`
-                             }));
+
+            // Filter dan map data ke format yang sesuai
+            popupsData = data
+                .filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
+                .map(item => ({
+                    coordinate: [item.lon, item.lat],
+                    content: `
+                        <div class="popup-content">
+                            <img src="${item.gambar}" alt="Gambar Tempat" 
+                                 style="width:100%; height:auto; max-height: 200px; object-fit: cover; margin-bottom: 10px;">
+                            <div class="red-sidebar" style="padding: 5px; background-color: #f56565; color: #fff;">
+                                <span><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" 
+                                           style="width: 24px; height: 24px; vertical-align: middle;">
+                                </span>
+                                <span style="font-weight: bold;">INFORMASI LOKASI</span>
+                            </div>
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                                <tr>
+                                    <th style="text-align: left; background-color: #84cc16; color: #fff; padding: 5px;">Nama Tempat</th>
+                                    <td style="padding: 5px;">${item.nama_tempat}</td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: left; background-color: #84cc16; color: #fff; padding: 5px;">Lokasi</th>
+                                    <td style="padding: 5px;">${item.lokasi}</td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: left; background-color: #84cc16; color: #fff; padding: 5px;">Fasilitas</th>
+                                    <td style="padding: 5px;">${item.fasilitas}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `
+                }));
+
+            // Log hasil data yang diolah
             console.log('Popup Data:', popupsData);
+
+            // Initialize marker dan layer map
             initializeMapPopups();
+
+            // Panggil marker lokasi pengguna
+            addUserLocationMarker();
         })
         .catch(error => console.error('Error fetching popup data:', error));
 }
+
 
 let popups = [];
 const markersMap = new Map();
@@ -105,19 +136,17 @@ function createMapMarkers() {
 }
 
 function displayPopupForCoordinate(coordinate, content) {
-    const popupIndex = popupsData.findIndex(item => item.coordinate.toString() === coordinate.toString());
-    if (popupIndex !== -1) {
-        const popupContentContainer = document.getElementById('popup-content-container');
-        popupContentContainer.innerHTML = content;
-        const popupSidebar = document.getElementById('popup-sidebar');
+    console.log("Menampilkan popup untuk koordinat:", coordinate);
+    console.log("Isi konten popup:", content);
 
-        // Ensure the sidebar is displayed and slides up on mobile
-        popupSidebar.style.display = 'block';
-        popupSidebar.classList.add('active'); 
-        map.getView().animate({ center: fromLonLat(coordinate), zoom: 20 });
-    } else {
-        console.error('Popup not found for coordinate:', coordinate);
-    }
+    const popupContentContainer = document.getElementById('popup-content-container');
+    popupContentContainer.innerHTML = content;
+
+    const popupSidebar = document.getElementById('popup-sidebar');
+    popupSidebar.style.display = 'block';
+    popupSidebar.classList.add('active');
+
+    map.getView().animate({ center: fromLonLat(coordinate), zoom: 17 });
 }
 
 
@@ -138,17 +167,18 @@ map.on('click', function(event) {
 });
 
 // Fungsi untuk menambahkan marker pada lokasi pengguna
+// Fungsi untuk menambahkan marker pada lokasi pengguna
+// Tambahkan marker lokasi pengguna ke peta
 function addUserLocationMarker() {
-    // Panggil fungsi untuk menemukan lokasi parkir terdekat
-findNearestParking(userCoordinates);
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                // Dapatkan koordinat pengguna
                 const userCoordinates = [
                     position.coords.longitude,
                     position.coords.latitude
                 ];
+                console.log("Koordinat pengguna berhasil diperoleh:", userCoordinates);
 
                 // Tambahkan marker untuk lokasi pengguna
                 const userMarker = new Feature({
@@ -158,13 +188,14 @@ findNearestParking(userCoordinates);
                 userMarker.setStyle(
                     new Style({
                         image: new Icon({
-                            anchor: [0.5, 1],
-                            src: 'https://i.ibb.co.com/8dtr6zc/man.png',
-                            scale: 1.0
+                            anchor: [0.5, 1], // Pusatkan icon di titik koordinat
+                            src: '../img/peopleloca.png', // Path gambar marker pengguna
+                            scale: 0.1, // Perkecil ukuran marker
                         }),
                     })
                 );
 
+                // Tambahkan marker ke peta
                 const vectorSource = new VectorSource({
                     features: [userMarker],
                 });
@@ -175,6 +206,7 @@ findNearestParking(userCoordinates);
 
                 map.addLayer(vectorLayer);
 
+                // Set view peta ke lokasi pengguna
                 map.getView().setCenter(fromLonLat(userCoordinates));
                 map.getView().setZoom(17);
 
@@ -182,31 +214,90 @@ findNearestParking(userCoordinates);
                 findNearestParking(userCoordinates);
             },
             (error) => {
-                console.error('Error mendapatkan lokasi pengguna:', error);
+                console.error("Error mendapatkan lokasi pengguna:", error);
+
+                // Berikan pesan kepada pengguna jika gagal mendapatkan lokasi
                 Swal.fire({
-                    icon: "warning",
-                    title: "Gagal mengakses lokasi",
-                    text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
+                    title: 'Lokasi Tidak Akurat',
+                    text: 'Apakah Anda ingin memperbarui lokasi secara manual?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, perbarui',
+                    cancelButtonText: 'Tidak',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                       
+                    }
                 });
             }
         );
     } else {
+        // Browser tidak mendukung geolocation
         Swal.fire({
-            icon: "warning",
-            title: "Geolocation tidak didukung",
-            text: "Geolocation tidak didukung oleh browser ini."
+            title: 'Lokasi Tidak Akurat',
+            text: 'Apakah Anda ingin memperbarui lokasi secara manual?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, perbarui',
+            cancelButtonText: 'Tidak',
+        }).then((result) => {
+            if (result.isConfirmed) {
+              
+            }
         });
     }
 }
 
+// Fungsi untuk menghitung jarak antara dua koordinat (Haversine formula)
+function calculateDistance(coord1, coord2) {
+    console.log("Koordinat 1:", coord1);
+    console.log("Koordinat 2:", coord2);
+
+    const toRadians = (degree) => degree * (Math.PI / 180);
+
+    const [lon1, lat1] = coord1;
+    const [lon2, lat2] = coord2;
+
+    const R = 6371; // Radius bumi dalam kilometer
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRadians(lat1)) *
+            Math.cos(toRadians(lat2)) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    console.log("Jarak yang dihitung:", distance, "km");
+    return distance;
+}
+
 // Fungsi untuk menemukan lokasi parkir terdekat
 function findNearestParking(userCoordinates) {
-    console.log("Mencari lokasi parkir terdekat dar:", userCoordinates);
+    console.log("Lokasi pengguna:", userCoordinates);
+
+    // Cek apakah `popupsData` berisi data
+    if (!popupsData || popupsData.length === 0) {
+        console.warn("Data lokasi parkir kosong atau tidak tersedia.");
+        return;
+    }
+
     let nearestLocation = null;
     let minDistance = Infinity;
 
+    // Iterasi melalui `popupsData` untuk menemukan lokasi terdekat
     popupsData.forEach(({ coordinate, content }) => {
+        if (!Array.isArray(coordinate) || coordinate.length !== 2) {
+            console.warn("Koordinat tidak valid:", coordinate);
+            return;
+        }
+
         const distance = calculateDistance(userCoordinates, coordinate);
+
+        console.log(`Jarak ke ${coordinate}: ${distance.toFixed(2)} km`);
 
         if (distance < minDistance) {
             minDistance = distance;
@@ -214,77 +305,27 @@ function findNearestParking(userCoordinates) {
         }
     });
 
+    console.log("Lokasi parkir terdekat:", nearestLocation);
+    console.log("Jarak terkecil:", minDistance);
+
     if (nearestLocation) {
-        // Tampilkan pop-up untuk lokasi parkir terdekat
+        // Tampilkan popup lokasi terdekat
         displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
-        
-        // Tampilkan alert untuk memberitahukan lokasi parkir terdekat
-        alert(`Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`);
+
+        Swal.fire({
+            icon: "info",
+            title: "Lokasi Parkir Ditemukan",
+            text: `Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`,
+        });
     } else {
-        alert("Tidak ada lokasi parkir terdekat yang ditemukan.");
+        Swal.fire({
+            icon: "warning",
+            title: "Tidak Ada Lokasi Parkir",
+            text: "Tidak ada lokasi parkir terdekat yang ditemukan.",
+        });
     }
 }
 
 
-
-
-function centerMapOnUserLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userCoordinates = [position.coords.longitude, position.coords.latitude];
-          const view = map.getView();
-          view.setCenter(fromLonLat(userCoordinates));
-          view.setZoom(17);
-  
-          // Tambahkan logika untuk menampilkan pesan izin
-          Swal.fire({
-            icon: "success",
-            title: "Terima Kasih",
-            text: "Lokasi Anda telah kami dapatkan. Semoga harimu selalu menyenangkan!"
-          });
-        },
-        (error) => {
-          console.error('Error mendapatkan lokasi pengguna:', error);
-  
-          // Tambahkan logika untuk menampilkan pesan kesalahan
-          Swal.fire({
-            icon: "error",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            title: "Gagal Mendapatkan Lokasi",
-            text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
-          });
-        }
-      );
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Geolocation Tidak Didukung",
-        text: "Geolocation tidak didukung oleh browser ini."
-      });
-    }
-  }
-  
-  // Panggil fungsi untuk memusatkan peta pada lokasi pengguna saat halaman dimuat
-  document.addEventListener('DOMContentLoaded', centerMapOnUserLocation);
-  
-
 // Panggil fungsi ini saat halaman dimuat
-document.addEventListener('DOMContentLoaded', addUserLocationMarker);
-
-
-
-
+document.addEventListener("DOMContentLoaded", addUserLocationMarker);
