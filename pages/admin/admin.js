@@ -124,3 +124,52 @@ window.deleteData = async function(id, lon, lat) {
         Swal.fire('Error', 'An error occurred while deleting data!', 'error');
     }
 };
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const dataDisplayWarung = document.getElementById('dataDisplayWarung').getElementsByTagName('tbody')[0];
+
+    try {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung');
+        const data = await response.json();
+
+        data.forEach(item => {
+            // Map each payment method to a styled span
+            const paymentMethods = (item.metode_pembayaran || []).map(method => {
+                return `<span class="inline-flex px-2 text-xs font-semibold leading-5 text-blue-800 bg-blue-100 rounded-full mr-1">${method}</span>`;
+            }).join('');
+
+            const row = dataDisplayWarung.insertRow();
+
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="ml-4">
+                            <div class="text-sm font-medium leading-5 text-gray-900">${item.nama_tempat}</div>
+                            <div class="md:block hidden text-sm leading-5 text-gray-500">${item.lokasi}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="text-sm leading-5 text-gray-900">${item.lon}, ${item.lat}</div>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="text-sm leading-5 text-gray-900">${item.jam_buka}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div>${paymentMethods || '<span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Tidak tersedia</span>'}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <img class="w-20 h-20" src="${item.foto_pratinjau || 'https://www.freeiconspng.com/img/23494'}" alt="Gambar">
+                </td>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex space-x-2">
+                        <button type="button" class="text-white bg-green-500 px-2 py-1 rounded-md" onclick="showUpdateForm('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${item.gambar}')">Update</button>
+                        <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat})">Delete</button>
+                    </div>
+                </td>
+            `;
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        Swal.fire('Error', 'Failed to load location data.', 'error');
+    }
+});

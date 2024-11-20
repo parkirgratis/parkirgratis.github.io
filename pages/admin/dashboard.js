@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             Swal.fire({
                 icon: "error",
                 title: "Access Restricted",
-                text: data.message,
+                text: "Cannot access dashboard!",
                 timer: 2000,
                 backdrop: true,
                 customClass: {
