@@ -127,13 +127,14 @@ window.deleteData = async function(id, lon, lat) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayWarung = document.getElementById('dataDisplayWarung').getElementsByTagName('tbody')[0];
+    const totalWarungElement = document.getElementById('totalLocWarung');
 
     try {
         const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung');
         const data = await response.json();
-
+        
+        let totalLocationWarung = 0;
         data.forEach(item => {
-            // Map each payment method to a styled span
             const paymentMethods = (item.metode_pembayaran || []).map(method => {
                 return `<span class="inline-flex px-2 text-xs font-semibold leading-5 text-blue-800 bg-blue-100 rounded-full mr-1">${method}</span>`;
             }).join('');
@@ -167,7 +168,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </td>
             `;
+            totalLocationWarung++;
         });
+        totalWarungElement.textContent = totalLocationWarung;
     } catch (error) {
         console.error('Error fetching data:', error);
         Swal.fire('Error', 'Failed to load location data.', 'error');
