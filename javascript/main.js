@@ -363,7 +363,8 @@ function getAccurateUserLocation() {
     }
 }
 
-
+// Panggil fungsi saat halaman dimuat
+document.addEventListener("DOMContentLoaded", getAccurateUserLocation);
 
 // Panggil fungsi ini saat halaman dimuat
 document.addEventListener("DOMContentLoaded", addUserLocationMarker);
