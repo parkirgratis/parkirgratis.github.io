@@ -282,7 +282,7 @@ function findNearestParking(userCoordinates) {
     // Cek apakah `popupsData` berisi data
     if (!popupsData || popupsData.length === 0) {
         console.warn("Data lokasi parkir kosong atau tidak tersedia.");
-        return;
+        return; // Keluar jika tidak ada data
     }
 
     let nearestLocation = null;
@@ -292,11 +292,11 @@ function findNearestParking(userCoordinates) {
     popupsData.forEach(({ coordinate, content }) => {
         if (!Array.isArray(coordinate) || coordinate.length !== 2) {
             console.warn("Koordinat tidak valid:", coordinate);
-            return;
+            return; // Lewati lokasi yang tidak valid
         }
 
+        // Hitung jarak antara lokasi pengguna dan lokasi parkir
         const distance = calculateDistance(userCoordinates, coordinate);
-
         console.log(`Jarak ke ${coordinate}: ${distance.toFixed(2)} km`);
 
         if (distance < minDistance) {
@@ -311,7 +311,6 @@ function findNearestParking(userCoordinates) {
     if (nearestLocation) {
         // Tampilkan popup lokasi terdekat
         displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
-
         Swal.fire({
             icon: "info",
             title: "Lokasi Parkir Ditemukan",
@@ -326,13 +325,14 @@ function findNearestParking(userCoordinates) {
     }
 }
 
+
 function getAccurateUserLocation() {
     if (navigator.geolocation) {
         // Opsi untuk meningkatkan akurasi
         const options = {
-            enableHighAccuracy: true, 
-            timeout: 10000,          
-            maximumAge: 0             
+            enableHighAccuracy: true,
+            timeout: 15000,           
+            maximumAge: 0            
         };
 
         navigator.geolocation.getCurrentPosition(
@@ -362,6 +362,8 @@ function getAccurateUserLocation() {
         });
     }
 }
+
+
 
 // Panggil fungsi saat halaman dimuat
 document.addEventListener("DOMContentLoaded", getAccurateUserLocation);
