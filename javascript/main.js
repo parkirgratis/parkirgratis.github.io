@@ -49,33 +49,64 @@ fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/mark
 // Fetch popup data
 function fetchPopupData() {
     fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/lokasi')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            // Validasi apakah data adalah array
             if (!Array.isArray(data)) {
                 console.error('Popup data bukan array:', data);
                 return;
             }
-            popupsData = data.filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
-                             .map(item => ({
-                                 coordinate: [item.lon, item.lat],
-                                 content: `
-                                    <div class="popup-content">
-                                   <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
-                                     <div class="red-sidebar">
-                                      <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white">INFORMASI LOKASI</p>
-                                      </div>
-                                        <table>
-                                            <tr class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Nama Tempat</th><td class="px-2">${item.nama_tempat}</td></tr>
-                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Lokasi</th><td class="px-2">${item.lokasi}</td></tr>
-                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.fasilitas}</td></tr>
-                                        </table>
-                                    </div>`
-                             }));
+
+            // Filter dan map data ke format yang sesuai
+            popupsData = data
+                .filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.fasilitas && item.gambar)
+                .map(item => ({
+                    coordinate: [item.lon, item.lat],
+                    content: `
+                        <div class="popup-content">
+                            <img src="${item.gambar}" alt="Gambar Tempat" 
+                                 style="width:100%; height:auto; max-height: 200px; object-fit: cover; margin-bottom: 10px;">
+                            <div class="red-sidebar" style="padding: 5px; background-color: #f56565; color: #fff;">
+                                <span><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" 
+                                           style="width: 24px; height: 24px; vertical-align: middle;">
+                                </span>
+                                <span style="font-weight: bold;">INFORMASI LOKASI</span>
+                            </div>
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                                <tr>
+                                    <th style="text-align: left; background-color: #84cc16; color: #fff; padding: 5px;">Nama Tempat</th>
+                                    <td style="padding: 5px;">${item.nama_tempat}</td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: left; background-color: #84cc16; color: #fff; padding: 5px;">Lokasi</th>
+                                    <td style="padding: 5px;">${item.lokasi}</td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: left; background-color: #84cc16; color: #fff; padding: 5px;">Fasilitas</th>
+                                    <td style="padding: 5px;">${item.fasilitas}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `
+                }));
+
+            // Log hasil data yang diolah
             console.log('Popup Data:', popupsData);
+
+            // Initialize marker dan layer map
             initializeMapPopups();
+
+            // Panggil marker lokasi pengguna
+            addUserLocationMarker();
         })
         .catch(error => console.error('Error fetching popup data:', error));
 }
+
 
 let popups = [];
 const markersMap = new Map();
@@ -255,9 +286,8 @@ function findNearestParking(userCoordinates) {
     // Iterasi melalui data lokasi parkir
     popupsData.forEach(({ coordinate, content }) => {
         const distance = calculateDistance(userCoordinates, coordinate);
-
-        console.log(`Jarak ke ${coordinate}: ${distance.toFixed(2)} km`);
-
+        console.log(`Koordinat Parkir: ${coordinate}, Jarak: ${distance.toFixed(2)} km`);
+    
         if (distance < minDistance) {
             minDistance = distance;
             nearestLocation = { coordinate, content };
