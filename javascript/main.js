@@ -244,6 +244,11 @@ function findNearestParking(userCoordinates) {
         return;
     }
 
+    console.log("Data lokasi parkir:", popupsData);
+    // Lanjutkan dengan logika pencarian
+}
+
+
     let nearestLocation = null;
     let minDistance = Infinity;
 
@@ -277,7 +282,7 @@ function findNearestParking(userCoordinates) {
             text: "Tidak ada lokasi parkir terdekat yang ditemukan."
         });
     }
-}
+
 
 // Panggil fungsi ini saat halaman dimuat
 document.addEventListener("DOMContentLoaded", addUserLocationMarker);
