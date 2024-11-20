@@ -218,18 +218,32 @@ function addUserLocationMarker() {
 
                 // Berikan pesan kepada pengguna jika gagal mendapatkan lokasi
                 Swal.fire({
-                    icon: "warning",
-                    title: "Gagal Mengakses Lokasi",
-                    text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
+                    title: 'Lokasi Tidak Akurat',
+                    text: 'Apakah Anda ingin memperbarui lokasi secara manual?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, perbarui',
+                    cancelButtonText: 'Tidak',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                       
+                    }
                 });
             }
         );
     } else {
         // Browser tidak mendukung geolocation
         Swal.fire({
-            icon: "warning",
-            title: "Geolocation Tidak Didukung",
-            text: "Geolocation tidak didukung oleh browser ini."
+            title: 'Lokasi Tidak Akurat',
+            text: 'Apakah Anda ingin memperbarui lokasi secara manual?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, perbarui',
+            cancelButtonText: 'Tidak',
+        }).then((result) => {
+            if (result.isConfirmed) {
+              
+            }
         });
     }
 }
