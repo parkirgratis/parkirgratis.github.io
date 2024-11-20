@@ -265,29 +265,26 @@ function calculateDistance(coord1, coord2) {
 function findNearestParking(userCoordinates) {
     console.log("Lokasi pengguna:", userCoordinates);
 
+    // Cek apakah `popupsData` berisi data
     if (!popupsData || popupsData.length === 0) {
         console.warn("Data lokasi parkir kosong atau tidak tersedia.");
-        Swal.fire({
-            icon: "warning",
-            title: "Tidak Ada Data Parkir",
-            text: "Data lokasi parkir kosong atau tidak tersedia."
-        });
         return;
     }
-
-    console.log("Data lokasi parkir:", popupsData);
-    // Lanjutkan dengan logika pencarian
-}
-
 
     let nearestLocation = null;
     let minDistance = Infinity;
 
-    // Iterasi melalui data lokasi parkir
+    // Iterasi melalui `popupsData` untuk menemukan lokasi terdekat
     popupsData.forEach(({ coordinate, content }) => {
+        if (!Array.isArray(coordinate) || coordinate.length !== 2) {
+            console.warn("Koordinat tidak valid:", coordinate);
+            return;
+        }
+
         const distance = calculateDistance(userCoordinates, coordinate);
-        console.log(`Koordinat Parkir: ${coordinate}, Jarak: ${distance.toFixed(2)} km`);
-    
+
+        console.log(`Jarak ke ${coordinate}: ${distance.toFixed(2)} km`);
+
         if (distance < minDistance) {
             minDistance = distance;
             nearestLocation = { coordinate, content };
@@ -298,20 +295,22 @@ function findNearestParking(userCoordinates) {
     console.log("Jarak terkecil:", minDistance);
 
     if (nearestLocation) {
+        // Tampilkan popup lokasi terdekat
         displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
 
         Swal.fire({
             icon: "info",
             title: "Lokasi Parkir Ditemukan",
-            text: `Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`
+            text: `Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`,
         });
     } else {
         Swal.fire({
             icon: "warning",
             title: "Tidak Ada Lokasi Parkir",
-            text: "Tidak ada lokasi parkir terdekat yang ditemukan."
+            text: "Tidak ada lokasi parkir terdekat yang ditemukan.",
         });
     }
+}
 
 
 // Panggil fungsi ini saat halaman dimuat
