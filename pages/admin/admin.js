@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         Swal.fire('Error', 'Failed to load location data.', 'error');
     }
 
-    // Search functionality
     searchBar.addEventListener('input', () => {
         const searchTerm = searchBar.value.toLowerCase();
         const rows = dataDisplayTable.getElementsByTagName('tr');
@@ -175,4 +174,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error fetching data:', error);
         Swal.fire('Error', 'Failed to load location data.', 'error');
     }
+    searchWarung.addEventListener('input', () => {
+        const searchTerm = searchWarung.value.toLowerCase();
+        const rows = dataDisplayWarung.getElementsByTagName('tr');
+
+        Array.from(rows).forEach(row => {
+            const locationName = row.cells[0].innerText.toLowerCase();
+            const coordinates = row.cells[1].innerText.toLowerCase();
+            
+            row.style.display = locationName.includes(searchTerm) || coordinates.includes(searchTerm) ? '' : 'none';
+        });
+    });
 });
