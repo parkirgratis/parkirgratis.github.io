@@ -31,6 +31,9 @@ const map = new Map({
 let markerCoords = [];
 let popupsData = [];
 
+let markerCoordsWarung = [];
+let popupsDataWarung = [];
+
 
 // Fetch marker data
 fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/marker')
@@ -93,6 +96,19 @@ function fetchPopupData() {
         .catch(error => console.error('Error fetching popup data:', error));
 }
 
+fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/markerwarung')
+    .then(response => response.json())
+    .then(data => {
+        if (!Array.isArray(data.markers)) {
+            console.error('Data marker bukan array:', data);
+            return;
+        }
+        markerCoordsWarung = data.markers;
+        console.log('Koordinat Marker:', markerCoordsWarung);
+        fetchDataWarung();
+    })
+    .catch(error => console.error('Gagal mengambil data marker:', error));
+
 // Fetch popup data warung
 function fetchDataWarung() {
     fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung')
@@ -109,7 +125,7 @@ function fetchDataWarung() {
                 return;
             }
 
-            popupsData = data
+            popupsDataWarung = data
                 .filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.jam_buka && item.metode_pembayaran && item.foto_pratinjau)
                 .map(item => ({
                     coordinate: [item.lon, item.lat],
@@ -122,22 +138,24 @@ function fetchDataWarung() {
                             <table>
                                 <tr class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Nama Tempat</th><td class="px-2">${item.nama_tempat}</td></tr>
                                 <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Lokasi</th><td class="px-2">${item.lokasi}</td></tr>
-                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.jam_buka}</td></tr>
-                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.metode_pembayaran}</td></tr>
+                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Jam Buka</th><td class="px-2">${item.jam_buka}</td></tr>
+                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Metode Pembayaran</th><td class="px-2">${item.metode_pembayaran}</td></tr>
                             </table>
                         </div>`
                 }));
 
             // Log hasil data yang diolah
-            console.log('Popup Data:', popupsData);
+            console.log('Popup Data:', popupsDataWarung);
+            console.log('Data warung yang diterima:', data);
 
             // Initialize marker dan layer map
-            initializeMapPopups();
+            initializeMapPopupsWarung();
         })
         .catch(error => console.error('Error fetching popup data:', error));
 }
 
 let popups = [];
+let popupsWarung = [];
 const markersMap = new Map();
 
 function initializeMapPopups() {
@@ -155,6 +173,30 @@ function createMapMarkers() {
     });
 
     popupsData.forEach(({ coordinate, content }) => {
+        const marker = markersMap.get(coordinate.toString());
+        if (marker) {
+            marker.getElement().addEventListener('click', () => {
+                displayPopupForCoordinate(coordinate, content);
+            });
+        }
+    });
+}
+
+function initializeMapPopupsWarung() {
+    popupsWarung = createPopups(map, popupsDataWarung.map(item => ({
+        coordinate: item.coordinate,
+        content: item.content
+    })));
+    createMapMarkersWarung();
+}
+
+function createMapMarkersWarung() {
+    markerCoordsWarung.forEach(coord => {
+        const marker = createMarker(map, coord);
+        markersMap.set(coord.toString(), marker);
+    });
+
+    popupsDataWarung.forEach(({ coordinate, content }) => {
         const marker = markersMap.get(coordinate.toString());
         if (marker) {
             marker.getElement().addEventListener('click', () => {
@@ -183,19 +225,12 @@ function displayPopupForCoordinate(coordinate, content) {
 map.on('click', function() {
     document.getElementById('popup-sidebar').style.display = 'none';
 });
-
-// document.getElementById('toggle-sidebar-btn').addEventListener('click', function() {
-//     const popupSidebar = document.getElementById('popup-sidebar');
-//     popupSidebar.classList.toggle('active'); // Toggle the active class to show/hide
-// });
-
 // Ensure the sidebar is closed when map is clicked
 map.on('click', function(event) {
     const popupSidebar = document.getElementById('popup-sidebar');
     popupSidebar.classList.remove('active'); // Hide sidebar on map click
 });
 
-// Fungsi untuk menambahkan marker pada lokasi pengguna
 // Fungsi untuk menambahkan marker pada lokasi pengguna
 // Tambahkan marker lokasi pengguna ke peta
 function addUserLocationMarker() {
