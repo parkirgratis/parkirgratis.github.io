@@ -69,16 +69,16 @@ function fetchPopupData() {
                     coordinate: [item.lon, item.lat],
                     content: `
                         <div class="popup-content">
-                                   <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
-                                     <div class="red-sidebar">
-                                      <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white">INFORMASI LOKASI</p>
-                                      </div>
-                                        <table>
-                                            <tr class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Nama Tempat</th><td class="px-2">${item.nama_tempat}</td></tr>
-                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Lokasi</th><td class="px-2">${item.lokasi}</td></tr>
-                                            <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.fasilitas}</td></tr>
-                                 </table>
-                         </div>`
+                        <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
+                            <div class="red-sidebar">
+                            <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white">INFORMASI LOKASI</p>
+                            </div>
+                            <table>
+                                <tr class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Nama Tempat</th><td class="px-2">${item.nama_tempat}</td></tr>
+                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Lokasi</th><td class="px-2">${item.lokasi}</td></tr>
+                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.fasilitas}</td></tr>
+                            </table>
+                        </div>`
                 }));
 
             // Log hasil data yang diolah
@@ -93,6 +93,49 @@ function fetchPopupData() {
         .catch(error => console.error('Error fetching popup data:', error));
 }
 
+// Fetch popup data warung
+function fetchDataWarung() {
+    fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            
+            if (!Array.isArray(data)) {
+                console.error('Popup data bukan array:', data);
+                return;
+            }
+
+            popupsData = data
+                .filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.jam_buka && item.metode_pembayaran && item.foto_pratinjau)
+                .map(item => ({
+                    coordinate: [item.lon, item.lat],
+                    content: `
+                        <div class="popup-content">
+                        <img src="${item.foto_pratinjau}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
+                            <div class="red-sidebar">
+                            <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white">INFORMASI LOKASI</p>
+                            </div>
+                            <table>
+                                <tr class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Nama Tempat</th><td class="px-2">${item.nama_tempat}</td></tr>
+                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Lokasi</th><td class="px-2">${item.lokasi}</td></tr>
+                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.jam_buka}</td></tr>
+                                <tr  class = "px-6 py-4 font-sidebar whitespace-no-wrap border-b border-gray-500"> <th class="text-title text-white border-r border-gray-600 bg-lime-500">Fasilitas</th><td class="px-2">${item.metode_pembayaran}</td></tr>
+                            </table>
+                        </div>`
+                }));
+
+            // Log hasil data yang diolah
+            console.log('Popup Data:', popupsData);
+
+            // Initialize marker dan layer map
+            initializeMapPopups();
+        })
+        .catch(error => console.error('Error fetching popup data:', error));
+}
 
 let popups = [];
 const markersMap = new Map();
