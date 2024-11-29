@@ -15,43 +15,71 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-12 py-8">
-        <a href="../index.html" class="hidden md:block ml-5">
-          <img src="../img/logo.png" width="50" height="24">
-        </a>    
-        <span class="flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
-          
-            <a href="aboutus/aboutus.html">
-                <button class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-                  <span>
-                    <img src="../img/about.png" class="nav-logo" alt="" width="15px">
-                  </span>&nbsp;ABOUT
-                </button>
-              </a>
-              
-              <a href="https://parkirgratis.if.co.id/input/" class="md:block sm:block hidden">
-                <button class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-                  <span>
-                    <img src="../img/input.png" class="nav-logo" alt="" width="15px">
-                  </span>&nbsp;INPUT DATA
-                </button>
-              </a>
-            <a href="../pages/login/login.html">
-              <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
-                  <span>
-                      <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="40px">
-                  </span>
-                  <div class="flex flex-wrap -m-2">
-                      <div class="w-auto p-2">
-                        <h2 class="text-sm text-left px-2 hidden md:block title" style="font-family: 'Poppins', sans-serif;">Are you admin?</h2>
-                        <p class="text-sm font-semibold text-left text-sky-500 px-2 hidden md:block nav-title" style="font-family: 'Poppins', sans-serif;">Login Here</p>
-                        <p class="text-sm text-left px-2 md:hidden nav-title" style="font-family: 'Poppins', sans-serif;">LOGIN</p>
-                      </div>
-                  </div>
-              </button>
+  <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
+    <div>
+      <a href="/index.html" class="hidden md:block ml-5">
+        <img src="../../img/logo.png" width="50" height="24">
+      </a>
+    </div>
+    <div class="relative flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
+      
+      <details class="md:hidden relative">
+        <summary class="text-white cursor-pointer text-base py-2 px-4 bg-gray-500 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-600 hover:scale-105">
+          Menu
+        </summary>
+        <div class="absolute top-full -left-12 flex flex-col bg-black/50 p-4 rounded-md mt-1 space-y-2 z-10" style="min-width: 150px;">
+          <a href="https://parkirgratis.if.co.id/">
+            <button class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
+              INPUT DATA
+            </button>
           </a>
-        </span>
-      </nav>
+          <a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html">
+            <button class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
+              ABOUT US
+            </button>
+          </a>
+          <a href="https://parkirgratis.if.co.id/pages/login/login.html">
+            <button class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-800 rounded-lg hover:bg-sky-500 hover:text-black transition duration-200">
+              LOGIN ADMIN
+            </button>
+          </a>
+        </div>
+      </details>
+    </div>
+    
+    
+    
+  
+  
+    <div class="hidden md:flex items-center space-x-6">
+      <a href="https://parkirgratis.if.co.id/" class="flex items-center">
+        <button class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+          <span class="flex items-center">
+            <span class="text-white font-semibold tracking-wider">INPUT DATA</span>
+          </span>
+        </button>
+      </a>
+  
+      <a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html" class="flex items-center">
+        <button class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+          <span class="flex items-center">
+            <span class="text-white font-semibold tracking-wide">ABOUT US</span>
+          </span>
+        </button>
+      </a>
+  
+      <a href="https://parkirgratis.if.co.id/pages/login/login.html" class="flex items-center">
+        <button class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+          <span>
+            <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" class="rounded-full" alt="" width="30px">
+          </span>
+          <span class="text-white font-semibold tracking-wider ml-2">LOGIN ADMIN</span>
+        </button>
+      </a>
+    </div>
+  </nav>
+  
+  
 
     <div id="map"></div>
   
