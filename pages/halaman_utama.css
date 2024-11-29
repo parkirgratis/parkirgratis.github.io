@@ -26,4 +26,16 @@
   body {
     font-family: 'Poppins', sans-serif;
   }
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .flex-grow {
+    flex-grow: 1; /* Agar tombol navigasi berada di tengah */
+  }
+  
+  .space-x-6 a {
+    text-align: center;
+  }
   
