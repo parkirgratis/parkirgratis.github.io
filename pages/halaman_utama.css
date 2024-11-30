@@ -26,4 +26,32 @@
   body {
     font-family: 'Poppins', sans-serif;
   }
+  nav {
+    display: flex;
+    align-items: center;
+  }
   
+  .flex-grow {
+    flex-grow: 1; /* Agar tombol navigasi berada di tengah */
+  }
+  
+  .space-x-6 a {
+    text-align: center;
+  }
+  
+  details[open] .dropdown-item {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
