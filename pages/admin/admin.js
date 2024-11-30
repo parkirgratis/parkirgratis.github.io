@@ -100,7 +100,6 @@ window.deleteData = async function(id, lon, lat) {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ id })
         });
@@ -111,7 +110,6 @@ window.deleteData = async function(id, lon, lat) {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ id, lon, lat })
         });
