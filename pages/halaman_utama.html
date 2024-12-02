@@ -25,30 +25,50 @@
       
       <div class="relative flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
         <!-- Dropdown Menu untuk Mobile -->
-        <details class="md:hidden relative">
+        <details class="md:hidden relative group">
           <summary class="text-white cursor-pointer text-base py-2 px-4 bg-gray-500 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-600 hover:scale-105">
             Menu
           </summary>
-          <div class="absolute top-full -left-10 flex flex-col bg-black/50 p-4 rounded-md mt-1 space-y-2 z-10">
-            <a href="https://parkirgratis.if.co.id/input" class="dropdown-item" style="animation-delay: 0.2s;">
-              <button class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
+          <div
+            class="absolute top-full -left-10 flex flex-col bg-black/50 p-4 rounded-md mt-1 space-y-2 z-10 opacity-0 translate-y-4 group-open:opacity-100 group-open:translate-y-0 transition-all duration-300"
+          >
+            <a
+              href="https://parkirgratis.if.co.id/input"
+              class="dropdown-item"
+              style="animation: fade-in 0.3s ease-in-out 0.2s forwards;"
+            >
+              <button
+                class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50"
+              >
                 INPUT DATA
               </button>
             </a>
-            <a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html" class="dropdown-item" style="animation-delay: 0.4s;">
-              <button class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
+            <a
+              href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html"
+              class="dropdown-item"
+              style="animation: fade-in 0.3s ease-in-out 0.4s forwards;"
+            >
+              <button
+                class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50"
+              >
                 ABOUT US
               </button>
             </a>
-            <a href="https://parkirgratis.if.co.id/pages/login/login.html" class="dropdown-item" style="animation-delay: 0.6s;">
-              <button class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-800 rounded-lg hover:bg-sky-500 hover:text-black transition duration-200">
+            <a
+              href="https://parkirgratis.if.co.id/pages/login/login.html"
+              class="dropdown-item"
+              style="animation: fade-in 0.3s ease-in-out 0.6s forwards;"
+            >
+              <button
+                class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-800 rounded-lg hover:bg-sky-500 hover:text-black transition duration-200"
+              >
                 LOGIN ADMIN
               </button>
             </a>
           </div>
         </details>
       </div>
-    
+      
     
   
   
