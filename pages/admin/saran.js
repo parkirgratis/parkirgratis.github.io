@@ -11,23 +11,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Nama kolom
                 let cell1 = row.insertCell(0);
-                cell1.className = "px-10 py-4 border-b border-gray-200";
-                cell1.innerHTML = `<div class="text-sm text-gray-900">${item.nama || 'No Gmail provided'}</div>`;
+                cell1.className = "px-6 py-4 border-b border-gray-200";
+                cell1.innerHTML = `<div class="text-sm text-gray-900">${item.nama || 'No Name provided'}</div>`;
 
                 // Gmail kolom
                 let cell2 = row.insertCell(1);
                 cell2.className = "px-6 py-4 border-b border-gray-200";
-                cell2.innerHTML = `<div class="text-sm text-gray-900">${item.gmail || 'No Name provided'}</div>`;
+                cell2.innerHTML = `<div class="text-sm text-gray-900">${item.gmail || 'No Gmail provided'}</div>`;
 
                 // Saran kolom
                 let cell3 = row.insertCell(2);
                 cell3.className = "px-6 py-4 border-b border-gray-200 min-w-[400px]";
                 cell3.innerHTML = `<div class="text-sm text-gray-900">${item.saran_user || 'No Feedback provided'}</div>`;
 
+                // Tanggal kolom
+                let cell4 = row.insertCell(3);
+                cell4.className = "px-6 py-4 border-b border-gray-200 min-w-[200px]";  // Adjusted width
+                const date = item.tanggal ? new Date(item.tanggal) : null;
+                const formattedDate = date && !isNaN(date.getTime()) 
+                    ? date.toLocaleDateString('id-ID')  // Format tanggal ke format Indonesia (dd/mm/yyyy)
+                    : 'No Date provided';  // Tanggal kosong
+                cell4.innerHTML = `<div class="text-sm text-gray-900">${formattedDate}</div>`;
+
                 totalLocations++;
             });
 
-         
+            // Display total number of locations (feedback entries)
             if (totalLocElement) {
                 totalLocElement.innerHTML = totalLocations;
             }
