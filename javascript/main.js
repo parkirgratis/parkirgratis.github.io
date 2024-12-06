@@ -375,9 +375,9 @@ function findNearestParking(userCoordinates) {
         // Tampilkan popup lokasi terdekat
         displayPopupForCoordinate(nearestLocation.coordinate, nearestLocation.content);
         Swal.fire({
-            icon: "info",
-            title: "Lokasi Parkir Ditemukan",
-            text: `Lokasi parkir terdekat ditemukan! Jarak: ${minDistance.toFixed(2)} km`,
+            icon: "success",
+            title: "Lokasi Parkir Ditemukan!",
+            text: `Lokasi parkir terdekat ditemukan dengan Jarak: ${minDistance.toFixed(2)} km`,
         });
     } else {
         Swal.fire({
