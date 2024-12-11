@@ -36,7 +36,7 @@ let markerCoordsWarung = [];
 let popupsDataWarung = [];
 
 
-// Fetch marker data
+// Fetch data marker dari API
 fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/marker')
     .then(response => response.json())
     .then(data => {
@@ -44,8 +44,15 @@ fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/mark
             console.error('Data marker bukan array:', data);
             return;
         }
+
+        // Perbarui koordinat marker
         markerCoords = data.markers;
         console.log('Koordinat Marker:', markerCoords);
+
+        // Update marker di peta
+        createMapMarkers();
+
+        // Panggil fungsi untuk popup jika diperlukan
         fetchPopupData();
     })
     .catch(error => console.error('Gagal mengambil data marker:', error));
