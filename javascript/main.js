@@ -43,11 +43,18 @@ fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/mark
             console.error('Data marker bukan array:', data);
             return;
         }
+        // Perbarui data marker
         markerCoords = data.markers;
         console.log('Koordinat Marker:', markerCoords);
+
+        // Hapus marker lama dan tambahkan marker baru
+        createMapMarkers();
+
+        // Jika ada data popup yang terkait, panggil fungsi fetch popup
         fetchPopupData();
     })
     .catch(error => console.error('Gagal mengambil data marker:', error));
+
 
 // Fetch popup data
 function fetchPopupData() {
