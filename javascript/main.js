@@ -8,7 +8,7 @@ import View from 'https://cdn.skypack.dev/ol/View.js';
 import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
 import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
 import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
-import { createMapMarkers, createMarkerWarung } from '../javascript/controller/markers.js';
+import { createMarker, createMarkerWarung } from '../javascript/controller/markers.js';
 import { createPopups, displayPopup } from '../javascript/controller/popups.js';
 import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
 import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
@@ -36,7 +36,7 @@ let markerCoordsWarung = [];
 let popupsDataWarung = [];
 
 
-// Fetch data marker dari API
+// Fetch marker data
 fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/marker')
     .then(response => response.json())
     .then(data => {
@@ -44,15 +44,8 @@ fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/mark
             console.error('Data marker bukan array:', data);
             return;
         }
-
-        // Perbarui koordinat marker
         markerCoords = data.markers;
         console.log('Koordinat Marker:', markerCoords);
-
-        // Update marker di peta
-        createMapMarkers();
-
-        // Panggil fungsi untuk popup jika diperlukan
         fetchPopupData();
     })
     .catch(error => console.error('Gagal mengambil data marker:', error));
@@ -173,31 +166,18 @@ function initializeMapPopups() {
     createMapMarkers();
 }
 
-
-let activeMarkers = [];
 function createMapMarkers() {
-    // Ambil marker ID dari data terbaru
-    const currentMarkerIds = markerCoords.map(marker => marker.id);
-
-    // Hapus marker lama yang tidak ada di data terbaru
-    activeMarkers = activeMarkers.filter(marker => {
-        if (!currentMarkerIds.includes(marker.id)) {
-            marker.instance.setMap(null); // Hapus dari peta
-            return false; // Hapus dari array activeMarkers
-        }
-        return true; // Tetap pertahankan marker yang ada
+    markerCoords.forEach(coord => {
+        const marker = createMarker(map, coord);
+        markersMap.set(coord.toString(), marker);
     });
 
-    // Tambahkan marker baru dari data
-    markerCoords.forEach(coord => {
-        // Periksa apakah marker sudah ada di activeMarkers berdasarkan ID
-        if (!activeMarkers.some(marker => marker.id === coord.id)) {
-            const newMarker = new google.maps.Marker({
-                position: { lat: coord.lat, lng: coord.lng },
-                map: mapInstance,
-                title: `Marker ${coord.id}`
+    popupsData.forEach(({ coordinate, content }) => {
+        const marker = markersMap.get(coordinate.toString());
+        if (marker) {
+            marker.getElement().addEventListener('click', () => {
+                displayPopupForCoordinate(coordinate, content);
             });
-            activeMarkers.push({ id: coord.id, instance: newMarker });
         }
     });
 }
