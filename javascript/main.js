@@ -166,9 +166,25 @@ function initializeMapPopups() {
 }
 
 function createMapMarkers() {
+    // Hapus marker lama yang tidak ada di data baru
+    const existingCoords = Array.from(markersMap.keys());
+    const newCoords = markerCoords.map(coord => coord.toString());
+    const coordsToRemove = existingCoords.filter(coord => !newCoords.includes(coord));
+
+    coordsToRemove.forEach(coord => {
+        const marker = markersMap.get(coord);
+        if (marker) {
+            map.removeLayer(marker.getLayer());
+            markersMap.delete(coord);
+        }
+    });
+
+    // Tambahkan marker baru
     markerCoords.forEach(coord => {
-        const marker = createMarker(map, coord);
-        markersMap.set(coord.toString(), marker);
+        if (!markersMap.has(coord.toString())) {
+            const marker = createMarker(map, coord);
+            markersMap.set(coord.toString(), marker);
+        }
     });
 
     popupsData.forEach(({ coordinate, content }) => {
