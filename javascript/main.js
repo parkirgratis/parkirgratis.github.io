@@ -30,6 +30,7 @@ const map = new Map({
 
 let markerCoords = [];
 let popupsData = [];
+let activeMarkers = [];
 
 let markerCoordsWarung = [];
 let popupsDataWarung = [];
