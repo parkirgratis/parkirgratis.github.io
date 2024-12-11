@@ -30,7 +30,7 @@ const map = new Map({
 
 let markerCoords = [];
 let popupsData = [];
-let activeMarkers = [];
+
 
 let markerCoordsWarung = [];
 let popupsDataWarung = [];
@@ -166,18 +166,31 @@ function initializeMapPopups() {
     createMapMarkers();
 }
 
+
+let activeMarkers = [];
 function createMapMarkers() {
-    markerCoords.forEach(coord => {
-        const marker = createMarker(map, coord);
-        markersMap.set(coord.toString(), marker);
+    // Ambil marker ID dari data terbaru
+    const currentMarkerIds = markerCoords.map(marker => marker.id);
+
+    // Hapus marker lama yang tidak ada di data terbaru
+    activeMarkers = activeMarkers.filter(marker => {
+        if (!currentMarkerIds.includes(marker.id)) {
+            marker.instance.setMap(null); // Hapus dari peta
+            return false; // Hapus dari array activeMarkers
+        }
+        return true; // Tetap pertahankan marker yang ada
     });
 
-    popupsData.forEach(({ coordinate, content }) => {
-        const marker = markersMap.get(coordinate.toString());
-        if (marker) {
-            marker.getElement().addEventListener('click', () => {
-                displayPopupForCoordinate(coordinate, content);
+    // Tambahkan marker baru dari data
+    markerCoords.forEach(coord => {
+        // Periksa apakah marker sudah ada di activeMarkers berdasarkan ID
+        if (!activeMarkers.some(marker => marker.id === coord.id)) {
+            const newMarker = new google.maps.Marker({
+                position: { lat: coord.lat, lng: coord.lng },
+                map: mapInstance,
+                title: `Marker ${coord.id}`
             });
+            activeMarkers.push({ id: coord.id, instance: newMarker });
         }
     });
 }
