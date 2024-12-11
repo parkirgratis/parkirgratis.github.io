@@ -169,6 +169,44 @@
                             </div>
                         </div>
 
+                        <!-- Tambahkan elemen untuk form update -->
+                        <div id="updateFormContainer" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+                            <div class="bg-white p-6 rounded-md shadow-lg w-full max-w-md">
+                                <h2 class="text-xl font-bold mb-4">Update Data Lokasi</h2>
+                                <form id="updateForm">
+                                    <input type="hidden" id="updateId">
+                                    <div class="mb-4">
+                                        <label for="updateNamaTempat" class="block text-sm font-medium text-gray-700">Nama Tempat</label>
+                                        <input type="text" id="updateNamaTempat" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateLokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
+                                        <input type="text" id="updateLokasi" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateFasilitas" class="block text-sm font-medium text-gray-700">Fasilitas</label>
+                                        <input type="text" id="updateFasilitas" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateLon" class="block text-sm font-medium text-gray-700">Longitude</label>
+                                        <input type="number" step="any" id="updateLon" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateLat" class="block text-sm font-medium text-gray-700">Latitude</label>
+                                        <input type="number" step="any" id="updateLat" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateGambar" class="block text-sm font-medium text-gray-700">Gambar (URL)</label>
+                                        <input type="text" id="updateGambar" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="flex justify-end space-x-2">
+                                        <button type="button" class="px-4 py-2 bg-gray-500 text-white rounded-md" onclick="closeUpdateForm()">Cancel</button>
+                                        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                         <div class="flex flex-col mt-8">
                             <h1 class="font-semibold pb-5 text-2xl text-gray-700">🔵 Tabel Warung</h1>
                             <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
