@@ -8,7 +8,7 @@ import View from 'https://cdn.skypack.dev/ol/View.js';
 import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
 import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
 import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
-import { createMarker, createMarkerWarung } from '../javascript/controller/markers.js';
+import { createMapMarkers, createMarkerWarung } from '../javascript/controller/markers.js';
 import { createPopups, displayPopup } from '../javascript/controller/popups.js';
 import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
 import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
