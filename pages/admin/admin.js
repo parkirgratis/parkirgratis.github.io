@@ -190,9 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     icon: "success",
                     title: "Berhasil memperbarui data",
                     text: "Data parkir ini telah berhasil diperbarui.",
+                    timer: 2000,
                 });
-                closeUpdateForm();
-                location.reload();
+                setTimeout(() => {
+                    closeUpdateForm();
+                    location.reload();
+                }, 2000);
 
             } catch (error) {
                 console.error('Error updating data:', error);
