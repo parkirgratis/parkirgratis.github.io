@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 "_id": id,
                 "nama_tempat": namaTempat,
                 "lokasi": lokasi,
-                "jam_buka": jamBuka || '',
+                "jam_buka": jamBuka,
                 "metode_pembayaran": metodePembayaran,
                 "lon": lon,
                 "lat": lat,
-                "foto_pratinjau": fotoPratinjau || ''
+                "foto_pratinjau": fotoPratinjau,
             };
 
             try {
