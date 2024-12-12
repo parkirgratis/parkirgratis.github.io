@@ -123,7 +123,6 @@ window.deleteData = async function(id, lon, lat) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Menampilkan form update dengan data yang sudah ada
     window.showUpdateForm = function (id, namaTempat, lokasi, fasilitas, lon, lat, gambar) {
         document.getElementById('updateId').value = id || '';
         document.getElementById('updateNamaTempat').value = namaTempat || '';
@@ -133,28 +132,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateLat').value = lat || '';
         document.getElementById('updateGambar').value = gambar || '';
 
-        // Menampilkan form update
         document.getElementById('updateFormContainer').classList.remove('hidden');
     };
 
-    // Menutup form update
     window.closeUpdateForm = function () {
         document.getElementById('updateFormContainer').classList.add('hidden');
     };
 
-    const cancelButton = document.getElementById('cancelButton');
-    if (cancelButton) {
-        cancelButton.addEventListener('click', closeUpdateForm);
-    } else {
-        console.error("Cancel button tidak ditemukan.");
-    }
-
     const updateForm = document.getElementById('updateForm');
     if (updateForm) {
         updateForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Mencegah form untuk melakukan submit secara default
+            e.preventDefault();
 
-            // Mengambil data dari form
             const id = document.getElementById('updateId').value;
             const namaTempat = document.getElementById('updateNamaTempat').value;
             const lokasi = document.getElementById('updateLokasi').value;
@@ -163,57 +152,49 @@ document.addEventListener('DOMContentLoaded', () => {
             const lat = parseFloat(document.getElementById('updateLat').value);
             const gambar = document.getElementById('updateGambar').value;
 
-            // Validasi data
-            if (!id || !namaTempat || !lokasi || !fasilitas || !lon || !lat) {
-                alert('Semua kolom harus diisi!');
+            if (!id || !namaTempat || !lokasi || !fasilitas || isNaN(lon) || isNaN(lat)) {
+                alert('Semua kolom harus diisi dengan benar!');
                 return;
             }
 
-            // URL untuk API PUT request
-            const url = `https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/lokasi/${id}`;
+            const url = 'https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/tempat';
 
-
-            // Data yang akan dikirim
             const data = {
-                nama_tempat: namaTempat,
-                lokasi: lokasi,
-                fasilitas: fasilitas,
-                lon: lon,
-                lat: lat,
-                gambar: gambar
+                "_id": id,  // Menggunakan format "_id" sesuai dengan contoh
+                "nama_tempat": namaTempat,
+                "lokasi": lokasi,
+                "fasilitas": fasilitas,
+                "lon": lon,
+                "lat": lat,
+                "gambar": gambar || ""
             };
 
             try {
-                // Mengirim request PUT
                 const response = await fetch(url, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
-                    body: JSON.stringify(data),
+                    body: JSON.stringify(data)
                 });
 
-                // Menangani response dari server
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
                 }
 
                 const responseData = await response.json();
                 console.log("Response data dari server:", responseData);
-
-                // Tampilkan alert jika berhasil
                 alert('Data berhasil diperbarui!');
-
-                // Menutup form dan memperbarui tabel
                 closeUpdateForm();
                 location.reload();
+
             } catch (error) {
                 console.error('Error updating data:', error);
-                alert('Terjadi kesalahan saat memperbarui data.');
+                alert(`Terjadi kesalahan saat memperbarui data: ${error.message}`);
             }
         });
-    } else {
-        console.error("Form update tidak ditemukan.");
     }
 });
 
