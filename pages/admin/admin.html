@@ -207,6 +207,47 @@
                             </div>
                         </div>
 
+                        <div id="updateFormContainerWarung" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+                            <div class="bg-white p-6 rounded-md shadow-lg w-full max-w-md">
+                                <h2 class="text-xl font-bold mb-4">Update Data Warung</h2>
+                                <form id="updateFormWarung">
+                                    <input type="hidden" id="updateIdWarung">
+                                    <div class="mb-4">
+                                        <label for="updateNamaTempatWarung" class="block text-sm font-medium text-gray-700">Nama Tempat</label>
+                                        <input type="text" id="updateNamaTempatWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateLokasiWarung" class="block text-sm font-medium text-gray-700">Lokasi</label>
+                                        <input type="text" id="updateLokasiWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateJamBukaWarung" class="block text-sm font-medium text-gray-700">Jam Buka</label>
+                                        <input type="text" id="updateJamBukaWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateMetodePembayaranWarung" class="block text-sm font-medium text-gray-700">Metode Pembayaran</label>
+                                        <input type="text" id="updateMetodePembayaranWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateLonWarung" class="block text-sm font-medium text-gray-700">Longitude</label>
+                                    <input type="number" step="any" id="updateLonWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateLatWarung" class="block text-sm font-medium text-gray-700">Latitude</label>
+                                        <input type="number" step="any" id="updateLatWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="updateFotoPratinjauWarung" class="block text-sm font-medium text-gray-700">Gambar (URL)</label>
+                                        <input type="text" id="updateFotoPratinjauWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                    </div>
+                                    <div class="flex justify-end space-x-2">
+                                        <button type="button" class="px-4 py-2 bg-gray-500 text-white rounded-md" onclick="closeUpdateFormWarung()">Cancel</button>
+                                        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> 
+
                         <div class="flex flex-col mt-8">
                             <h1 class="font-semibold pb-5 text-2xl text-gray-700">🔵 Tabel Warung</h1>
                             <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -259,7 +300,7 @@
                                     </table>                                    
                                 </div>
                             </div>
-                        </div>
+                        </div>                       
                     </div>
                 </main>
             </div>
@@ -268,5 +309,6 @@
     <script type="module" src="admin.js"></script>
     <script type="module" src="logout.js"></script>
     <script type="module" src="dashboard.js"></script>
+    <script type="module" src="editwarung.js"></script>
 </body>
 </html>
