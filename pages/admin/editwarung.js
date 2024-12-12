@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     window.showUpdateFormWarung = function (id, Nama_Tempat, Lokasi, Jam_Buka, Metode_Pembayaran, Lon, Lat, Gambar) {
-        console.log("Jam Buka:", jamBuka);
-        console.log("fotoPratinjau:", fotoPratinjau);
+        console.log("Jam Buka:", Jam_Buka);
+        console.log("fotoPratinjau:", Gambar);
         document.getElementById('updateIdWarung').value = id;
         document.getElementById('updateNamaTempatWarung').value = Nama_Tempat || '';
         document.getElementById('updateLokasiWarung').value = Lokasi || '';
