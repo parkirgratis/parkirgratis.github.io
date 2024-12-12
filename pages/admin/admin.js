@@ -186,13 +186,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const responseData = await response.json();
                 console.log("Response data dari server:", responseData);
-                alert('Data berhasil diperbarui!');
+                Swal.fire({
+                    icon: "success",
+                    title: "Berhasil memperbarui data",
+                    text: "Data parkir ini telah berhasil diperbarui.",
+                });
                 closeUpdateForm();
                 location.reload();
 
             } catch (error) {
                 console.error('Error updating data:', error);
-                alert(`Terjadi kesalahan saat memperbarui data: ${error.message}`);
+                Swal.fire({
+                    icon: "error",
+                    title: "Gagal Memperbarui Data",
+                    text: "Data gagal diperbarui, silakan coba lagi.",
+                });
             }
         });
     }
