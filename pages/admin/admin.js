@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = 'https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/tempat';
 
             const data = {
-                "_id": id,  // Menggunakan format "_id" sesuai dengan contoh
+                "_id": id,
                 "nama_tempat": namaTempat,
                 "lokasi": lokasi,
                 "fasilitas": fasilitas,
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex space-x-2">
                         <button type="button" class="text-white bg-green-500 px-2 py-1 rounded-md" 
-                            onclick="showUpdateFormWarung('${item.id}', '${item.nama_tempat}', '${item.lokasi}', '${item.jam_buka}', '${item.metode_pembayaran}', ${item.lon}, ${item.lat}, '${item.foto_pratinjau}')">
+                            onclick="showUpdateFormWarung('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.jam_buka}', '${item.metode_pembayaran}', ${item.lon}, ${item.lat}, '${item.foto_pratinjau}')">
                             Update
                         </button>
                         <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" 
