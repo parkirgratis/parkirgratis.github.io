@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = 'https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung';
 
             const data = {
-                "id": id,
+                "_id": id,
                 "nama_tempat": namaTempat,
                 "lokasi": lokasi,
                 "jam_buka": jam_buka,
