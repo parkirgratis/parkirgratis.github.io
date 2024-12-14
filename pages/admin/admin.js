@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (updateForm) {
         updateForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
+            
             const id = document.getElementById('updateId').value;
             const namaTempat = document.getElementById('updateNamaTempat').value;
             const lokasi = document.getElementById('updateLokasi').value;
@@ -247,8 +247,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex space-x-2">
-                        <button type="button" class="text-white bg-green-500 px-2 py-1 rounded-md" onclick="showUpdateFormWarung('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.fasilitas}', ${item.lon}, ${item.lat}, '${item.gambar}')">Update</button>
-                        <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" onclick="deleteData('${item._id}', ${item.lon}, ${item.lat})">Delete</button>
+                        <button type="button" class="text-white bg-green-500 px-2 py-1 rounded-md" 
+                            onclick="showUpdateFormWarung('${item.id}', '${item.nama_tempat}', '${item.lokasi}', '${item.jam_buka}', '${item.metode_pembayaran}', ${item.lon}, ${item.lat}, '${item.foto_pratinjau}')">
+                            Update
+                        </button>
+                        <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" 
+                            onclick="deleteData('${item._id}', ${item.lon}, ${item.lat})">
+                            Delete
+                        </button>
                     </div>
                 </td>
             `;
@@ -270,4 +276,107 @@ document.addEventListener('DOMContentLoaded', async () => {
             row.style.display = locationName.includes(searchTerm) || coordinates.includes(searchTerm) ? '' : 'none';
         });
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.showUpdateFormWarung = function (id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, fotoPratinjau) {
+        console.log("showUpdateFormWarung called with id:", id);
+    
+        document.getElementById('updateIdWarung').value = id;
+        document.getElementById('updateNamaTempatWarung').value = namaTempat || '';
+        document.getElementById('updateLokasiWarung').value = lokasi || '';
+        document.getElementById('updateJamBukaWarung').value = jamBuka || '';
+        document.getElementById('updateMetodePembayaranWarung').value = metodePembayaran || '';
+        document.getElementById('updateLonWarung').value = lon || '';
+        document.getElementById('updateLatWarung').value = lat || '';
+        document.getElementById('updateFotoPratinjauWarung').value = fotoPratinjau || '';
+    
+        console.log("Form fields populated:", {
+            id,
+            namaTempat,
+            lokasi,
+            jamBuka,
+            metodePembayaran,
+            lon,
+            lat,
+            fotoPratinjau
+        });
+    
+        document.getElementById('updateFormContainerWarung').classList.remove('hidden');
+    };    
+
+    window.closeUpdateFormWarung = function () {
+        document.getElementById('updateFormContainerWarung').classList.add('hidden');
+    };
+
+    const updateFormWarung = document.getElementById('updateFormWarung');
+    if (updateFormWarung) {
+        updateFormWarung.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            console.log("ID from update form field:", document.getElementById('updateIdWarung').value);
+            const id = document.getElementById('updateIdWarung').value;
+            const namaTempat = document.getElementById('updateNamaTempatWarung').value;
+            const lokasi = document.getElementById('updateLokasiWarung').value;
+            const jam_buka = document.getElementById('updateJamBukaWarung').value;
+            const metodePembayaran = document.getElementById('updateMetodePembayaranWarung').value.split(',');
+            const lon = parseFloat(document.getElementById('updateLonWarung').value);
+            const lat = parseFloat(document.getElementById('updateLatWarung').value);
+            const fotoPratinjau = document.getElementById('updateFotoPratinjauWarung').value;
+
+            if (!id || !namaTempat || !lokasi || !jam_buka || isNaN(lon) || isNaN(lat)) {
+                Swal.fire('Error', 'All fields must be filled correctly!', 'error');
+                return;
+            }
+
+            const url = 'https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung';
+
+            const data = {
+                "id": id,
+                "nama_tempat": namaTempat,
+                "lokasi": lokasi,
+                "jam_buka": jam_buka,
+                "metode_pembayaran": metodePembayaran,
+                "lon": lon,
+                "lat": lat,
+                "foto_pratinjau": fotoPratinjau,
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+                }
+
+                const responseData = await response.json();
+                console.log("Response data from server:", responseData);
+                Swal.fire({
+                    icon: "success",
+                    title: "Berhasil memperbarui data",
+                    text: "Data warung telah berhasil diupdate",
+                    timer: 2000,
+                });
+                setTimeout(() => {
+                    closeUpdateFormWarung();
+                    location.reload();
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error updating warung data:', error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed to Update Data",
+                    text: "Failed to update data, please try again.",
+                });
+            }
+        });
+    }
 });
