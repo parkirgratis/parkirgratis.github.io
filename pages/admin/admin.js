@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung');
         const data = await response.json();
+        console.log("API Response Data:", data);
         
         let totalLocationWarung = 0;
         data.forEach(item => {
@@ -248,7 +249,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex space-x-2">
                         <button type="button" class="text-white bg-green-500 px-2 py-1 rounded-md" 
-                            onclick="showUpdateFormWarung('${item.id}', '${item.nama_tempat}', '${item.lokasi}', '${item.jam_buka}', '${item.metode_pembayaran}', ${item.lon}, ${item.lat}, '${item.foto_pratinjau}')">
+                            onclick="showUpdateFormWarung('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.jam_buka}', '${item.metode_pembayaran}', ${item.lon}, ${item.lat}, '${item.foto_pratinjau}')">
                             Update
                         </button>
                         <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" 
@@ -279,10 +280,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.showUpdateFormWarung = function (id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, fotoPratinjau) {
-        console.log("showUpdateFormWarung called with id:", id);
-    
-        document.getElementById('updateIdWarung').value = id;
+    window.showUpdateFormWarung = function (_id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, fotoPratinjau) {
+        console.log("showUpdateFormWarung called with id:", _id);
+        console.log({
+            _id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, fotoPratinjau
+        });            
+        document.getElementById('updateIdWarung').value = _id || '';
         document.getElementById('updateNamaTempatWarung').value = namaTempat || '';
         document.getElementById('updateLokasiWarung').value = lokasi || '';
         document.getElementById('updateJamBukaWarung').value = jamBuka || '';
@@ -292,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateFotoPratinjauWarung').value = fotoPratinjau || '';
     
         console.log("Form fields populated:", {
-            id,
+            _id,
             namaTempat,
             lokasi,
             jamBuka,
@@ -313,25 +316,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (updateFormWarung) {
         updateFormWarung.addEventListener('submit', async (e) => {
             e.preventDefault();
-            console.log("ID from update form field:", document.getElementById('updateIdWarung').value);
-            const id = document.getElementById('updateIdWarung').value;
+        
+            const _id = document.getElementById('updateIdWarung').value;
             const namaTempat = document.getElementById('updateNamaTempatWarung').value;
             const lokasi = document.getElementById('updateLokasiWarung').value;
             const jam_buka = document.getElementById('updateJamBukaWarung').value;
-            const metodePembayaran = document.getElementById('updateMetodePembayaranWarung').value.split(',');
+            const metodePembayaran = document
+                .getElementById('updateMetodePembayaranWarung')
+                .value.split(',')
+                .map(item => item.trim())
+                .filter(item => item !== '');
             const lon = parseFloat(document.getElementById('updateLonWarung').value);
             const lat = parseFloat(document.getElementById('updateLatWarung').value);
             const fotoPratinjau = document.getElementById('updateFotoPratinjauWarung').value;
-
-            if (!id || !namaTempat || !lokasi || !jam_buka || isNaN(lon) || isNaN(lat)) {
+        
+            if (!_id || !namaTempat || !lokasi || !jam_buka || isNaN(lon) || isNaN(lat)) {
                 Swal.fire('Error', 'All fields must be filled correctly!', 'error');
                 return;
             }
-
+        
             const url = 'https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung';
-
             const data = {
-                "id": id,
+                "_id": _id,
                 "nama_tempat": namaTempat,
                 "lokasi": lokasi,
                 "jam_buka": jam_buka,
@@ -340,7 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 "lat": lat,
                 "foto_pratinjau": fotoPratinjau,
             };
-
+        
+            console.log("Data sent to server:", data);
+        
             try {
                 const response = await fetch(url, {
                     method: 'PUT',
@@ -350,12 +358,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: JSON.stringify(data)
                 });
-
+        
                 if (!response.ok) {
                     const errorText = await response.text();
                     throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
                 }
-
+        
                 const responseData = await response.json();
                 console.log("Response data from server:", responseData);
                 Swal.fire({
@@ -364,11 +372,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     text: "Data warung telah berhasil diupdate",
                     timer: 2000,
                 });
+        
                 setTimeout(() => {
                     closeUpdateFormWarung();
                     location.reload();
                 }, 2000);
-
+        
             } catch (error) {
                 console.error('Error updating warung data:', error);
                 Swal.fire({
@@ -377,6 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     text: "Failed to update data, please try again.",
                 });
             }
-        });
+        });        
     }
 });
