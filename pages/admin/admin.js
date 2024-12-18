@@ -244,12 +244,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div>${paymentMethods || '<span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Tidak tersedia</span>'}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <img class="w-20 h-20" src="${item.foto_pratinjau || 'https://www.freeiconspng.com/img/23494'}" alt="Gambar">
+                    <img class="w-20 h-20" src="${item.gambar || 'https://www.freeiconspng.com/img/23494'}" alt="Gambar">
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex space-x-2">
                         <button type="button" class="text-white bg-green-500 px-2 py-1 rounded-md" 
-                            onclick="showUpdateFormWarung('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.jam_buka}', '${item.metode_pembayaran}', ${item.lon}, ${item.lat}, '${item.foto_pratinjau}')">
+                            onclick="showUpdateFormWarung('${item._id}', '${item.nama_tempat}', '${item.lokasi}', '${item.jam_buka}', '${item.metode_pembayaran}', ${item.lon}, ${item.lat}, '${item.gambar}')">
                             Update
                         </button>
                         <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" 
@@ -280,10 +280,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.showUpdateFormWarung = function (_id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, fotoPratinjau) {
+    window.showUpdateFormWarung = function (_id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, gambar) {
         console.log("showUpdateFormWarung called with id:", _id);
         console.log({
-            _id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, fotoPratinjau
+            _id, namaTempat, lokasi, jamBuka, metodePembayaran, lon, lat, gambar
         });            
         document.getElementById('updateIdWarung').value = _id || '';
         document.getElementById('updateNamaTempatWarung').value = namaTempat || '';
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateMetodePembayaranWarung').value = metodePembayaran || '';
         document.getElementById('updateLonWarung').value = lon || '';
         document.getElementById('updateLatWarung').value = lat || '';
-        document.getElementById('updateFotoPratinjauWarung').value = fotoPratinjau || '';
+        document.getElementById('updateFotoPratinjauWarung').value = gambar || '';
     
         console.log("Form fields populated:", {
             _id,
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
             metodePembayaran,
             lon,
             lat,
-            fotoPratinjau
+            gambar
         });
     
         document.getElementById('updateFormContainerWarung').classList.remove('hidden');
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .filter(item => item !== '');
             const lon = parseFloat(document.getElementById('updateLonWarung').value);
             const lat = parseFloat(document.getElementById('updateLatWarung').value);
-            const fotoPratinjau = document.getElementById('updateFotoPratinjauWarung').value;
+            const gambar = document.getElementById('updateFotoPratinjauWarung').value;
         
             if (!_id || !namaTempat || !lokasi || !jam_buka || isNaN(lon) || isNaN(lat)) {
                 Swal.fire('Error', 'All fields must be filled correctly!', 'error');
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "metode_pembayaran": metodePembayaran,
                 "lon": lon,
                 "lat": lat,
-                "foto_pratinjau": fotoPratinjau,
+                "gambar": gambar,
             };
         
             console.log("Data sent to server:", data);
