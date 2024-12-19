@@ -126,12 +126,12 @@ function fetchDataWarung() {
             }
 
             popupsDataWarung = data
-                .filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.jam_buka && item.metode_pembayaran && item.foto_pratinjau)
+                .filter(item => item.lon && item.lat && item.nama_tempat && item.lokasi && item.jam_buka && item.metode_pembayaran && item.gambar)
                 .map(item => ({
                     coordinate: [item.lon, item.lat],
                     content: `
                         <div class="popup-content">
-                        <img src="${item.foto_pratinjau}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
+                        <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
                             <div class="bg-blue-500 flex justify-center items-center h-12">
                                 <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white uppercase">${item.nama_tempat}</p>
                             </div>
