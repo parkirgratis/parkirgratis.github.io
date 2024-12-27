@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     showConfirmButton: false
                   });
                   setTimeout(() => {
-                    window.location.href = '../admin/admin.html';
+                    window.location.href = 'http://parkirgratis.if.co.id/signin/';
                   }, 2000);
             } else {
                 Swal.fire({
