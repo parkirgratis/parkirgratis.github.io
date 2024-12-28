@@ -17,6 +17,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
 @keyframes fadeIn {
     0% {
       opacity: 0;

@@ -278,19 +278,12 @@ function addUserLocationMarker() {
             },
             (error) => {
                 console.error("Error mendapatkan lokasi pengguna:", error);
-
-                // Berikan pesan kepada pengguna jika gagal mendapatkan lokasi
                 Swal.fire({
                     title: 'Lokasi Tidak Akurat',
-                    text: 'Apakah Anda ingin memperbarui lokasi secara manual?',
+                    text: 'Coba untuk mengaktifkan GPS pada perangkat terlebih dahulu, lalu muat ulang halaman ini.',
                     icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya, perbarui',
-                    cancelButtonText: 'Tidak',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                       
-                    }
+                    showCancelButton: false,
+                    showConfirmButton: false,
                 });
             }
         );
@@ -298,15 +291,10 @@ function addUserLocationMarker() {
         // Browser tidak mendukung geolocation
         Swal.fire({
             title: 'Lokasi Tidak Akurat',
-            text: 'Apakah Anda ingin memperbarui lokasi secara manual?',
+            text: 'Coba untuk mengaktifkan GPS pada perangkat terlebih dahulu, lalu muat ulang halaman ini.',
             icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, perbarui',
-            cancelButtonText: 'Tidak',
-        }).then((result) => {
-            if (result.isConfirmed) {
-              
-            }
+            showCancelButton: false,
+            showConfirmButton: false,
         });
     }
 }
@@ -378,12 +366,14 @@ function findNearestParking(userCoordinates) {
             icon: "success",
             title: "Lokasi Parkir Ditemukan!",
             text: `Lokasi parkir terdekat ditemukan dengan Jarak: ${minDistance.toFixed(2)} km`,
+            showConfirmButton: false,
         });
     } else {
         Swal.fire({
             icon: "warning",
             title: "Tidak Ada Lokasi Parkir",
             text: "Tidak ada lokasi parkir terdekat yang ditemukan.",
+            showConfirmButton: false,
         });
     }
 }

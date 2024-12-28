@@ -7,15 +7,15 @@
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/style.css">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/mainmenu.css">
-
-    <link rel="shortcut icon" type="image/x-icon" href="../img/logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=REM">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C32JH3GZHD"></script>
-    <script src="../javascript/g-analytics.js"></script>
+    <script src="javascript/g-analytics.js"></script>
 </head>
 <body>
   <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
@@ -24,54 +24,30 @@
         <img src="../../img/logo.png" width="50" height="24">
       </a>
     </div>
-    <div class="relative flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
-      
-      <div class="relative flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
-        <!-- Dropdown Menu untuk Mobile -->
-        <details class="md:hidden relative group">
-          <summary class="text-white cursor-pointer text-base py-2 px-4 bg-gray-500 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-600 hover:scale-105">
-            Menu
-          </summary>
-          <div
-            class="absolute top-full -left-10 flex flex-col bg-black/50 p-4 rounded-md mt-1 space-y-2 z-10 opacity-0 translate-y-4 group-open:opacity-100 group-open:translate-y-0 transition-all duration-300"
-          >
-            <a
-              href="https://parkirgratis.if.co.id/input"
-              class="dropdown-item"
-              style="animation: fade-in 0.3s ease-in-out 0.2s forwards;"
-            >
-              <button
-                class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50"
-              >
-                INPUT DATA
-              </button>
-            </a>
-            <a
-              href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html"
-              class="dropdown-item"
-              style="animation: fade-in 0.3s ease-in-out 0.4s forwards;"
-            >
-              <button
-                class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50"
-              >
-                ABOUT US
-              </button>
-            </a>
-            <a
-              href="https://parkirgratis.if.co.id/pages/login/login.html"
-              class="dropdown-item"
-              style="animation: fade-in 0.3s ease-in-out 0.6s forwards;"
-            >
-              <button
-                class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-800 rounded-lg hover:bg-sky-500 hover:text-black transition duration-200"
-              >
-                LOGIN ADMIN
-              </button>
-            </a>
-          </div>
-        </details>
-      </div>
-      
+
+    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="md:hidden block text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>&nbsp;Menu
+    </button>
+        
+    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+            <li>
+                <a href="parkirgratis.if.co.id/input/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tambahkan Lokasi</a>
+            </li>
+            <li>
+                <a href="pages/aboutus/aboutus.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tentang Kami</a>
+            </li>
+            <li>
+                <a href="pages/saran/saran.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Feedback</a>
+            </li>
+            <li>
+                <a href="pages/login/login.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Login</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="hidden md:flex items-center space-x-6">
       <a href="https://parkirgratis.if.co.id/input/" class="flex items-center">
         <button class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
@@ -98,6 +74,8 @@
         </button>
       </a>
     </div>
+
+
   </nav>
 
     <div id="map"></div>
@@ -106,6 +84,7 @@
         <div id="popup-content"></div>
         <div id="popup-content-container" class="popup-content-container"></div>
     </div>
-    <script type="module" src="../javascript/main.js"></script>
+    <script type="module" src="javascript/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>
 </html>
