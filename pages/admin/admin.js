@@ -1,5 +1,11 @@
 import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
 import { addCSS } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
+import {
+    setInner,
+    show,
+    hide,
+    getFileSize
+  } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
 
 addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 
@@ -209,6 +215,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+window.uploadImage = uploadImage;
+
+const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+
+function uploadImage() {
+    const gambar = document.getElementById('updateGambar');
+    if (!igambar || gambar.files.length === 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "Silakan pilih file gambar terlebih dahulu"
+        });
+        return;
+    }
+    const gambarinput = document.getElementById('updateGambar');
+    if (gambarinput) {
+        hide("updateGambar");
+    } else {
+        console.error("Element with ID 'updateGambar' not found");
+    }
+    let besar = getFileSize("updateGambar");
+    setInner("isi", besar);
+    
+    postFile(target_url, "updateGambar", "img", renderToHtml);
+}
+
+function renderToHtml(result) {
+    console.log(result);
+    setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
+    show("updateGambar");
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayWarung = document.getElementById('dataDisplayWarung').getElementsByTagName('tbody')[0];
     const totalWarungElement = document.getElementById('totalLocWarung');
@@ -311,38 +349,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.closeUpdateFormWarung = function () {
         document.getElementById('updateFormContainerWarung').classList.add('hidden');
     };
-
-    window.uploadImage = uploadImage;
-
-    const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
-    
-    function uploadImage() {
-        const gambar = document.getElementById('updateGambar');
-        if (!igambar || gambar.files.length === 0) {
-            Swal.fire({
-                icon: "error",
-                title: "Gagal",
-                text: "Silakan pilih file gambar terlebih dahulu"
-            });
-            return;
-        }
-        const gambarinput = document.getElementById('updateGambar');
-        if (gambarinput) {
-            hide("updateGambar");
-        } else {
-            console.error("Element with ID 'updateGambar' not found");
-        }
-        let besar = getFileSize("updateGambar");
-        setInner("isi", besar);
-        
-        postFile(target_url, "updateGambar", "img", renderToHtml);
-    }
-    
-    function renderToHtml(result) {
-        console.log(result);
-        setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
-        show("updateGambar");
-    }
 
     const updateFormWarung = document.getElementById('updateFormWarung');
     if (updateFormWarung) {
