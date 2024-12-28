@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateFasilitas').value = fasilitas || '';
         document.getElementById('updateLon').value = lon || '';
         document.getElementById('updateLat').value = lat || '';
-        document.getElementById('updateGambar').value = gambar || '';
+        document.getElementById('updateGambar').value = "";
 
         document.getElementById('updateFormContainer').classList.remove('hidden');
     };
@@ -246,6 +246,7 @@ function renderToHtml(result) {
     setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
     show("updateGambar");
 }
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayWarung = document.getElementById('dataDisplayWarung').getElementsByTagName('tbody')[0];
