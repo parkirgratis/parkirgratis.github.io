@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     icon: "success",
                     title: "Login Successful",
-                    text: "You will be directed to dashboard",
+                    text: "Authentication successful! You will be redirected to the 2 factor authentication page shortly.",
                     timer: 2000,
                     showConfirmButton: false
                   });
