@@ -312,6 +312,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateFormContainerWarung').classList.add('hidden');
     };
 
+    window.uploadImage = uploadImage;
+
+    const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+    
+    function uploadImage() {
+        const gambar = document.getElementById('updateGambar');
+        if (!igambar || gambar.files.length === 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Gagal",
+                text: "Silakan pilih file gambar terlebih dahulu"
+            });
+            return;
+        }
+        const gambarinput = document.getElementById('updateGambar');
+        if (gambarinput) {
+            hide("updateGambar");
+        } else {
+            console.error("Element with ID 'updateGambar' not found");
+        }
+        let besar = getFileSize("updateGambar");
+        setInner("isi", besar);
+        
+        postFile(target_url, "updateGambar", "img", renderToHtml);
+    }
+    
+    function renderToHtml(result) {
+        console.log(result);
+        setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
+        show("updateGambar");
+    }
+
     const updateFormWarung = document.getElementById('updateFormWarung');
     if (updateFormWarung) {
         updateFormWarung.addEventListener('submit', async (e) => {
@@ -389,3 +421,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });        
     }
 });
+
