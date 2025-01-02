@@ -215,18 +215,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const uploadButton = document.getElementById('uploadImageButton');
-    if (uploadButton) {
-        uploadButton.addEventListener('click', () => {
-            uploadImage();
-        });
-    }
-});
+window.uploadImage = uploadImage;
 
-async function uploadImage() {
+const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+
+function uploadImage() {
     const gambar = document.getElementById('updateGambar');
-    if (!gambar || gambar.files.length === 0) {
+    if (!igambar || gambar.files.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Gagal",
@@ -234,45 +229,22 @@ async function uploadImage() {
         });
         return;
     }
-
-    const file = gambar.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", "img");
-
-    const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
-
-    try {
-        const response = await fetch(target_url, {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Upload gagal! Status: ${response.status}, Pesan: ${errorText}`);
-        }
-
-        const result = await response.json();
-        const uploadedImageUrl = result.url || `https://raw.githubusercontent.com/parkirgratis/filegambar/main/img/${file.name}`;
-        console.log("Gambar berhasil diunggah, URL:", uploadedImageUrl);
-
-        document.getElementById('updateGambar').value = uploadedImageUrl;
-
-        Swal.fire({
-            icon: "success",
-            title: "Berhasil",
-            text: "Gambar berhasil diunggah!",
-        });
-
-    } catch (error) {
-        console.error('Error uploading image:', error);
-        Swal.fire({
-            icon: "error",
-            title: "Gagal",
-            text: "Terjadi kesalahan saat mengunggah gambar.",
-        });
+    const gambarinput = document.getElementById('updateGambar');
+    if (gambarinput) {
+        hide("updateGambar");
+    } else {
+        console.error("Element with ID 'updateGambar' not found");
     }
+    let besar = getFileSize("updateGambar");
+    setInner("isi", besar); 
+    
+    postFile(target_url, "updateGambar", "img", renderToHtml);
+}
+
+function renderToHtml(result) {
+    console.log(result);
+    setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
+    show("updateGambar");
 }
 
 
