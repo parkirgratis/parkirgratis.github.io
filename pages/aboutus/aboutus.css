@@ -102,19 +102,6 @@ p {
     }
 }
 
-nav {
-    padding: 10px;
-    width: 100%;
-}
-
-button {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 2px; /* Reduced margin */
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
-
 button img {
     margin-right: 10px;
 }
