@@ -145,97 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateFormContainer').classList.add('hidden');
     };
 
-    // Fungsi untuk mengunggah gambar
-    window.uploadImage = async function() {
-        const imageInput = document.getElementById('updateGambar');
-        if (!imageInput || imageInput.files.length === 0) {
-            Swal.fire({
-                icon: "error",
-                title: "Gagal",
-                text: "Silakan pilih file gambar terlebih dahulu"
-            });
-            return;
-        }
-
-        const inputFileElement = document.getElementById('updateGambar');
-        if (inputFileElement) {
-            inputFileElement.disabled = true; // Menonaktifkan input gambar selama proses upload
-        }
-
-        let besar = getFileSize("updateGambar"); // Mengambil ukuran file
-        setInner("isi", besar); // Menampilkan ukuran file (optional)
-
-        // Proses unggah gambar
-        const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
-        const formData = new FormData();
-        formData.append("img", imageInput.files[0]);
-
-        try {
-            const response = await fetch(target_url, {
-                method: 'POST',
-                body: formData
-            });
-
-            const result = await response.json();
-            if (result && result.response) {
-                const imageUrl = "https://parkirgratis.github.io/filegambar/" + result.response;
-                setInner("isi", imageUrl); // Menampilkan URL gambar yang berhasil diunggah
-
-                document.getElementById('updateGambar').dataset.imageUrl = imageUrl; // Menyimpan URL gambar
-                Swal.fire({
-                    icon: "success",
-                    title: "Gambar berhasil diunggah",
-                    text: "Gambar telah berhasil diunggah.",
-                });
-
-                inputFileElement.disabled = false; // Menampilkan kembali input gambar setelah unggah selesai
-            } else {
-                throw new Error("Gagal mengunggah gambar");
-            }
-        } catch (error) {
-            console.error("Error saat mengunggah gambar:", error);
-            Swal.fire({
-                icon: "error",
-                title: "Gagal Mengunggah Gambar",
-                text: "Terjadi kesalahan saat mengunggah gambar, silakan coba lagi.",
-            });
-            inputFileElement.disabled = false;
-        }
-    };
-
-    // Fungsi untuk menghitung ukuran file (optional)
-    function getFileSize(elementId) {
-        const fileInput = document.getElementById(elementId);
-        if (fileInput && fileInput.files[0]) {
-            const fileSize = fileInput.files[0].size;
-            return (fileSize / 1024).toFixed(2) + ' KB'; // Menampilkan ukuran dalam KB
-        }
-        return '0 KB';
-    }
-
-    // Fungsi untuk mengubah konten elemen HTML (optional)
-    function setInner(elementId, content) {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.innerHTML = content;
-        }
-    }
-
     const updateForm = document.getElementById('updateForm');
     if (updateForm) {
         updateForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            // Panggil fungsi upload gambar terlebih dahulu
-            await uploadImage();
-
+            
             const id = document.getElementById('updateId').value;
             const namaTempat = document.getElementById('updateNamaTempat').value;
             const lokasi = document.getElementById('updateLokasi').value;
             const fasilitas = document.getElementById('updateFasilitas').value;
             const lon = parseFloat(document.getElementById('updateLon').value);
             const lat = parseFloat(document.getElementById('updateLat').value);
-            const gambarUrl = document.getElementById('updateGambar').dataset.imageUrl || ""; 
+            const gambar = document.getElementById('updateGambar').value;
 
             if (!id || !namaTempat || !lokasi || !fasilitas || isNaN(lon) || isNaN(lat)) {
                 alert('Semua kolom harus diisi dengan benar!');
@@ -251,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "fasilitas": fasilitas,
                 "lon": lon,
                 "lat": lat,
-                "gambar": gambarUrl || ""  
+                "gambar": gambar || ""
             };
 
             try {
@@ -290,6 +211,67 @@ document.addEventListener('DOMContentLoaded', () => {
                     text: "Data gagal diperbarui, silakan coba lagi.",
                 });
             }
+        });
+    }
+});
+
+
+async function uploadImage() {
+    const gambar = document.getElementById('updateGambar');
+    if (!gambar || gambar.files.length === 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "Silakan pilih file gambar terlebih dahulu"
+        });
+        return;
+    }
+
+    const file = gambar.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folder", "img");
+
+    const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+
+    try {
+        const response = await fetch(target_url, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Upload gagal! Status: ${response.status}, Pesan: ${errorText}`);
+        }
+
+        const result = await response.json();
+        const uploadedImageUrl = result.url || `https://raw.githubusercontent.com/parkirgratis/filegambar/main/img/${file.name}`;
+        console.log("Gambar berhasil diunggah, URL:", uploadedImageUrl);
+
+        document.getElementById('updateGambar').value = uploadedImageUrl;
+
+        Swal.fire({
+            icon: "success",
+            title: "Berhasil",
+            text: "Gambar berhasil diunggah!",
+        });
+
+    } catch (error) {
+        console.error('Error uploading image:', error);
+        Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "Terjadi kesalahan saat mengunggah gambar.",
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadButton = document.getElementById('uploadImageButton');
+    if (uploadButton) {
+        uploadButton.addEventListener('click', () => {
+            uploadImage();
         });
     }
 });
