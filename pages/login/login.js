@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 text: console.error(error)
             });
         }
-    }
+    }   
 
    
     document.getElementById('loginForm').addEventListener('submit', (event) => {

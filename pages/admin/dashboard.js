@@ -5,7 +5,6 @@ addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
-
     if (!token) {
         Swal.fire({
             icon: "warning",
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           }, 2000);
         return;
     }
-
     try {
         const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/admin/dashboard', {
             method: 'GET',
