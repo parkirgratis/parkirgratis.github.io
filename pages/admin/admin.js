@@ -2,9 +2,6 @@ import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js
 import { addCSS } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
 import {
     setInner,
-    show,
-    hide,
-    getFileSize
   } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
 
 addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
@@ -215,63 +212,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-async function uploadImage() {
-    const gambar = document.getElementById('updateGambar');
-    if (!gambar || gambar.files.length === 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Gagal",
-            text: "Silakan pilih file gambar terlebih dahulu"
-        });
-        return;
-    }
-
-    const file = gambar.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", "img");
-
-    const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
-
-    try {
-        const response = await fetch(target_url, {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Upload gagal! Status: ${response.status}, Pesan: ${errorText}`);
-        }
-
-        const result = await response.json();
-        const uploadedImageUrl = result.url || `https://raw.githubusercontent.com/parkirgratis/filegambar/main/img/${file.name}`;
-        console.log("Gambar berhasil diunggah, URL:", uploadedImageUrl);
-
-        document.getElementById('updateGambar').value = uploadedImageUrl;
-
-        Swal.fire({
-            icon: "success",
-            title: "Berhasil",
-            text: "Gambar berhasil diunggah!",
-        });
-
-    } catch (error) {
-        console.error('Error uploading image:', error);
-        Swal.fire({
-            icon: "error",
-            title: "Gagal",
-            text: "Terjadi kesalahan saat mengunggah gambar.",
-        });
-    }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    const uploadButton = document.getElementById('uploadImageButton');
-    if (uploadButton) {
-        uploadButton.addEventListener('click', () => {
-            uploadImage();
+    const uploadForm = document.getElementById('uploadForm');
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fileInput = document.getElementById('uploadGambar');
+            if (!fileInput.files || fileInput.files.length === 0) {
+                Swal.fire({
+                    icon: "error",
+                    title: "File Gambar Tidak Ditemukan",
+                    text: "Harap pilih file gambar sebelum mengupload.",
+                });
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('img', file);
+
+            try {
+                const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+                }
+
+                const responseData = await response.json();
+                console.log("Response data dari server:", responseData);
+
+                
+                const imageUrl = "https://parkirgratis.github.io/filegambar/" + responseData.Response;
+                setInner("gambarLink", imageUrl); 
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Berhasil Mengupload Gambar",
+                    text: `File berhasil diupload: ${responseData.Response}`,
+                });
+
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Gagal Mengupload Gambar",
+                    text: "Gambar gagal diupload, silakan coba lagi.",
+                });
+            }
         });
     }
 });

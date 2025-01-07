@@ -96,7 +96,7 @@ async function insertRegionDataWarung() {
             return;
         }
 
-        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/warung", {
+        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/ warung", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(regionData),
