@@ -89,12 +89,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-
-window.addEventListener('beforeunload', () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('alertShown');
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     if (localStorage.getItem('cancelToast') === 'true') {
 
