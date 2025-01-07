@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateFasilitas').value = fasilitas || '';
         document.getElementById('updateLon').value = lon || '';
         document.getElementById('updateLat').value = lat || '';
-        document.getElementById('updateGambar').value = "";
+        document.getElementById('updateGambar').value = gambar || "";
 
         document.getElementById('updateFormContainer').classList.remove('hidden');
     };
