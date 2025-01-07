@@ -8,7 +8,6 @@ import {
   getFileSize,
 } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
 import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
-
 addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -248,6 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `HTTP error! Status: ${response.status}, Message: ${errorText}`
           );
         }
+        let besar = getFileSize("updateGambar");
+        setInner("isi", besar);
 
         const responseData = await response.json();
         console.log("Response data dari server:", responseData);
