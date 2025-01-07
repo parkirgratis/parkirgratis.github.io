@@ -151,8 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateForm.addEventListener('submit', async (e) => {
             
             e.preventDefault();
-
-            uploadImage();
             
             const id = document.getElementById('updateId').value;
             const namaTempat = document.getElementById('updateNamaTempat').value;
