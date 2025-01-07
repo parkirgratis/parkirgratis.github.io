@@ -130,7 +130,6 @@ window.deleteData = async function(id, lon, lat) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    uploadImage();
     window.showUpdateForm = function (id, namaTempat, lokasi, fasilitas, lon, lat, gambar) {
         document.getElementById('updateId').value = id || '';
         document.getElementById('updateNamaTempat').value = namaTempat || '';
@@ -150,7 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateForm = document.getElementById('updateForm');
     if (updateForm) {
         updateForm.addEventListener('submit', async (e) => {
+            
             e.preventDefault();
+
+            uploadImage();
             
             const id = document.getElementById('updateId').value;
             const namaTempat = document.getElementById('updateNamaTempat').value;
@@ -221,7 +223,7 @@ window.uploadImage = uploadImage;
 
 const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
 
-function uploadImage() {
+    function uploadImage() {
         const imageInput = document.getElementById('updateGambar');
         if (!imageInput || imageInput.files.length === 0) {
             Swal.fire({
@@ -233,6 +235,8 @@ function uploadImage() {
         }
         let besar = getFileSize("updateGambar");
         setInner("isi", besar);
+
+        
         
         postFile(target_url, "updateGambar", "img", renderToHtml);
     }
