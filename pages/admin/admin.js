@@ -231,12 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             return;
         }
-        const inputFileElement = document.getElementById('updateGambar');
-        if (inputFileElement) {
-            hide("updateGambar");
-        } else {
-            console.error("Element with ID 'imageInputSidebar' not found");
-        }
         let besar = getFileSize("updateGambar");
         setInner("isi", besar);
         
