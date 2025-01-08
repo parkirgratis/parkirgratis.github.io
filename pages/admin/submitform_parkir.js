@@ -142,8 +142,6 @@ async function insertRegionDataParking() {
             text: "Data parkir ini telah berhasil disimpan.",
         });
 
-        uploadImage();
-
         setTimeout(() => {
             closeUpdateForm();
             location.reload();
