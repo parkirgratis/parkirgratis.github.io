@@ -37,33 +37,24 @@ function getCookie(name) {
     return null;
 }
 
-function disableFileInput() {
-    console.log("Disabling file input...");
-    const fileInput = document.getElementById('gambar');
-    if (fileInput) {
-        fileInput.disabled = true;
-    }
-}
-
-function enableFileInput() {
-    const fileInput = document.getElementById('gambar');
-    if (fileInput) {
-        fileInput.disabled = false;
-    }
-}
-
 async function handleSubmitPetapedia(event) {
     event.preventDefault();
 
-    disableFileInput();
+    // Disable input file
+    const imageInput = document.getElementById("gambar");
+    if (imageInput) {
+        imageInput.disabled = true;
+    }
 
     const token = getCookie("login");
     const longitude = parseFloat(document.getElementById("long").value);
     const latitude = parseFloat(document.getElementById("lat").value);
 
+    // Validasi input longitude dan latitude
     if (isNaN(longitude) || isNaN(latitude) || longitude < -180 || longitude > 180 || latitude < -90 || latitude > 90) {
         Swal.fire("Error", "Please enter valid longitude and latitude values within valid ranges.", "error");
-        
+
+        // Re-enable input file jika validasi gagal
         if (imageInput) {
             imageInput.disabled = false;
         }
@@ -88,6 +79,7 @@ async function handleSubmitPetapedia(event) {
             document.getElementById("district").value = result.district || "";
             document.getElementById("sub_district").value = result.sub_district || "";
             document.getElementById("village").value = result.village || "";
+
             Swal.fire("Success", "Data successfully fetched from GIS.", "success");
         } else {
             const error = await response.json();
@@ -95,13 +87,12 @@ async function handleSubmitPetapedia(event) {
         }
     } catch (error) {
         Swal.fire("Error", "An unexpected error occurred. Please try again.", "error");
+    } finally {
+        if (imageInput) {
+            imageInput.disabled = false;
+        }
     }
-
-    enableFileInput();
-
-
 }
-
 async function insertRegionDataParking() {
 
     uploadImage();
