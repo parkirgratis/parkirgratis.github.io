@@ -101,6 +101,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
     const lon = parseFloat(document.getElementById("long").value);
     const namaTempat = document.getElementById("nama_tempat").value;
     const lokasi = document.getElementById("lokasi").value;
+    const jamBuka = document.getElementById("jam_buka").value;
     const metodePembayaran = document.getElementById("metode_pembayaran").value.split(",");
     const gambar = document.getElementById("gambar");
     const fileName = gambar.files[0] ? gambar.files[0].name : '';
@@ -114,6 +115,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         isNaN(lon) ||
         !namaTempat ||
         !lokasi ||
+        !jamBuka ||
         metodePembayaran.length === 0 || 
         metodePembayaran.some((metode) => !metode.trim()) ||
         !fileName
@@ -137,6 +139,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         lon: lon,
         nama_tempat: nama_tempat,
         lokasi: lokasi,
+        jamBuka: jam_buka,
         metode_pembayaran: metodePembayaran,
         gambar: fileName || "",
     };
