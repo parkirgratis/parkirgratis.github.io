@@ -139,7 +139,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         lon: lon,
         nama_tempat: nama_tempat,
         lokasi: lokasi,
-        jamBuka: jam_buka,
+        jam_buka: jamBuka,
         metode_pembayaran: metodePembayaran,
         gambar: fileName || "",
     };
