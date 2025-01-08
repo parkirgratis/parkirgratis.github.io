@@ -37,17 +37,22 @@ function getCookie(name) {
     return null;
 }
 
+function disableFileInput() {
+    document.getElementById('gambar').disabled = true;  
+}
+
+function enableFileInput() {
+    document.getElementById('gambar').disabled = false;  
+}
+
 async function handleSubmitPetapedia(event) {
     event.preventDefault();
+
+    disableFileInput();
 
     const token = getCookie("login");
     const longitude = parseFloat(document.getElementById("long").value);
     const latitude = parseFloat(document.getElementById("lat").value);
-
-    const imageInput = document.getElementById("gambar");
-    if (imageInput) {
-        imageInput.disabled = true; 
-    }
 
     if (isNaN(longitude) || isNaN(latitude) || longitude < -180 || longitude > 180 || latitude < -90 || latitude > 90) {
         Swal.fire("Error", "Please enter valid longitude and latitude values within valid ranges.", "error");
@@ -85,10 +90,9 @@ async function handleSubmitPetapedia(event) {
         Swal.fire("Error", "An unexpected error occurred. Please try again.", "error");
     }
 
-   //tambah
-    if (imageInput) {
-        imageInput.disabled = false;
-    }
+    enableFileInput();
+
+
 }
 
 async function insertRegionDataParking() {
