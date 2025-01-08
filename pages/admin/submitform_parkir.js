@@ -6,6 +6,7 @@ import {
     hide,
     getFileSize
   } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
+  import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
 
 // Add SweetAlert2 CSS
 addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
@@ -88,7 +89,7 @@ async function insertRegionDataParking() {
             nama_tempat: document.getElementById("nama_tempat").value,
             lokasi: document.getElementById("lokasi").value,
             fasilitas: document.getElementById("fasilitas").value,
-            gambar: document.getElementById("gambar").value,
+            gambar: document.getElementById("gambar").files[0]?.name || "",
         };
 
         if (Object.values(regionData).some((value) => !value)) {
@@ -117,9 +118,9 @@ window.uploadImage = uploadImage;
 
 const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
 
-function uploadImage() {
-    const gambar = document.getElementById('gambar');
-    if (!igambar || gambar.files.length === 0) {
+async function uploadImage() {
+    const imageInput = document.getElementById('gambar');
+    if (!imageInput || imageInput.files.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Gagal",
@@ -127,22 +128,64 @@ function uploadImage() {
         });
         return;
     }
-    const gambarinput = document.getElementById('gambar');
-    if (gambarinput) {
+    try {
         hide("gambar");
-    } else {
-        console.error("Element with ID 'gambar' not found");
+
+        const fileSize = getFileSize("gambar");
+        setInner("isi", `Ukuran file: ${fileSize}`);
+
+        // Upload file
+        const result = await postFile(target_url, "gambar", "img");
+        renderToHtml(result);
+
+        document.getElementById("gambar").value = "";
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        Swal.fire({
+            icon: "error",
+            title: "Error Uploading Image",
+            text: error.message,
+        });
+
+        show("gambar");
     }
-    let besar = getFileSize("gambar");
-    setInner("isi", besar);
-    
-    postFile(target_url, "gambar", "img", renderToHtml);
 }
 
+
 function renderToHtml(result) {
-    console.log(result);
-    setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
-    show("gambar");
+    try {
+        if (result.error) {
+            throw new Error(result.error.message || "Unknown error in response");
+        }
+
+        const isiElement = document.getElementById("isi");
+        if (!isiElement) {
+            throw new Error("Element with ID 'isi' not found");
+        }
+
+        const imageUrl = `https://parkirgratis.if.co.id/filegambar/${result.response}`;
+
+       
+        const existingImage = isiElement.querySelector("img");
+        if (existingImage) {
+            existingImage.src = imageUrl;
+        } else {
+            const newImage = document.createElement("img");
+            newImage.src = imageUrl;
+            newImage.alt = "Uploaded Image";
+            isiElement.appendChild(newImage);
+        }
+
+        
+        show("gambar");
+    } catch (error) {
+        console.error("Error rendering HTML:", error);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Failed to process uploaded image.",
+        });
+    }
 }
 
 
