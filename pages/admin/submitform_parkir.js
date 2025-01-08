@@ -38,11 +38,18 @@ function getCookie(name) {
 }
 
 function disableFileInput() {
-    document.getElementById('gambar').disabled = true;  
+    console.log("Disabling file input...");
+    const fileInput = document.getElementById('gambar');
+    if (fileInput) {
+        fileInput.disabled = true;
+    }
 }
 
 function enableFileInput() {
-    document.getElementById('gambar').disabled = false;  
+    const fileInput = document.getElementById('gambar');
+    if (fileInput) {
+        fileInput.disabled = false;
+    }
 }
 
 async function handleSubmitPetapedia(event) {
