@@ -90,7 +90,7 @@ document.getElementById("locationForm").addEventListener("submit", (event) => {
 
 document.getElementById("saveButton").addEventListener("submit", async (e) => {
     e.preventDefault();
-    await uploadImage();
+    await uploadImageWarung();
 
     const province = document.getElementById("province").value;
     const district = document.getElementById("district").value;
