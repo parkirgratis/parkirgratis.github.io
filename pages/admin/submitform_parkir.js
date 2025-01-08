@@ -44,8 +44,18 @@ async function handleSubmitPetapedia(event) {
     const longitude = parseFloat(document.getElementById("long").value);
     const latitude = parseFloat(document.getElementById("lat").value);
 
+    // Menonaktifkan input gambar saat submit
+    const imageInput = document.getElementById("gambar");
+    if (imageInput) {
+        imageInput.disabled = true; 
+    }
+
     if (isNaN(longitude) || isNaN(latitude) || longitude < -180 || longitude > 180 || latitude < -90 || latitude > 90) {
         Swal.fire("Error", "Please enter valid longitude and latitude values within valid ranges.", "error");
+        
+        if (imageInput) {
+            imageInput.disabled = false;
+        }
         return;
     }
 
@@ -75,10 +85,16 @@ async function handleSubmitPetapedia(event) {
     } catch (error) {
         Swal.fire("Error", "An unexpected error occurred. Please try again.", "error");
     }
+
+    // Mengaktifkan kembali input file setelah proses selesai
+    if (imageInput) {
+        imageInput.disabled = false;
+    }
 }
 
 async function insertRegionDataParking() {
 
+    uploadImage();
     const province = document.getElementById("province").value;
     const district = document.getElementById("district").value;
     const sub_district = document.getElementById("sub_district").value;
