@@ -34,7 +34,10 @@
     <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
             <li>
-                <a href="https://parkirgratis.if.co.id/input" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tambahkan Lokasi</a>
+                <a href="https://parkirgratis.if.co.id/input" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tambahkan Lokasi Parkir Umum</a>
+            </li>
+            <li>
+                <a href="https://parkirgratis.if.co.id/input-warung/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tambahkan Lokasi Warung</a>
             </li>
             <li>
                 <a href="pages/aboutus/aboutus.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tentang Kami</a>
@@ -49,13 +52,22 @@
     </div>
 
     <div class="hidden md:flex items-center space-x-6">
-      <a href="https://parkirgratis.if.co.id/input/" class="flex items-center">
-        <button class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
-          <span class="flex items-center">
-            <span class="text-white font-semibold tracking-wider">INPUT DATA</span>
-          </span>
-        </button>
-      </a>
+      <button id="dropdownDefaultButton" data-dropdown-toggle="dropdowninput" class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
+        <span class="flex items-center">
+          <span class="text-white font-semibold tracking-wider">INPUT DATA</span>
+        </span>
+      </button>
+
+      <div id="dropdowninput" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+          <li>
+            <a href="https://parkirgratis.if.co.id/input/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Input Parkir Umum</a>
+          </li>
+          <li>
+            <a href="https://parkirgratis.if.co.id/input-warung/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Input Warung</a>
+          </li>
+        </ul>
+    </div>
   
       <a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html" class="flex items-center">
         <button class="px-2 py-1 nav-title border-2 border-transparent border-b-white shadow-transparent hover:border-b-[#4DA6FF] hover:border-x-[#4DA6FF] transition px-2 text-white text-sm flex items-center ml-auto hover:shadow-lg hover:shadow-[#4D4DFF]/50">
