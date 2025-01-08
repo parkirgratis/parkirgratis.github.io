@@ -82,10 +82,9 @@ document.getElementById("locationForm").addEventListener("submit", (event) => {
 });
 
 document.getElementById("saveButton").addEventListener("click", function(event) {
-    // Prevent the form from submitting if it's triggered by the saveButton
     event.preventDefault();
 
-    // Call uploadImage() first
+
     uploadImage();
 
     const province = document.getElementById("province").value;
@@ -97,6 +96,7 @@ document.getElementById("saveButton").addEventListener("click", function(event) 
     const nama_tempat = document.getElementById("nama_tempat").value;
     const lokasi = document.getElementById("lokasi").value;
     const fasilitas = document.getElementById("fasilitas").value;
+    const gambar = document.getElementById('gambar');
 
     // Check if all fields are filled out
     if (!province || !district || !sub_district || !village || isNaN(lon) || isNaN(lat) || !nama_tempat || !lokasi || !fasilitas) {
@@ -113,7 +113,8 @@ document.getElementById("saveButton").addEventListener("click", function(event) 
         lon: lon,
         nama_tempat: nama_tempat,
         lokasi: lokasi,
-        fasilitas: fasilitas
+        fasilitas: fasilitas,
+        gambar: gambar
     };
 
     fetch("https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasi", {
