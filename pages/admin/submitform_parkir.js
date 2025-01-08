@@ -83,7 +83,7 @@ document.getElementById("locationForm").addEventListener("submit", (event) => {
 
 document.getElementById("saveButton").addEventListener("click", async (e) => {
     e.preventDefault();
-    await uploadImage();
+    await uploadImageParkir();
 
         const province = document.getElementById("province").value;
         const district = document.getElementById("district").value;
@@ -113,7 +113,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
             nama_tempat: nama_tempat,
             lokasi: lokasi,
             fasilitas: fasilitas,
-            gambar: target_url_parkir + namaFile || "",
+            gambar: targeturl_img_parkir + namaFile || "",
         };
 
         try{
