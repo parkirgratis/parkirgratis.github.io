@@ -88,7 +88,7 @@ document.getElementById("locationForm").addEventListener("submit", (event) => {
         });
 });
 
-document.getElementById("saveButton").addEventListener("submit", async (e) => {
+document.getElementById("saveButton").addEventListener("click", async (e) => {
     e.preventDefault();
     await uploadImageWarung();
 
