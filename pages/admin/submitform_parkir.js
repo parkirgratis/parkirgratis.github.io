@@ -44,7 +44,6 @@ async function handleSubmitPetapedia(event) {
     const longitude = parseFloat(document.getElementById("long").value);
     const latitude = parseFloat(document.getElementById("lat").value);
 
-    // Menonaktifkan input gambar saat submit
     const imageInput = document.getElementById("gambar");
     if (imageInput) {
         imageInput.disabled = true; 
@@ -86,7 +85,7 @@ async function handleSubmitPetapedia(event) {
         Swal.fire("Error", "An unexpected error occurred. Please try again.", "error");
     }
 
-    // Mengaktifkan kembali input file setelah proses selesai
+   
     if (imageInput) {
         imageInput.disabled = false;
     }
