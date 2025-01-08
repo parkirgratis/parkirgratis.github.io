@@ -117,8 +117,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         !lokasi ||
         !jamBuka ||
         metodePembayaran.length === 0 || 
-        metodePembayaran.some((metode) => !metode.trim()) ||
-        !fileName
+        metodePembayaran.some((metode) => !metode.trim())
     ) {
         Swal.fire(
             "Error", 
@@ -128,7 +127,6 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         return;
     }
     
-
         const url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/warung";
         const regionData = {
         province: province,
