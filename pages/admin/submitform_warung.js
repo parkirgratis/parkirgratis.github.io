@@ -131,11 +131,11 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         const regionData = {
         province: province,
         district: district,
-        sub_district: sub_district,
+        sub_district: sub_district || "",
         village: village,
         lat: lat,
         lon: lon,
-        nama_tempat: nama_tempat,
+        nama_tempat: nama_tempat || "",
         lokasi: lokasi,
         jam_buka: jam_buka,
         metode_pembayaran: metode_pembayaran,
