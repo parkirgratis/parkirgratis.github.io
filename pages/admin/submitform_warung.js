@@ -95,29 +95,29 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
 
     const province = document.getElementById("province").value;
     const district = document.getElementById("district").value;
-    const subDistrict = document.getElementById("sub_district").value;
+    const sub_district = document.getElementById("sub_district").value;
     const village = document.getElementById("village").value;
     const lat = parseFloat(document.getElementById("lat").value);
     const lon = parseFloat(document.getElementById("long").value);
-    const namaTempat = document.getElementById("nama_tempat").value;
+    const nama_tempat = document.getElementById("nama_tempat").value;
     const lokasi = document.getElementById("lokasi").value;
-    const jamBuka = document.getElementById("jam_buka").value;
-    const metodePembayaran = document.getElementById("metode_pembayaran").value.split(",");
+    const jam_buka = document.getElementById("jam_buka").value;
+    const metode_pembayaran = document.getElementById("metode_pembayaran").value.split(",");
     const gambar = document.getElementById("gambar");
     const fileName = gambar.files[0] ? gambar.files[0].name : '';
 
     if (
         !province ||
         !district ||
-        !subDistrict ||
+        !sub_district ||
         !village ||
         isNaN(lat) ||
         isNaN(lon) ||
-        !namaTempat ||
+        !nama_tempat ||
         !lokasi ||
-        !jamBuka ||
-        metodePembayaran.length === 0 || 
-        metodePembayaran.some((metode) => !metode.trim())
+        !jam_buka ||
+        metode_pembayaran.length === 0 || 
+        metode_pembayaran.some((metode) => !metode.trim())
     ) {
         Swal.fire(
             "Error", 
@@ -137,8 +137,8 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         lon: lon,
         nama_tempat: nama_tempat,
         lokasi: lokasi,
-        jam_buka: jamBuka,
-        metode_pembayaran: metodePembayaran,
+        jam_buka: jam_buka,
+        metode_pembayaran: metode_pembayaran,
         gambar: fileName || "",
     };
 
