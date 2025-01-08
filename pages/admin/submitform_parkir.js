@@ -6,6 +6,7 @@ import {
     hide,
     getFileSize
   } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
+  import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
 
 // Add SweetAlert2 CSS
 addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
@@ -165,4 +166,5 @@ function uploadImage() {
 function renderToHtml(result) {
     console.log(result);
     setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
+    show("gambar");
 }
