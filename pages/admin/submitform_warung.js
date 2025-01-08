@@ -144,6 +144,8 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         gambar: fileName || "",
     };
 
+    console.log(JSON.stringify(regionData));
+
     try {
         const response = await fetch(url, {
             method: "POST",
