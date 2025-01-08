@@ -577,7 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
           closeUpdateFormWarung();
-          //   location.reload();
+          location.reload();
         }, 2000);
       } catch (error) {
         console.error("Error updating warung data:", error);
