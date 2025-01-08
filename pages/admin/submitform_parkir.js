@@ -79,7 +79,6 @@ async function handleSubmitPetapedia(event) {
 
 async function insertRegionDataParking() {
 
-    uploadImage();
     const province = document.getElementById("province").value;
     const district = document.getElementById("district").value;
     const sub_district = document.getElementById("sub_district").value;
@@ -142,6 +141,8 @@ async function insertRegionDataParking() {
             title: "Berhasil menambah data",
             text: "Data parkir ini telah berhasil disimpan.",
         });
+
+        uploadImage();
 
         setTimeout(() => {
             closeUpdateForm();
