@@ -276,8 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.uploadImage = uploadImage;
 
-const target_url =
-  "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
 
 async function uploadImage() {
   const imageInput = document.getElementById("updateGambar");
@@ -329,8 +328,7 @@ function renderToHtml(result) {
       throw new Error("Element with ID 'isi' not found");
     }
 
-    const imageUrl =
-      "https://parkirgratis.if.co.id/filegambar/" + result.response;
+    const imageUrl = "https://parkirgratis.if.co.id/filegambar/" + result.response;
 
     const existingImage = isiElement.querySelector("img");
     if (existingImage) {
@@ -481,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
       metodePembayaran || "";
     document.getElementById("updateLonWarung").value = lon || "";
     document.getElementById("updateLatWarung").value = lat || "";
-    document.getElementById("updateFotoPratinjauWarung").value = gambar || "";
+    document.getElementById("updateGambarWarung").value = "";
 
     console.log("Form fields populated:", {
       _id,
@@ -510,20 +508,17 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFormWarung.addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      await uploadImageWarung();
+
       const _id = document.getElementById("updateIdWarung").value;
-      const namaTempat = document.getElementById(
-        "updateNamaTempatWarung"
-      ).value;
+      const namaTempat = document.getElementById("updateNamaTempatWarung").value;
       const lokasi = document.getElementById("updateLokasiWarung").value;
       const jam_buka = document.getElementById("updateJamBukaWarung").value;
-      const metodePembayaran = document
-        .getElementById("updateMetodePembayaranWarung")
-        .value.split(",")
-        .map((item) => item.trim())
-        .filter((item) => item !== "");
+      const metodePembayaran = document.getElementById("updateMetodePembayaranWarung").value.split(",").map((item) => item.trim()).filter((item) => item !== "");
       const lon = parseFloat(document.getElementById("updateLonWarung").value);
       const lat = parseFloat(document.getElementById("updateLatWarung").value);
-      const gambar = document.getElementById("updateFotoPratinjauWarung").value;
+      const imgWarung = document.getElementById("updateGambarWarung");
+      const namaFile = imgWarung.files[0] ? imgWarung.files[0].name : "";
 
       if (
         !_id ||
@@ -547,7 +542,7 @@ document.addEventListener("DOMContentLoaded", () => {
         metode_pembayaran: metodePembayaran,
         lon: lon,
         lat: lat,
-        gambar: gambar,
+        gambar: targeturl_img_warung + namaFile || "",
       };
 
       console.log("Data sent to server:", data);
@@ -568,6 +563,9 @@ document.addEventListener("DOMContentLoaded", () => {
             `HTTP error! Status: ${response.status}, Message: ${errorText}`
           );
         }
+
+        let besar = getFileSize("updateGambarWarung");
+        setInner("isiWarung", besar);
 
         const responseData = await response.json();
         console.log("Response data from server:", responseData);
@@ -593,3 +591,81 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+window.uploadImageWarung = uploadImageWarung;
+
+const targeturl_img_warung = "https://raw.githubusercontent.com/parkirgratis/filegambar/main/img/"
+const target_url_warung = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+
+async function uploadImageWarung() {
+  const imageInput = document.getElementById("updateGambarWarung");
+  if (!imageInput || imageInput.files.length === 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Gagal",
+      text: "Silakan pilih file gambar terlebih dahulu",
+    });
+    return;
+  }
+
+  try {
+    const inputFileElement = document.getElementById("updateGambarWarung");
+    if (inputFileElement) {
+      hide("updateGambarWarung");
+    }
+
+    const fileSizeWarung = getFileSize("updateGambarWarung");
+    setInner("isiWarung", fileSizeWarung);
+
+    // Upload file
+    await postFile(target_url_warung, "updateGambarWarung", "img", renderToHtmlWarung);
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Error Uploading Image",
+      text: error.message,
+    });
+
+    const inputFileElement = document.getElementById("updateGambarWarung");
+    if (inputFileElement) {
+      show("updateGambarWarung");
+    }
+  }
+}
+
+function renderToHtmlWarung(result) {
+  try {
+    console.log(result);
+    if (result.error) {
+      throw new Error(result.error.message || "Unknown error in response");
+    }
+
+    // Ensure the 'isi' element exists
+    const isiElement = document.getElementById("isiWarung");
+    if (!isiElement) {
+      throw new Error("Element with ID 'isiWarung' not found");
+    }
+
+    const imageUrlWarung = "https://parkirgratis.if.co.id/filegambar/" + result.response;
+
+    const existingImage = isiElement.querySelector("img");
+    if (existingImage) {
+      existingImage.src = imageUrlWarung;
+    } else {
+      const newImage = document.createElement("img");
+      newImage.src = imageUrlWarung;
+      newImage.alt = "Uploaded Image";
+      isiElement.appendChild(newImage);
+    }
+
+    show("updateGambarWarung");
+  } catch (error) {
+    console.error("Error rendering HTML:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Failed to process uploaded image.",
+    });
+  }
+}
