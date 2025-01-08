@@ -79,7 +79,6 @@ async function handleSubmitPetapedia(event) {
 
 async function insertRegionDataParking() {
 
-    await uploadImage();
     const province = document.getElementById("province").value;
     const district = document.getElementById("district").value;
     const sub_district = document.getElementById("sub_district").value;
@@ -91,7 +90,7 @@ async function insertRegionDataParking() {
     const fasilitas = document.getElementById("fasilitas").value;
     const imageInput = document.getElementById("gambar").value;
     const fileName = imageInput.files[0] ? imageInput.files[0].name : '';
-
+   
     if (!province || !district || !sub_district || !village || isNaN(lon) || isNaN(lat) || !nama_tempat || !lokasi || !fasilitas) {
         Swal.fire({
             icon: "warning",
@@ -122,7 +121,6 @@ async function insertRegionDataParking() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json",
             },
             body: JSON.stringify(data),
         });
