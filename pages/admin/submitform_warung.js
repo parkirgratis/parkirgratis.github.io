@@ -181,7 +181,7 @@ const target_url_warung = "https://asia-southeast2-awangga.cloudfunctions.net/pa
 
 async function uploadImageWarung() {
     const gambar = document.getElementById('gambar');
-    if (!igambar || gambar.files.length === 0) {
+    if (!gambar || gambar.files.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Gagal",
