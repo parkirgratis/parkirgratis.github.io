@@ -184,7 +184,7 @@ async function uploadImage() {
     const fileSize = getFileSize("gambar");
     setInner("isi", fileSize);
 
-    // Upload file
+    
     await postFile(target_url, "gambar", "img", renderToHtml);
   } catch (error) {
     console.error("Error uploading image:", error);
