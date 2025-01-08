@@ -142,7 +142,7 @@ const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgra
 
 function uploadImage() {
     const gambar = document.getElementById('gambar');
-    if (!igambar || gambar.files.length === 0) {
+    if (!gambar || gambar.files.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Gagal",
