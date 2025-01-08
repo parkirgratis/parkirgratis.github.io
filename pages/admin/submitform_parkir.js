@@ -95,7 +95,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
     const lokasi = document.getElementById("lokasi").value;
     const fasilitas = document.getElementById("fasilitas").value;
     const gambar = document.getElementById('gambar');
-    const fileName = imageInput.files[0] ? imageInput.files[0].name : '';
+    const fileName = gambar.files[0] ? gambar.files[0].name : '';
 
 
     if (!province || !district || !sub_district || !village || isNaN(lon) || isNaN(lat) || !nama_tempat || !lokasi || !fasilitas) {
