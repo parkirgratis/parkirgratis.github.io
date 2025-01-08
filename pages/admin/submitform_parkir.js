@@ -6,7 +6,6 @@ import {
     hide,
     getFileSize
   } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
-  import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
 
 // Add SweetAlert2 CSS
 addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
@@ -78,115 +77,164 @@ async function handleSubmitPetapedia(event) {
 }
 
 async function insertRegionDataParking() {
+
+    await uploadImage();
+    const province = document.getElementById("province").value;
+    const district = document.getElementById("district").value;
+    const sub_district = document.getElementById("sub_district").value;
+    const village = document.getElementById("village").value;
+    const lat = parseFloat(document.getElementById("lat").value);
+    const lon = parseFloat(document.getElementById("long").value);
+    const nama_tempat = document.getElementById("nama_tempat").value;
+    const lokasi = document.getElementById("lokasi").value;
+    const fasilitas = document.getElementById("fasilitas").value;
+    const imageInput = document.getElementById("gambar").value;
+    const fileName = imageInput.files[0] ? imageInput.files[0].name : '';
+
+    if (!province || !district || !sub_district || !village || isNaN(lon) || isNaN(lat) || !nama_tempat || !lokasi || !fasilitas) {
+        Swal.fire({
+            icon: "warning",
+            title: "Gagal",
+            text: "Harap isi semua field"
+        });
+        return;
+    }
+
+    const url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasi";
+    const data = {
+        province: province,
+        district: district,
+        sub_district: sub_district,
+        village: village,
+        lon: lon,
+        lat: lat,
+        nama_tempat: nama_tempat,
+        lokasi: lokasi,
+        fasilitas: fasilitas,
+        gambar: fileName || "",
+    };
+
+    console.log("Data yang akan dikirim:", data);
+
     try {
-        await uploadImage();
-        const regionData = {
-            province: document.getElementById("province").value,
-            district: document.getElementById("district").value,
-            sub_district: document.getElementById("sub_district").value,
-            village: document.getElementById("village").value,
-            lat: parseFloat(document.getElementById("lat").value),
-            lon: parseFloat(document.getElementById("long").value),
-            nama_tempat: document.getElementById("nama_tempat").value,
-            lokasi: document.getElementById("lokasi").value,
-            fasilitas: document.getElementById("fasilitas").value,
-            gambar: document.getElementById("gambar").files[0]?.name || "",
-        };
-
-        if (Object.values(regionData).some((value) => !value)) {
-            Swal.fire("Error", "All fields are required.", "error");
-            return;
-        }
-
-        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasi", {
+        const response = await fetch(url, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(regionData),
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify(data),
         });
 
-        if (response.ok) {
-            const result = await response.json();
-            Swal.fire("Success", `Data successfully saved: ${JSON.stringify(result)}`, "success");
-        } else {
-            Swal.fire("Error", "Failed to save data.", "error");
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
         }
+
+        let besar = getFileSize("gambar");
+        setInner("isi", besar);
+
+        const responseData = await response.json();
+        console.log("Response data dari server:", responseData);
+
+        Swal.fire({
+            icon: "success",
+            title: "Berhasil menambah data",
+            text: "Data parkir ini telah berhasil disimpan.",
+        });
+
+        setTimeout(() => {
+            closeUpdateForm();
+            location.reload();
+        }, 2000);
+
     } catch (error) {
-        Swal.fire("Error", `An error occurred: ${error.message}`, "error");
+        console.error("Error updating data:", error);
+        Swal.fire({
+            icon: "error",
+            title: "Gagal Menyimpan Data",
+            text: "Data gagal disimpan.",
+            timer: 2000,
+        });
     }
 }
 
 window.uploadImage = uploadImage;
 
-const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+const target_url =
+  "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
 
 async function uploadImage() {
-    const imageInput = document.getElementById('gambar');
-    if (!imageInput || imageInput.files.length === 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Gagal",
-            text: "Silakan pilih file gambar terlebih dahulu"
-        });
-        return;
+  const imageInput = document.getElementById("gambar");
+  if (!imageInput || imageInput.files.length === 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Gagal",
+      text: "Silakan pilih file gambar terlebih dahulu",
+    });
+    return;
+  }
+
+  try {
+    const inputFileElement = document.getElementById("gambar");
+    if (inputFileElement) {
+      hide("gambar");
     }
-    try {
-        hide("gambar");
 
-        const fileSize = getFileSize("gambar");
-        setInner("isi", `Ukuran file: ${fileSize}`);
+    const fileSize = getFileSize("gambar");
+    setInner("isi", fileSize);
 
-        // Upload file
-        const result = await postFile(target_url, "gambar", "img");
-        renderToHtml(result);
+    // Upload file
+    await postFile(target_url, "gambar", "img", renderToHtml);
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Error Uploading Image",
+      text: error.message,
+    });
 
-        document.getElementById("gambar").value = "";
-    } catch (error) {
-        console.error("Error uploading image:", error);
-        Swal.fire({
-            icon: "error",
-            title: "Error Uploading Image",
-            text: error.message,
-        });
-
-        show("gambar");
+    const inputFileElement = document.getElementById("gambar");
+    if (inputFileElement) {
+      show("gambar");
     }
+  }
 }
 
-
 function renderToHtml(result) {
-    try {
-        if (result.error) {
-            throw new Error(result.error.message || "Unknown error in response");
-        }
-
-        const isiElement = document.getElementById("isi");
-        if (!isiElement) {
-            throw new Error("Element with ID 'isi' not found");
-        }
-
-        const imageUrl = `https://parkirgratis.if.co.id/filegambar/${result.response}`;
-
-       
-        const existingImage = isiElement.querySelector("img");
-        if (existingImage) {
-            existingImage.src = imageUrl;
-        } else {
-            const newImage = document.createElement("img");
-            newImage.src = imageUrl;
-            newImage.alt = "Uploaded Image";
-            isiElement.appendChild(newImage);
-        }
-
-        
-        show("gambar");
-    } catch (error) {
-        console.error("Error rendering HTML:", error);
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Failed to process uploaded image.",
-        });
+  try {
+    console.log(result);
+    if (result.error) {
+      throw new Error(result.error.message || "Unknown error in response");
     }
+
+    const isiElement = document.getElementById("isi");
+    if (!isiElement) {
+      throw new Error("Element with ID 'isi' not found");
+    }
+
+    const imageUrl =
+      "https://parkirgratis.if.co.id/filegambar/" + result.response;
+
+    const existingImage = isiElement.querySelector("img");
+    if (existingImage) {
+      existingImage.src = imageUrl;
+    } else {
+      const newImage = document.createElement("img");
+      newImage.src = imageUrl;
+      newImage.alt = "Uploaded Image";
+      isiElement.appendChild(newImage);
+    }
+
+    show("gambar");
+  } catch (error) {
+    console.error("Error rendering HTML:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Failed to process uploaded image.",
+    });
+  }
 }
 
 
