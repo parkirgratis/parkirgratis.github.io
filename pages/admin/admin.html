@@ -14,6 +14,7 @@
 
 <body class="overflow-y-hidden">
     <div hidden id="isi"></div>
+    <div hidden id="isiWarung"></div>
     <div>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
@@ -249,8 +250,8 @@
                                         <input type="text" step="any" id="updateLatWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
                                     </div>
                                     <div class="mb-4">
-                                        <label for="updateFotoPratinjauWarung" class="block text-sm font-medium text-gray-700">Gambar (URL)</label>
-                                        <input type="text" id="updateFotoPratinjauWarung" class="mt-1 block w-full px-3 py-2 border rounded-md">
+                                        <label for="updateGambarWarung" class="block text-sm font-medium text-gray-700">Gambar</label>
+                                        <input type="file" id="updateGambarWarung" name="img" class="mt-1 block w-full px-3 py-2 border rounded-md" accept="image/*" required"> 
                                     </div>
                                     <div class="flex justify-end space-x-2">
                                         <button type="button" class="px-4 py-2 bg-gray-500 text-white rounded-md" onclick="closeUpdateFormWarung()">Cancel</button>
@@ -322,6 +323,6 @@
     </div>
     <script type="module" src="admin.js"></script>
     <script type="module" src="logout.js"></script>
-    <script type="module" src="dashboard.js"></script>
+    <!-- <script type="module" src="dashboard.js"></script> -->
 </body>
 </html>
