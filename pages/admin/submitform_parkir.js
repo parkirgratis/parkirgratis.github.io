@@ -154,7 +154,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
     });
 
 
-window.uploadImage = uploadImage;
+window.uploadImageParkir = uploadImageParkir;
 
 const targeturl_img_parkir = "https://raw.githubusercontent.com/parkirgratis/filegambar/main/img/"
 const target_url_parkir = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
