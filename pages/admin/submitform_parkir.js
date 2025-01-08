@@ -79,6 +79,7 @@ async function handleSubmitPetapedia(event) {
 
 async function insertRegionDataParking() {
     try {
+        await uploadImage();
         const regionData = {
             province: document.getElementById("province").value,
             district: document.getElementById("district").value,
