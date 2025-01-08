@@ -322,7 +322,6 @@ function renderToHtml(result) {
       throw new Error(result.error.message || "Unknown error in response");
     }
 
-    // Ensure the 'isi' element exists
     const isiElement = document.getElementById("isi");
     if (!isiElement) {
       throw new Error("Element with ID 'isi' not found");
