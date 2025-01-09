@@ -157,24 +157,41 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
             const errorText = await response.text();
             throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
         }
-
-        let besar = getFileSize("gambar");
-        setInner("isi", besar);
-
         const responseData = await response.json();
         console.log("Response data from server:", responseData);
+
+    
+        const coordData = {
+            markers: [
+                [lon, lat]
+            ]
+        };
+
+        const coordResponse = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/marker-warung', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(coordData)
+        });
+
+        if (!coordResponse.ok) {
+            const errorText = await coordResponse.text();
+            throw new Error(`HTTP error! Status: ${coordResponse.status}, Message: ${errorText}`);
+        }
+
         Swal.fire({
             icon: "success",
-            title: "Berhasil menambah data",
-            text: "Data warung telah berhasil disimpan",
+            title: "Berhasil",
+            text: "Data parkir dan koordinat berhasil disimpan!",
             timer: 2000,
         });
     } catch (error) {
-        console.error("Error save warung data:", error);
+        console.error("Error:", error);
         Swal.fire({
             icon: "error",
-            title: "Failed to save Data",
-            text: "Failed to save data, please try again.",
+            title: "Gagal",
+            text: "Terjadi kesalahan saat menyimpan data. Silakan coba lagi.",
         });
     }
 });
