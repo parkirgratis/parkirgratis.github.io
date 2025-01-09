@@ -83,42 +83,45 @@ document.getElementById("locationForm").addEventListener("submit", (event) => {
 
 document.getElementById("saveButton").addEventListener("click", async (e) => {
     e.preventDefault();
+    
     await uploadImageParkir();
-
-    const province = document.getElementById("province").value;
-    const district = document.getElementById("district").value;
-    const sub_district = document.getElementById("sub_district").value;
-    const village = document.getElementById("village").value;
+    
+    const province = document.getElementById("province").value.trim();
+    const district = document.getElementById("district").value.trim();
+    const sub_district = document.getElementById("sub_district").value.trim();
+    const village = document.getElementById("village").value.trim();
     const lat = parseFloat(document.getElementById("lat").value);
     const lon = parseFloat(document.getElementById("long").value);
-    const nama_tempat = document.getElementById("nama_tempat").value;
-    const lokasi = document.getElementById("lokasi").value;
-    const fasilitas = document.getElementById("fasilitas").value;
+    const nama_tempat = document.getElementById("nama_tempat").value.trim();
+    const lokasi = document.getElementById("lokasi").value.trim();
+    const fasilitas = document.getElementById("fasilitas").value.trim();
     const gambar = document.getElementById('gambar');
     const fileName = gambar.files[0] ? gambar.files[0].name : '';
 
-
-    if (!province || !district || !sub_district || !village || isNaN(lon) || isNaN(lat) || !nama_tempat || !lokasi || !fasilitas) {
-        Swal.fire("Error", "All fields are required.", "error");
+    
+    if (!province || !district || !sub_district || !village || isNaN(lat) || isNaN(lon) || !nama_tempat || !lokasi || !fasilitas || !fileName) {
+        Swal.fire("Error", "All fields and an image file are required.", "error");
         return;
     }
 
-    const url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasi";
+    
+    const urlData = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasi";
+
     const regionData = {
-        province: province,
-        district: district,
-        sub_district: sub_district,
-        village: village,
-        lat: lat,
-        lon: lon,
-        nama_tempat: nama_tempat,
-        lokasi: lokasi,
-        fasilitas: fasilitas,
-        gambar: fileName || "",
+        province,
+        district,
+        sub_district,
+        village,
+        lat,
+        lon,
+        nama_tempat,
+        lokasi,
+        fasilitas,
+        gambar: fileName,
     };
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch(urlData, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -131,23 +134,41 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
             throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
         }
 
-        let besar = getFileSize("gambar");
-        setInner("isi", besar);
-
         const responseData = await response.json();
         console.log("Response data from server:", responseData);
+
+    
+        const coordData = {
+            markers: [
+                [lon, lat]
+            ]
+        };
+
+        const coordResponse = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/koordinat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(coordData)
+        });
+
+        if (!coordResponse.ok) {
+            const errorText = await coordResponse.text();
+            throw new Error(`HTTP error! Status: ${coordResponse.status}, Message: ${errorText}`);
+        }
+
         Swal.fire({
             icon: "success",
-            title: "Berhasil menambah data",
-            text: "Data parkir telah berhasil disimpan",
+            title: "Berhasil",
+            text: "Data parkir dan koordinat berhasil disimpan!",
             timer: 2000,
         });
     } catch (error) {
-        console.error("Error save parkir data:", error);
+        console.error("Error:", error);
         Swal.fire({
             icon: "error",
-            title: "Failed to save Data",
-            text: "Failed to save data, please try again.",
+            title: "Gagal",
+            text: "Terjadi kesalahan saat menyimpan data. Silakan coba lagi.",
         });
     }
 });
