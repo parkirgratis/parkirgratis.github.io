@@ -7,3 +7,5 @@ Disallow:
 Disallow: /cgi-bin/
 Disallow: /pages/admin/
 Disallow: /pages/login/
+
+Sitemap: https://parkirgratis.if.co.id/sitemap.xml
