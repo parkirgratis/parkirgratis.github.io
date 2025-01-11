@@ -6,9 +6,17 @@ import {
     hide,
     getFileSize
   } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.6/croot.js";
+  import { postFile } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.2/croot.js";
 
 // Add SweetAlert2 CSS
 addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cancelButton = document.getElementById("cancelButton");
+    if (cancelButton) {
+        cancelButton.addEventListener("click", cancel);
+    }
+});
 
 async function cancel() {
     Swal.fire({
@@ -36,12 +44,13 @@ function getCookie(name) {
     return null;
 }
 
-async function handleSubmitPetapedia(event) {
+document.getElementById("locationForm").addEventListener("submit", (event) => {
     event.preventDefault();
 
     const token = getCookie("login");
     const longitude = parseFloat(document.getElementById("long").value);
     const latitude = parseFloat(document.getElementById("lat").value);
+
 
     if (isNaN(longitude) || isNaN(latitude) || longitude < -180 || longitude > 180 || latitude < -90 || latitude > 90) {
         Swal.fire("Error", "Please enter valid longitude and latitude values within valid ranges.", "error");
@@ -50,76 +59,150 @@ async function handleSubmitPetapedia(event) {
 
     const requestData = { long: longitude, lat: latitude };
 
-    try {
-        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/petabackend/data/gis/lokasi", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "login": token,
-            },
-            body: JSON.stringify(requestData),
-        });
-
-        if (response.ok) {
-            const result = await response.json();
+    fetch("https://asia-southeast2-awangga.cloudfunctions.net/petabackend/data/gis/lokasi", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "login": token,
+        },
+        body: JSON.stringify(requestData),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((error) => {
+                    throw new Error(error.message || "Failed to fetch data.");
+                });
+            }
+            return response.json();
+        })
+        .then((result) => {
+           
             document.getElementById("province").value = result.province || "";
             document.getElementById("district").value = result.district || "";
             document.getElementById("sub_district").value = result.sub_district || "";
             document.getElementById("village").value = result.village || "";
+
             Swal.fire("Success", "Data successfully fetched from GIS.", "success");
-        } else {
-            const error = await response.json();
-            Swal.fire("Error", `Failed to fetch data: ${JSON.stringify(error)}`, "error");
-        }
-    } catch (error) {
-        Swal.fire("Error", "An unexpected error occurred. Please try again.", "error");
+        })
+        .catch((error) => {
+            Swal.fire("Error", `An unexpected error occurred: ${error.message}`, "error");
+        });
+});
+
+document.getElementById("saveButton").addEventListener("click", async (e) => {
+    e.preventDefault();
+    await uploadImageWarung();
+
+    const province = document.getElementById("province").value;
+    const district = document.getElementById("district").value;
+    const sub_district = document.getElementById("sub_district").value;
+    const village = document.getElementById("village").value;
+    const lat = parseFloat(document.getElementById("lat").value);
+    const lon = parseFloat(document.getElementById("long").value);
+    const nama_tempat = document.getElementById("nama_tempat").value;
+    const lokasi = document.getElementById("lokasi").value;
+    const jam_buka = document.getElementById("jam_buka").value;
+    const metode_pembayaran = document.getElementById("metode_pembayaran").value.split(",");
+    const gambar = document.getElementById("gambar");
+    const fileName = gambar.files[0] ? gambar.files[0].name : '';
+
+    if (
+        !province ||
+        !district ||
+        !sub_district ||
+        !village ||
+        isNaN(lat) ||
+        isNaN(lon) ||
+        !nama_tempat ||
+        !lokasi ||
+        !jam_buka ||
+        metode_pembayaran.length === 0 || 
+        metode_pembayaran.some((metode) => !metode.trim())
+    ) {
+        Swal.fire(
+            "Error", 
+            "All fields are required.", 
+            "error"
+        );
+        return;
     }
-}
-
-async function insertRegionDataWarung() {
-    try {
+    
+        const url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/warung";
         const regionData = {
-            province: document.getElementById("province").value,
-            district: document.getElementById("district").value,
-            sub_district: document.getElementById("sub_district").value,
-            village: document.getElementById("village").value,
-            lat: parseFloat(document.getElementById("lat").value),
-            lon: parseFloat(document.getElementById("long").value),
-            nama_tempat: document.getElementById("nama_tempat").value,
-            lokasi: document.getElementById("lokasi").value,
-            metode_pembayaran: document.getElementById("metode_pembayaran").value.split(","),
-            gambar: document.getElementById("gambar").value,
-        };
+        province: province,
+        district: district,
+        sub_district: sub_district || "",
+        village: village,
+        lat: lat,
+        lon: lon,
+        nama_tempat: nama_tempat || "",
+        lokasi: lokasi,
+        jam_buka: jam_buka,
+        metode_pembayaran: metode_pembayaran,
+        gambar: fileName || "",
+    };
 
-        if (Object.values(regionData).some((value) => !value)) {
-            Swal.fire("Error", "All fields are required.", "error");
-            return;
-        }
+    console.log(JSON.stringify(regionData));
 
-        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/ warung", {
+    try {
+        const response = await fetch(url, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify(regionData),
         });
 
-        if (response.ok) {
-            const result = await response.json();
-            Swal.fire("Success", `Data successfully saved: ${JSON.stringify(result)}`, "success");
-        } else {
-            Swal.fire("Error", "Failed to save data.", "error");
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
         }
+        const responseData = await response.json();
+        console.log("Response data from server:", responseData);
+
+    
+        const coordData = {
+            markers: [
+                [lon, lat]
+            ]
+        };
+
+        const coordResponse = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/marker-warung', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(coordData)
+        });
+
+        if (!coordResponse.ok) {
+            const errorText = await coordResponse.text();
+            throw new Error(`HTTP error! Status: ${coordResponse.status}, Message: ${errorText}`);
+        }
+
+        Swal.fire({
+            icon: "success",
+            title: "Berhasil",
+            text: "Data parkir dan koordinat berhasil disimpan!",
+            timer: 2000,
+        });
     } catch (error) {
-        Swal.fire("Error", `An error occurred: ${error.message}`, "error");
+        console.error("Error:", error);
+        Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "Terjadi kesalahan saat menyimpan data. Silakan coba lagi.",
+        });
     }
-}
+});
 
-window.uploadImage = uploadImage;
+window.uploadImageWarung = uploadImageWarung;
 
-const target_url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
+const target_url_warung = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/upload/img";
 
-function uploadImage() {
+async function uploadImageWarung() {
     const gambar = document.getElementById('gambar');
-    if (!igambar || gambar.files.length === 0) {
+    if (!gambar || gambar.files.length === 0) {
         Swal.fire({
             icon: "error",
             title: "Gagal",
@@ -127,38 +210,62 @@ function uploadImage() {
         });
         return;
     }
-    const gambarinput = document.getElementById('gambar');
-    if (gambarinput) {
-        hide("gambar");
-    } else {
-        console.error("Element with ID 'gambar' not found");
+    try {
+        const inputFileElement = document.getElementById("gambar");
+        if (inputFileElement) {
+            hide("gambar");
+        }
+
+        const fileSizeWarung = getFileSize("gambar");
+        setInner("isi", fileSizeWarung);
+
+        await postFile(target_url_warung, "gambar", "img", renderToHtmlWarung);
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        Swal.fire({
+            icon: "error",
+            title: "Error Uploading Image",
+            text: error.message,
+        });
+
+        const inputFileElement = document.getElementById("gambar");
+        if (inputFileElement) {
+            show("gambar");
+        }
     }
-    let besar = getFileSize("gambar");
-    setInner("isi", besar);
-    
-    postFile(target_url, "gambar", "img", renderToHtml);
 }
 
-function renderToHtml(result) {
-    console.log(result);
-    setInner("isi", "https://parkirgratis.github.io/filegambar/" + result.response);
-    show("gambar");
+function renderToHtmlWarung(result) {
+    try {
+        console.log(result);
+        if (result.error) {
+            throw new Error(result.error.message || "Unknown error in response");
+        }
+
+        const isiElement = document.getElementById("isi");
+        if (!isiElement) {
+            throw new Error("Element with ID 'isiWarung' not found");
+        }
+
+        const imageUrlWarung = "https://parkirgratis.if.co.id/filegambar/" + result.response;
+
+        const existingImage = isiElement.querySelector("img");
+        if (existingImage) {
+            existingImage.src = imageUrlWarung;
+        } else {
+            const newImage = document.createElement("img");
+            newImage.src = imageUrlWarung;
+            newImage.alt = "Uploaded Image";
+            isiElement.appendChild(newImage);
+        }
+        show("gambar");
+    } catch (error) {
+        console.error("Error rendering HTML:", error);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Failed to process uploaded image.",
+        });
+    }
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("locationForm");
-    if (form) {
-        form.addEventListener("submit", handleSubmitPetapedia);
-    }
-
-    const saveButton = document.getElementById("saveButton");
-    if (saveButton) {
-        saveButton.addEventListener("click", insertRegionDataWarung);
-    }
     
-    const cancelButton = document.getElementById("cancelButton");
-    if (cancelButton) {
-        cancelButton.addEventListener("click", cancel);
-    }
-});

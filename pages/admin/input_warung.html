@@ -14,7 +14,8 @@
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="overflow-y-hidden">
+    <div hidden id="isi"></div>
     <div>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
@@ -173,13 +174,19 @@
                                         <div class="md:flex xs:flex-col gap-4">
                                             <div class="mb-2 md:w-1/2 xs:flex-grow">
                                                 <label for="gambar" class="block text-sm font-medium text-gray-700">Gambar</label>
-                                                <input type="file" id="gambar" class="mt-1 block w-full h-10 px-3 py-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm focus:font-semibold" name="gambar" accept="image/*" required>
+                                                <input type="file" id="gambar" name="img" class="mt-1 block w-full h-10 px-3 py-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm focus:font-semibold" name="gambar" accept="image/*" required>
                                             </div>
                                             <div class="mb-2 md:w-1/2 xs:flex-grow">
                                                 <label for="metode_pembayaran" class="block text-sm font-medium text-gray-700">metode_pembayaran</label>
                                                 <input type="text" id="metode_pembayaran" class="mt-1 block w-full h-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm focus:font-semibold">
                                             </div>
-                                        </div>                                        
+                                        </div>     
+                                        <div class="md:flex xs:flex-col gap-4">
+                                            <div class="mb-2 flex-grow">
+                                                <label for="jam_buka" class="block text-sm font-medium text-gray-700">Jam-Buka</label>
+                                                <input type="text" id="jam_buka" class="mt-1 block bg-white w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm focus:font-semibold">
+                                            </div>
+                                        </div>                                   
                                         <div class="mt-4 p-2 border-2 border-violet-500 rounded-md shadow-lg">
                                             <div id="map" class="w-full h-64"></div>
                                         </div>                            
