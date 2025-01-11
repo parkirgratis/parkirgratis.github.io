@@ -1,0 +1,9 @@
+User-agent: Googlebot
+Disallow: 
+User-agent: googlebot-mobile
+Disallow: 
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Disallow: /pages/admin/
+Disallow: /pages/login/
