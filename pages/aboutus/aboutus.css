@@ -65,53 +65,11 @@ p {
     display: block; 
 }
 
-@media (max-width: 768px) {
-    #dropdownMenu {
-        display: none;
-        filter: blur();
-    }
-
-    details[open] > div {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 10;
-        width: 100%;
-        padding-top: 10%;
-        padding-left: 25%;
-        padding-right: 25%;
-        padding-bottom: 100vh;
-        border-radius: 2px;
-        box-sizing: border-box;
-        background: rgba(12, 11, 11, 0.445);
-        color: #000;
-    }
-
-    details[open] > div::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: inherit;
-        z-index: -1;
-        border-radius: 5px;
-        filter: drop-shadow();
-    }
-}
-
-button img {
-    margin-right: 10px;
-}
-
 .custom-logo { 
     padding: 3px; 
     position: absolute;
     left: 15px; 
     top: 10px; 
-    
 }
 
 .text-indent {
