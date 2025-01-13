@@ -226,7 +226,7 @@
                 }
                 settings.onBeforeStart.call(this, $el);
                 refresh.chbreakpoint();
-                $el.addClass('lightSlider').wrap('<div class="lSSlideOuter ' + settings.addClass + '"><div class="lSSlideWrapper"></div></div>');
+                $el.addClass('lightSlider').wrap('<div class="lSSlideOuter py-2' + settings.addClass + '"><div class="lSSlideWrapper"></div></div>');
                 $slide = $el.parent('.lSSlideWrapper');
                 if (settings.rtl === true) {
                     $slide.parent().addClass('lSrtl');
