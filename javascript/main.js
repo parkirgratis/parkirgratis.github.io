@@ -1,32 +1,105 @@
-import Feature from 'https://cdn.skypack.dev/ol/Feature.js';
-import Point from 'https://cdn.skypack.dev/ol/geom/Point.js';
-import VectorSource from 'https://cdn.skypack.dev/ol/source/Vector.js';
-import {Vector as VectorLayer} from 'https://cdn.skypack.dev/ol/layer.js';
-import {Icon, Style} from 'https://cdn.skypack.dev/ol/style.js';
-import Map from 'https://cdn.skypack.dev/ol/Map.js';
-import View from 'https://cdn.skypack.dev/ol/View.js';
-import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
-import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
-import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
-import { createMarker, createMarkerWarung } from '../javascript/controller/markers.js';
-import { createPopups, displayPopup } from '../javascript/controller/popups.js';
-import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
-import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
+    import Feature from 'https://cdn.skypack.dev/ol/Feature.js';
+    import Point from 'https://cdn.skypack.dev/ol/geom/Point.js';
+    import VectorSource from 'https://cdn.skypack.dev/ol/source/Vector.js';
+    import {Vector as VectorLayer} from 'https://cdn.skypack.dev/ol/layer.js';
+    import {Icon, Style} from 'https://cdn.skypack.dev/ol/style.js';
+    import Map from 'https://cdn.skypack.dev/ol/Map.js';
+    import View from 'https://cdn.skypack.dev/ol/View.js';
+    import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
+    import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
+    import GeoJSON from 'https://cdn.skypack.dev/ol/format/GeoJSON.js';
+    import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
+    import Cluster from 'https://cdn.skypack.dev/ol/source/Cluster.js';
+    import {Circle, Fill, Stroke, Text} from 'https://cdn.skypack.dev/ol/style.js';
+    import { createMarker, createMarkerWarung } from '../javascript/controller/markers.js';
+    import { createPopups, displayPopup } from '../javascript/controller/popups.js';
+    import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
+    import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
 
-addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+    addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 
-const map = new Map({
-    target: 'map',
-    layers: [
-        new TileLayer({
-            source: new OSM()
+    const map = new Map({
+        target: 'map',
+        layers: [
+            new TileLayer({
+                source: new OSM()
+            })
+        ],
+        view: new View({
+            center: fromLonLat([107.6098, -6.9175]),
+            zoom: 12
         })
-    ],
-    view: new View({
-        center: fromLonLat([107.6098, -6.9175]),
-        zoom: 12
-    })
-});
+    });
+
+    async function fetchGeoJSONData() {
+        console.log('Fetching GeoJSON data...');
+        try {
+            const regionResponse = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/region');
+            const roadsResponse = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/roads');
+        
+            if (!regionResponse.ok || !roadsResponse.ok) {
+                console.error('Failed to fetch data:', regionResponse.status, roadsResponse.status);
+                return;
+            }
+        
+            const regionGeoJSON = await regionResponse.json();
+            const roadsGeoJSON = await roadsResponse.json();
+        
+            const combinedGeoJSON = {
+                type: "FeatureCollection",
+                features: [
+                    ...regionGeoJSON.features,
+                    ...roadsGeoJSON.features
+                ]
+            };
+    
+            // Membaca GeoJSON dan menambahkan layer ke peta
+            const vectorSource = new VectorSource({
+                features: new GeoJSON().readFeatures(combinedGeoJSON, {
+                    featureProjection: 'EPSG:3857'
+                })
+            });
+    
+            // Menambahkan clustering
+            const clusterSource = new Cluster({
+                distance: 40, // Jarak dalam piksel untuk mengelompokkan
+                source: vectorSource,
+            });
+    
+            const clusterLayer = new VectorLayer({
+                source: clusterSource,
+                style: function (feature) {
+                    const size = feature.get('features').length;
+                    const style = new Style({
+                        image: new Circle({
+                            radius: 10,
+                            fill: new Fill({color: 'rgba(255, 0, 0, 0.4)'}),
+                            stroke: new Stroke({color: 'white', width: 2}),
+                        }),
+                        text: new Text({
+                            text: size.toString(),
+                            font: '12px Calibri,sans-serif',
+                            fill: new Fill({color: '#000'}),
+                        }),
+                    });
+                    return style;
+                }
+            });
+    
+            map.addLayer(clusterLayer);
+            console.log('Map layer added with clustered GeoJSON data.');
+        } catch (error) {
+            console.error('Error fetching GeoJSON data:', error);
+        }
+    }
+    
+    map.on('moveend', function() {
+        const view = map.getView();
+        const center = view.getCenter();
+        const zoom = view.getZoom();
+        
+        fetchGeoJSONData(center, zoom);
+    });
 
 let markerCoords = [];
 let popupsData = [];
@@ -415,6 +488,7 @@ function getAccurateUserLocation() {
         });
     }
 }
+
 
 
 
