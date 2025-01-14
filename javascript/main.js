@@ -72,7 +72,7 @@ function fetchPopupData() {
                     coordinate: [item.lon, item.lat],
                     content: `
                         <div class="popup-content">
-                        <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
+                        <img src="${item.gambar}" class="md:mt-[60px]" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
                             <div class="red-sidebar">
                             <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white uppercase">${item.nama_tempat}</p>
                             </div>
@@ -131,7 +131,7 @@ function fetchDataWarung() {
                     coordinate: [item.lon, item.lat],
                     content: `
                         <div class="popup-content">
-                        <img src="${item.gambar}" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-top: 60px; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
+                        <img src="${item.gambar}" class="md:mt-[60px]" alt="Gambar Tempat" style="width:200%; height:auto; max-height: 200px; object-fit: cover; margin-bottom: -1px; margin-left: -1px;  margin-right: -100px;">
                             <div class="bg-blue-500 flex justify-center items-center h-12">
                                 <span class="pr-2"><img src="https://cdn-icons-png.flaticon.com/512/61/61942.png" class="invert w-6 h-6"></span><p class="side-nav-text font-sidebar text-white uppercase">${item.nama_tempat}</p>
                             </div>
