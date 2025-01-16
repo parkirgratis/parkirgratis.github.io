@@ -417,9 +417,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             Update
                         </button>
                         <button type="button" class="text-white bg-red-500 px-2 py-1 rounded-md" 
-                            onclick="deleteData('${item._id}', ${item.lon}, ${
-        item.lat
-      })">
+                            onclick="deleteDataWarung('${item._id}', ${item.lon}, ${item.lat})">
                             Delete
                         </button>
                     </div>
@@ -447,6 +445,53 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 });
+
+window.deleteDataWarung = async function (id, lon, lat) {
+  const token = localStorage.getItem("token");
+  try {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `Delete data with ID ${id}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!result.isConfirmed) return;
+
+    const response = await fetch(
+      "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung",
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      }
+    );
+
+    if (!response.ok) throw new Error("Failed to delete main data");
+
+    await fetch(
+      "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung",
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id, lon, lat }),
+      }
+    );
+
+    Swal.fire("Deleted!", "Data deleted successfully!", "success");
+    location.reload();
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    Swal.fire("Error", "An error occurred while deleting data!", "error");
+  }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   window.showUpdateFormWarung = function (
