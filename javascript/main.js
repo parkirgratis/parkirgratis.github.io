@@ -28,6 +28,8 @@
         })
     });
 
+    
+
 let markerCoords = [];
 let popupsData = [];
 

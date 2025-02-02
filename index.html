@@ -11,6 +11,7 @@
     <link href="https://cdn.skypack.dev/ol/ol.css" rel="stylesheet">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/style.css">
     <link rel="stylesheet" href="Skeleton-2.0.4/css/mainmenu.css">
+     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +21,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C32JH3GZHD"></script>
     <script src="javascript/g-analytics.js"></script>
+    <link rel="stylesheet" href="http://viglino.github.io/ol-ext/dist/ol-ext.css" /> 
+    <script type="text/javascript" src="http://viglino.github.io/ol-ext/dist/ol-ext.js"></script> 
 </head>
+
+<style>
+  .tooltip {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+  .tooltip-measure {
+    opacity: 1;
+    font-weight: bold;
+  }
+  .tooltip-static {
+    background-color: #ffcc33;
+    color: black;
+    border: 1px solid white;
+  }
+  .tooltip-measure:before,
+  .tooltip-static:before {
+    border-top: 6px solid rgba(0, 0, 0, 0.5);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    margin-left: -7px;
+    left: 50%;
+  }
+  .tooltip-static:before {
+    border-top-color: #ffcc33;
+  }  
+  .map {
+    height: 50%;
+    width: 70%;
+  }   
+</style>
 <body>
   <nav class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
     <div>

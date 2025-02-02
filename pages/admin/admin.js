@@ -462,7 +462,7 @@ window.deleteDataWarung = async function (id, lon, lat) {
     if (!result.isConfirmed) return;
 
     const response = await fetch(
-      "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung",
+      "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/deletewarung",
       {
         method: "DELETE",
         headers: {
