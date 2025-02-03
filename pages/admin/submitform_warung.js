@@ -127,7 +127,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
         return;
     }
     
-        const url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/warung";
+        const url = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasiwarung";
         const regionData = {
         province: province,
         district: district,
