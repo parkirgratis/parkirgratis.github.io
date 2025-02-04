@@ -105,7 +105,7 @@ document.getElementById("saveButton").addEventListener("click", async (e) => {
     }
 
     
-    const urlData = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasi";
+    const urlData = "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/lokasiparkir";
 
     const regionData = {
         province,

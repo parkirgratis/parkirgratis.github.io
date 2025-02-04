@@ -28,6 +28,8 @@ const map = new Map({
     })
 });
 
+    
+
 let markerCoords = [];
 let popupsData = [];
 
