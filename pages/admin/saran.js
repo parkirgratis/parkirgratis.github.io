@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalLocElement = document.getElementById('totalLocations'); 
 
     //fetch api saran
-    fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/datasaran')
+    fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/saran')
         .then(response => response.json())
         .then(data => {
             let totalLocations = 0;

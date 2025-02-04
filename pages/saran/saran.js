@@ -56,7 +56,7 @@ document.getElementById('saranForm').addEventListener('submit', async function(e
     submitButton.innerHTML = '<span class="animate-spin inline-block mr-2">↻</span> Mengirim...';
 
     try {
-        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/saran', {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/datasaran', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
