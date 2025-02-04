@@ -213,7 +213,11 @@ document.addEventListener("DOMContentLoaded", () => {
         isNaN(lon) ||
         isNaN(lat)
       ) {
-        alert("Semua kolom harus diisi dengan benar!");
+        Swal.fire({
+          icon: "error",
+          title: "Gagal Memperbarui Data",
+          text: "Semua kolom harus diisi dengan benar!",
+        });
         return;
       }
       const url =
