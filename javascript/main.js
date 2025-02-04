@@ -1,32 +1,32 @@
-    import Feature from 'https://cdn.skypack.dev/ol/Feature.js';
-    import Point from 'https://cdn.skypack.dev/ol/geom/Point.js';
-    import VectorSource from 'https://cdn.skypack.dev/ol/source/Vector.js';
-    import {Vector as VectorLayer} from 'https://cdn.skypack.dev/ol/layer.js';
-    import {Icon, Style} from 'https://cdn.skypack.dev/ol/style.js';
-    import Map from 'https://cdn.skypack.dev/ol/Map.js';
-    import View from 'https://cdn.skypack.dev/ol/View.js';
-    import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
-    import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
-    import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
-    import { createMarker, createMarkerWarung } from '../javascript/controller/markers.js';
-    import { createPopups, displayPopup } from '../javascript/controller/popups.js';
-    import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
-    import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
+import Feature from 'https://cdn.skypack.dev/ol/Feature.js';
+import Point from 'https://cdn.skypack.dev/ol/geom/Point.js';
+import VectorSource from 'https://cdn.skypack.dev/ol/source/Vector.js';
+import {Vector as VectorLayer} from 'https://cdn.skypack.dev/ol/layer.js';
+import {Icon, Style} from 'https://cdn.skypack.dev/ol/style.js';
+import Map from 'https://cdn.skypack.dev/ol/Map.js';
+import View from 'https://cdn.skypack.dev/ol/View.js';
+import TileLayer from 'https://cdn.skypack.dev/ol/layer/Tile.js';
+import OSM from 'https://cdn.skypack.dev/ol/source/OSM.js';
+import { fromLonLat } from 'https://cdn.skypack.dev/ol/proj.js';
+import { createMarker, createMarkerWarung } from '../javascript/controller/markers.js';
+import { createPopups, displayPopup } from '../javascript/controller/popups.js';
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
+import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
 
-    addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 
-    const map = new Map({
-        target: 'map',
-        layers: [
-            new TileLayer({
-                source: new OSM()
-            })
-        ],
-        view: new View({
-            center: fromLonLat([107.6098, -6.9175]),
-            zoom: 12
+const map = new Map({
+    target: 'map',
+    layers: [
+        new TileLayer({
+            source: new OSM()
         })
-    });
+    ],
+    view: new View({
+        center: fromLonLat([107.6098, -6.9175]),
+        zoom: 12
+    })
+});
 
 let markerCoords = [];
 let popupsData = [];
