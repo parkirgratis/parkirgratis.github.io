@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const dataDisplayTable = document.getElementById('dataDisplayTable').getElementsByTagName('tbody')[0];
     const totalLocElement = document.getElementById('totalLocations'); 
 
-    fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/saran')
+    fetch('https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/datasaran')
         .then(response => response.json())
         .then(data => {
             let totalLocations = 0;
